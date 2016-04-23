@@ -19,16 +19,48 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="app.css" />
+    <Content Include="lib\createjs\tweenjs-0.6.2.combined.js" />
+    <Content Include="reatejs.html" />
     <Content Include="createjs.html" />
-    <Content Include="createjs\easeljs-0.8.2.combined.js" />
+    <Content Include="lib\createjs\easeljs-0.8.2.combined.js" />
+    <Content Include="lib\puremvc\puremvc-typescript-standard-1.0-min.js" />
+    <Content Include="lib\puremvc\puremvc-typescript-standard-1.0.js" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app.ts" />
     <TypeScriptCompile Include="createjs-lib\createjs-lib.d.ts" />
     <TypeScriptCompile Include="easeljs\easeljs.d.ts" />
+    <TypeScriptCompile Include="org\puremvc\typescript\core\Controller.ts" />
+    <TypeScriptCompile Include="org\puremvc\typescript\core\Model.ts" />
+    <TypeScriptCompile Include="org\puremvc\typescript\core\View.ts" />
+    <TypeScriptCompile Include="org\puremvc\typescript\interfaces\ICommand.ts" />
+    <TypeScriptCompile Include="org\puremvc\typescript\interfaces\IController.ts" />
+    <TypeScriptCompile Include="org\puremvc\typescript\interfaces\IFacade.ts" />
+    <TypeScriptCompile Include="org\puremvc\typescript\interfaces\IMediator.ts" />
+    <TypeScriptCompile Include="org\puremvc\typescript\interfaces\IModel.ts" />
+    <TypeScriptCompile Include="org\puremvc\typescript\interfaces\INotification.ts" />
+    <TypeScriptCompile Include="org\puremvc\typescript\interfaces\INotifier.ts" />
+    <TypeScriptCompile Include="org\puremvc\typescript\interfaces\IObserver.ts" />
+    <TypeScriptCompile Include="org\puremvc\typescript\interfaces\IProxy.ts" />
+    <TypeScriptCompile Include="org\puremvc\typescript\interfaces\IView.ts" />
+    <TypeScriptCompile Include="org\puremvc\typescript\patterns\command\MacroCommand.ts" />
+    <TypeScriptCompile Include="org\puremvc\typescript\patterns\command\SimpleCommand.ts" />
+    <TypeScriptCompile Include="org\puremvc\typescript\patterns\facade\Facade.ts" />
+    <TypeScriptCompile Include="org\puremvc\typescript\patterns\mediator\Mediator.ts" />
+    <TypeScriptCompile Include="org\puremvc\typescript\patterns\observer\Notification.ts" />
+    <TypeScriptCompile Include="org\puremvc\typescript\patterns\observer\Notifier.ts" />
+    <TypeScriptCompile Include="org\puremvc\typescript\patterns\observer\Observer.ts" />
+    <TypeScriptCompile Include="org\puremvc\typescript\patterns\proxy\Proxy.ts" />
     <TypeScriptCompile Include="preloadjs\preloadjs.d.ts" />
     <TypeScriptCompile Include="soundjs\soundjs.d.ts" />
+    <TypeScriptCompile Include="src\core\AppFacade.ts" />
+    <TypeScriptCompile Include="src\core\controller\ControllerPrepCommand.ts" />
+    <TypeScriptCompile Include="src\core\controller\ModelPrepCommand.ts" />
+    <TypeScriptCompile Include="src\core\controller\StartupCommand.ts" />
+    <TypeScriptCompile Include="src\core\controller\ViewPrepCommand.ts" />
+    <TypeScriptCompile Include="src\core\view\meidator\TestMeidator.ts" />
+    <TypeScriptCompile Include="src\core\view\panel\TestPanel.ts" />
     <TypeScriptCompile Include="tweenjs\tweenjs.d.ts" />
   </ItemGroup>
   <ItemGroup>
@@ -39,6 +71,9 @@
     <None Include="web.Release.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\core\model\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
@@ -57,8 +92,6 @@
           <DevelopmentServerPort>47273</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:47273/</IISUrl>
-          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://localhost:47273/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
@@ -69,8 +102,11 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-    <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
     <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptOutDir>F:\workspace\basicutilstest\createjsTest\createjstest\lib</TypeScriptOutDir>
+    <TypeScriptCompileOnSaveEnabled>False</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptOutFile>app.js</TypeScriptOutFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <TypeScriptRemoveComments>true</TypeScriptRemoveComments>

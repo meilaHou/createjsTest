@@ -1,3 +1,4 @@
+/// <reference path="../tweenjs/tweenjs.d.ts" />
 // Type definitions for EaselJS 0.8.0
 // Project: http://www.createjs.com/#!/EaselJS
 // Definitions by: Pedro Ferreira <https://bitbucket.org/drk4>, Chris Smith <https://github.com/evilangelist>

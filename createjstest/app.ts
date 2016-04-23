@@ -1,4 +1,8 @@
-﻿/// <reference path="easeljs/easeljs.d.ts" />
+﻿/// <reference path="tweenjs/tweenjs.d.ts" />
+/// <reference path="easeljs/easeljs.d.ts" />
+
+
+/// <reference path="src/core/appfacade.ts" />
 class Greeter {
     element: HTMLElement;
     span: HTMLElement;
@@ -38,18 +42,28 @@ class EaseljsTest {
         var canvas = document.getElementById("myCanvas");
        // var stage = this.stage;
         this.mstage = new createjs.Stage(canvas);
-
-        //this.addTick();
-
+        //测试引入createjs正常
         var circle = new createjs.Shape();
         circle.addEventListener("click", this.handleClick);
         console.log("执行到createjs" + canvas.namespaceURI);
         circle.graphics.setStrokeStyle(5).beginStroke("rgba(0,0,0,.5)").beginFill("orange").drawCircle(0, 0, 50);
-        this.mstage.addChild(circle);
+        var tempmc = new createjs.MovieClip(null, 0, true, { start: 20 });
+        tempmc.addChild(circle);
+        this.mstage.addChild(tempmc);
+       
+        game.AppFacade.getInstance().startUp(this.mstage);
+        game.AppFacade.getInstance().sendNotification("showTestPanel");
+        console.log("发送消息成功");
+        //this.addTick();
 
-        var theText = new createjs.Text("极客标签", "normal 32px microsoft yahei", "#222222");
-        this.mstage.addChild(theText);
+
         this.mstage.update();
+
+
+
+        //var theText = new createjs.Text("极客标签", "normal 32px microsoft yahei", "#222222");
+        //this.mstage.addChild(theText);
+        //this.mstage.update();
     }
 
     private addTick() {
