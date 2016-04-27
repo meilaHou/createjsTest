@@ -1,5 +1,6 @@
 ﻿/// <reference path="tweenjs/tweenjs.d.ts" />
 /// <reference path="easeljs/easeljs.d.ts" />
+/// <reference path="src/interface/interfacefiles.ts" />
 
 
 /// <reference path="src/core/appfacade.ts" />
@@ -41,7 +42,7 @@ class EaseljsTest {
     constructor() {
         var canvas = document.getElementById("myCanvas");
        // var stage = this.stage;
-        this.mstage = new createjs.Stage(canvas);
+        this.mstage = new createjs.Stage(canvas); 
         //测试引入createjs正常
         var circle = new createjs.Shape();
         circle.addEventListener("click", this.handleClick);
@@ -55,7 +56,8 @@ class EaseljsTest {
         game.AppFacade.getInstance().sendNotification("showTestPanel");
         console.log("发送消息成功");
         //this.addTick();
-
+        var dfdf: any;
+        console.log(dfdf);
 
         this.mstage.update();
 
@@ -64,6 +66,25 @@ class EaseljsTest {
         //var theText = new createjs.Text("极客标签", "normal 32px microsoft yahei", "#222222");
         //this.mstage.addChild(theText);
         //this.mstage.update();
+
+
+
+        this.setTableRowHtml1();
+        
+    }
+    //测试jquery 引用 
+    //寻找tr 中第二个td
+    private  setTableRowHtml1(): void {
+        var userName: string = "";
+        $("tr").each(function () {
+            userName = $(this).find("td:eq(1)").html();
+        });
+        alert(userName);
+    }
+
+    private interfacetest() {
+
+       // var mySquare1: SquareConfig = new Mysquare();
     }
 
     private addTick() {

@@ -3,12 +3,6 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-/**
-  * 初始化mvc controller
-  * by dily
-  * (c) copyright 2014 - 2035
-  * All Rights Reserved.
-  */
 var game;
 (function (game) {
     var StartupCommand = (function (_super) {
@@ -25,4 +19,3 @@ var game;
     }(puremvc.MacroCommand));
     game.StartupCommand = StartupCommand;
 })(game || (game = {}));
-//# sourceMappingURL=StartupCommand.js.map

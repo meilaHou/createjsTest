@@ -1,8 +1,3 @@
-/**
- *
- * @author
- *
- */
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -25,6 +20,10 @@ var TestMeidator = (function (_super) {
         console.log("testmediator 响应成功", notification.getName());
         switch (notification.getName()) {
             case "showTestPanel": {
+                if (this.viewComponent == null) {
+                    console.log("画板舞台不存在");
+                    return;
+                }
                 this.viewComponent.addChild(new TestPanel());
                 console.log("创建面板成功");
             }
@@ -33,4 +32,3 @@ var TestMeidator = (function (_super) {
     TestMeidator.NAME = "TestMediator";
     return TestMeidator;
 }(puremvc.Mediator));
-//# sourceMappingURL=TestMeidator.js.map

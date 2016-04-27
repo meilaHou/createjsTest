@@ -19,7 +19,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="app.css" />
+    <Content Include="app.js" />
+    <Content Include="egame\loading.html" />
+    <Content Include="egame\loading.js" />
+    <Content Include="egame\images\loading_atlas_.png" />
+    <Content Include="lib\createjs\preloadjs-0.6.2.combined.js" />
     <Content Include="lib\createjs\tweenjs-0.6.2.combined.js" />
+    <Content Include="lib\jquery\jquery-1.12.3.js" />
     <Content Include="reatejs.html" />
     <Content Include="createjs.html" />
     <Content Include="lib\createjs\easeljs-0.8.2.combined.js" />
@@ -31,6 +37,7 @@
     <TypeScriptCompile Include="app.ts" />
     <TypeScriptCompile Include="createjs-lib\createjs-lib.d.ts" />
     <TypeScriptCompile Include="easeljs\easeljs.d.ts" />
+    <TypeScriptCompile Include="jquery\jquery.d.ts" />
     <TypeScriptCompile Include="org\puremvc\typescript\core\Controller.ts" />
     <TypeScriptCompile Include="org\puremvc\typescript\core\Model.ts" />
     <TypeScriptCompile Include="org\puremvc\typescript\core\View.ts" />
@@ -61,10 +68,17 @@
     <TypeScriptCompile Include="src\core\controller\ViewPrepCommand.ts" />
     <TypeScriptCompile Include="src\core\view\meidator\TestMeidator.ts" />
     <TypeScriptCompile Include="src\core\view\panel\TestPanel.ts" />
+    <TypeScriptCompile Include="src\interface\interfaceFiles.ts" />
     <TypeScriptCompile Include="tweenjs\tweenjs.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="createjs.pubxml" />
+    <Content Include="tsconfig.json" />
+    <Content Include="egame\images\loading_atlas_.json" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -74,6 +88,28 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\core\model\" />
+    <Folder Include="src\moduletest\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
@@ -102,11 +138,12 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptRemoveComments>True</TypeScriptRemoveComments>
     <TypeScriptSourceMap>true</TypeScriptSourceMap>
-    <TypeScriptOutDir>F:\workspace\basicutilstest\createjsTest\createjstest\lib</TypeScriptOutDir>
-    <TypeScriptCompileOnSaveEnabled>False</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
     <TypeScriptOutFile>app.js</TypeScriptOutFile>
+    <TypeScriptOutDir>F:\workspace\basicutilstest\createjsTest\createjstest\lib</TypeScriptOutDir>
+    <TypeScriptModuleKind>amd</TypeScriptModuleKind>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <TypeScriptRemoveComments>true</TypeScriptRemoveComments>

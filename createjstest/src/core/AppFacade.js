@@ -19,19 +19,14 @@ var game;
             _super.prototype.initializeController.call(this);
             this.registerCommand(AppFacade.STARTUP, game.StartupCommand);
         };
-        /**
-         * 启动PureMVC，在应用程序中调用此方法，并传递应用程序本身的引用
-         * @param	rootView	-	PureMVC应用程序的根视图root，包含其它所有的View Componet
-         */
         AppFacade.prototype.startUp = function (rootView) {
             console.log("facade初始化完成");
             this.stage = rootView;
             this.sendNotification(AppFacade.STARTUP, rootView);
-            this.removeCommand(AppFacade.STARTUP); //PureMVC初始化完成，注销STARUP命令
+            this.removeCommand(AppFacade.STARTUP);
         };
         AppFacade.STARTUP = "startup";
         return AppFacade;
     }(puremvc.Facade));
     game.AppFacade = AppFacade;
 })(game || (game = {}));
-//# sourceMappingURL=AppFacade.js.map
