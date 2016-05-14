@@ -20,12 +20,14 @@
   <ItemGroup>
     <Content Include="app.css" />
     <Content Include="app.js" />
+    <TypeScriptCompile Include="egame\loading.ts" />
     <Content Include="egame\loading.html" />
     <Content Include="egame\loading.js" />
     <Content Include="egame\images\loading_atlas_.png" />
     <Content Include="lib\createjs\preloadjs-0.6.2.combined.js" />
     <Content Include="lib\createjs\tweenjs-0.6.2.combined.js" />
     <Content Include="lib\jquery\jquery-1.12.3.js" />
+    <Content Include="images\loading_atlas_.png" />
     <Content Include="reatejs.html" />
     <Content Include="createjs.html" />
     <Content Include="lib\createjs\easeljs-0.8.2.combined.js" />
@@ -75,6 +77,7 @@
     <None Include="createjs.pubxml" />
     <Content Include="tsconfig.json" />
     <Content Include="egame\images\loading_atlas_.json" />
+    <Content Include="images\loading_atlas_.json" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
