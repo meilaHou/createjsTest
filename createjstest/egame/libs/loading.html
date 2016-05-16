@@ -1,0 +1,67 @@
+<!--
+	NOTES:
+	1. All tokens are represented by '$' sign in the template.
+	2. You can write your code only wherever mentioned.
+	3. "DO NOT" alter the tokens in the template html as they are required during publishing.
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>loading</title>
+<!-- write your code here -->
+
+
+
+<script>
+	// change the default namespace for the CreateJS libraries:
+	var loadingcreatejs = loadingcreatejs||{};
+	var createjs = loadingcreatejs;
+</script>
+<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+<script src="loading.js?1463199612727"></script>
+<script>
+var canvas, stage, exportRoot;
+function init() {
+	// --- write your JS code here ---
+	
+	loadingcreatejs.MotionGuidePlugin.install();
+
+	canvas = document.getElementById("canvas");
+	loadingimages = loadingimages||{};
+	ss = ss||{};
+
+	var loader = new loadingcreatejs.LoadQueue(false);
+	loader.addEventListener("fileload", handleFileLoad);
+	loader.addEventListener("complete", handleComplete);
+	loader.loadFile({src:"../egame/images/loading_atlas_.json?1463199612727", type:"spritesheet", id:"loading_atlas_"}, true);
+	loader.loadManifest(loadinglib.properties.manifest);
+}
+
+function handleFileLoad(evt) {
+	if (evt.item.type == "image") { loadingimages[evt.item.id] = evt.result; }
+}
+
+function handleComplete(evt) {
+	var queue = evt.target;
+	ss["loading_atlas_"] = queue.getResult("loading_atlas_");
+	exportRoot = new loadinglib.loading();
+
+	stage = new loadingcreatejs.Stage(canvas);
+	stage.addChild(exportRoot);
+	stage.update();
+
+	loadingcreatejs.Ticker.setFPS(loadinglib.properties.fps);
+	loadingcreatejs.Ticker.addEventListener("tick", stage);
+}
+
+</script>
+
+<!-- write your code here -->
+
+</head>
+<body onload="init();" style="background-color:#D4D4D4;margin:0px;">
+	<canvas id="canvas" width="1050" height="680" style="background-color:#FFFFFF"></canvas>
+</body>
+</html>

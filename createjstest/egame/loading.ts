@@ -285,24 +285,6 @@
     p.nominalBounds = new cjs.Rectangle(0, 0, 152.3, 186.9);
 
 
-    (lib.测试按钮 = function (mode, startPosition, loop) {
-        this.initialize(mode, startPosition, loop, {});
-
-        // 图层 1
-        this.shape = new cjs.Shape();
-        this.shape.graphics.f().s("#000000").ss(1, 1, 1).p("AnamJIO1AAIAAMTIu1AAg");
-        this.shape.setTransform(47.5, 39.5);
-
-        this.shape_1 = new cjs.Shape();
-        this.shape_1.graphics.f("#FF7700").s().p("AnaGKIAAsTIO1AAIAAMTg");
-        this.shape_1.setTransform(47.5, 39.5);
-
-        this.timeline.addTween(cjs.Tween.get({}).to({ state: [{ t: this.shape_1 }, { t: this.shape }] }).wait(1));
-
-    }).prototype = p = new cjs.MovieClip();
-    p.nominalBounds = new cjs.Rectangle(-1, -1, 97, 81);
-
-
     (lib.光1 = function (mode, startPosition, loop) {
         this.initialize(mode, startPosition, loop, {});
 
@@ -487,7 +469,7 @@
 
         // timeline functions:
         this.frame_0 = function () {
-           // this.gotoAndStop(20);
+            this.stop();
         }
         this.frame_99 = function () {
             /*stop()*/
@@ -650,12 +632,6 @@
     (lib.GameLoading = function (mode, startPosition, loop) {
         this.initialize(mode, startPosition, loop, {});
 
-        // timeline functions:
-        
-
-        // actions tween:
-        this.timeline.addTween(cjs.Tween.get(this).wait(1));
-
         // 图层 3
         this.instance = new lib.叶子5();
         this.instance.setTransform(400.9, 227.7, 1, 1, 115.6, 0, 0, 18.2, 19.7);
@@ -728,15 +704,6 @@
 
         this.timeline.addTween(cjs.Tween.get({}).to({ state: [{ t: this.progressTxt }, { t: this.messageTxt }] }).wait(1));
 
-        // btn
-        this.instance_12 = new lib.测试按钮();
-        this.instance_12.setTransform(316, 417.5, 1, 1, 0, 0, 0, 47.5, 39.5);
-
-        this.btn1 = new lib.测试按钮();
-        this.btn1.setTransform(149.5, 417.5, 1, 1, 0, 0, 0, 47.5, 39.5);
-
-        this.timeline.addTween(cjs.Tween.get({}).to({ state: [{ t: this.btn1 }, { t: this.instance_12 }] }).wait(1));
-
         // 图层 6
         this.progressMc = new lib.loading条();
         this.progressMc.setTransform(525, 548, 1, 1, 0, 0, 0, 326, 44.3);
@@ -744,22 +711,10 @@
         this.timeline.addTween(cjs.Tween.get(this.progressMc).wait(1));
 
         // bg
-        this.instance_13 = new lib.玛雅风格loadingbg();
-        this.instance_13.setTransform(0, 0, 0.686, 0.687);
+        this.instance_12 = new lib.玛雅风格loadingbg();
+        this.instance_12.setTransform(0, 0, 0.686, 0.687);
 
-        this.timeline.addTween(cjs.Tween.get(this.instance_13).wait(1));
-
-        //内部操作,
-        //this.frame_0 = function () {
-        //    this.btn1.addEventListener("click", btnClick);
-        //    var that = this;
-        //    function btnClick(evt) {
-        //        alert("btn1 点击");
-        //        that.progressMc.gotoAndStop(70);
-
-        //    }
-        //}
-        //this.frame_0();
+        this.timeline.addTween(cjs.Tween.get(this.instance_12).wait(1));
 
     }).prototype = p = new cjs.MovieClip();
     p.nominalBounds = new cjs.Rectangle(0, 0, 1049.6, 680.2);
@@ -778,5 +733,5 @@
     }).prototype = p = new cjs.MovieClip();
     p.nominalBounds = new cjs.Rectangle(525, 340, 1049.6, 680.2);
 
-})(lib = lib || {}, images = images || {}, createjs2 = createjs || {}, ss = ss || {});
-var lib, images, createjs2, ss;
+})(loadinglib = loadinglib || {}, loadingimages = loadingimages || {}, loadingcreatejs = createjs || {}, ss = ss || {});
+var loadinglib, loadingimages, loadingcreatejs, ss;

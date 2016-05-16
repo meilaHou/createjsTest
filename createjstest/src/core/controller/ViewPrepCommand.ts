@@ -21,6 +21,7 @@ module game {
 //            this.facade.registerMediator(new ShopMediator());
 //            this.facade.registerMediator(new MapMediator());
     		
+            this.facade.registerMediator(new LoadingMeidator());
             this.facade.registerMediator(new TestMeidator((this.facade as AppFacade).stage));
 		}
 	}

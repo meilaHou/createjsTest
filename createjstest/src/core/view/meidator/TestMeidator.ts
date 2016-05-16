@@ -3,13 +3,16 @@
  * @author 
  *
  */
-
+//创建类 继承mediator
 class TestMeidator extends puremvc.Mediator implements puremvc.IMediator{
+    //定义此界面管理者名称
     public static NAME: string = "TestMediator";
+    //构造函数
     public constructor(viewComponent: any = null) {
         super(TestMeidator.NAME,viewComponent);
         console.log("创建testmediator 成功");
     }
+    //注册响应的事件
     public listNotificationInterests(): Array<any> {
         return [
             "showTestPanel"
@@ -17,7 +20,7 @@ class TestMeidator extends puremvc.Mediator implements puremvc.IMediator{
 //            PanelNotify.CLOSE_MAP
         ];
     }
-    
+    //响应已注册的事件
     public handleNotification(notification: puremvc.INotification): void {
         var data: any = notification.getBody();
         console.log("testmediator 响应成功",notification.getName());

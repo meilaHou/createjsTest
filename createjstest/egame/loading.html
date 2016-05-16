@@ -11,43 +11,49 @@
 <meta charset="UTF-8">
 <title>loading</title>
 <!-- write your code here -->
-    <script src="../../lib/createjs/preloadjs-0.6.2.combined.js"></script>
-    <script src="../../lib/createjs/tweenjs-0.6.2.combined.js"></script>
-    <script src="../../lib/createjs/easeljs-0.8.2.combined.js"></script>
-<script src="./loading.js?1461750374026"></script>
+
+
+
+<script>
+	// change the default namespace for the CreateJS libraries:
+	var loadingcreatejs = loadingcreatejs||{};
+	var createjs = loadingcreatejs;
+</script>
+<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+<script src="loading.js"></script>
 <script>
 var canvas, stage, exportRoot;
 function init() {
 	// --- write your JS code here ---
 	
-	createjs.MotionGuidePlugin.install();
+	loadingcreatejs.MotionGuidePlugin.install();
 
 	canvas = document.getElementById("canvas");
-	images = images||{};
+	loadingimages = loadingimages||{};
 	ss = ss||{};
-    
-	var loader = new createjs.LoadQueue(false);
+
+	var loader = new loadingcreatejs.LoadQueue(false);
 	loader.addEventListener("fileload", handleFileLoad);
 	loader.addEventListener("complete", handleComplete);
-	loader.loadFile({src:"./images/loading_atlas_.json?1461750374027", type:"spritesheet", id:"loading_atlas_"}, true);
-	loader.loadManifest(lib.properties.manifest);
+	loader.loadFile({src:"../egame/images/loading_atlas_.json", type:"spritesheet", id:"loading_atlas_"}, true);
+	loader.loadManifest(loadinglib.properties.manifest);
 }
 
 function handleFileLoad(evt) {
-	if (evt.item.type == "image") { images[evt.item.id] = evt.result; }
+	if (evt.item.type == "image") { loadingimages[evt.item.id] = evt.result; }
 }
 
 function handleComplete(evt) {
 	var queue = evt.target;
 	ss["loading_atlas_"] = queue.getResult("loading_atlas_");
-	exportRoot = new lib.loading();
+	exportRoot = new loadinglib.loading();
 
-	stage = new createjs.Stage(canvas);
+	stage = new loadingcreatejs.Stage(canvas);
 	stage.addChild(exportRoot);
 	stage.update();
 
-	createjs.Ticker.setFPS(lib.properties.fps);
-	createjs.Ticker.addEventListener("tick", stage);
+	loadingcreatejs.Ticker.setFPS(loadinglib.properties.fps);
+	loadingcreatejs.Ticker.addEventListener("tick", stage);
 }
 
 </script>

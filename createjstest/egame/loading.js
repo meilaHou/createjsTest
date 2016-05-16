@@ -1,6 +1,7 @@
 (function (lib, img, cjs, ss) {
 
 var p; // shortcut to reference prototypes
+lib.webFontTxtFilters = {}; 
 
 // library properties:
 lib.properties = {
@@ -8,11 +9,19 @@ lib.properties = {
 	height: 680,
 	fps: 24,
 	color: "#FFFFFF",
+	webfonts: {},
 	manifest: []
 };
 
 
 
+lib.webfontAvailable = function(family) { 
+	lib.properties.webfonts[family] = true;
+	var txtFilters = lib.webFontTxtFilters && lib.webFontTxtFilters[family] || [];
+	for(var f = 0; f < txtFilters.length; ++f) {
+		txtFilters[f].updateCache();
+	}
+};
 // symbols:
 
 
@@ -468,12 +477,15 @@ p.nominalBounds = new cjs.Rectangle(-68,2.6,13.7,8.3);
 	this.initialize(mode,startPosition,loop,{});
 
 	// timeline functions:
+	this.frame_0 = function() {
+		this.stop();
+	}
 	this.frame_99 = function() {
-		/* stop();*/
+		/*stop()*/
 	}
 
 	// actions tween:
-	this.timeline.addTween(cjs.Tween.get(this).wait(99).call(this.frame_99).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(99).call(this.frame_99).wait(1));
 
 	// 图层 2
 	this.instance = new lib.loading条1();
@@ -730,5 +742,5 @@ p.nominalBounds = new cjs.Rectangle(0,0,1049.6,680.2);
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(525,340,1049.6,680.2);
 
-})(lib = lib||{}, images = images||{}, createjs = createjs||{}, ss = ss||{});
-var lib, images, createjs, ss;
+})(loadinglib = loadinglib||{}, loadingimages = loadingimages||{}, loadingcreatejs = loadingcreatejs||{}, ss = ss||{});
+var loadinglib, loadingimages, loadingcreatejs, ss;
