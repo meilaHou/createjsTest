@@ -22,14 +22,15 @@
     <Content Include="app.js" />
     <TypeScriptCompile Include="Config.ts" />
     <TypeScriptCompile Include="egame\loading.ts" />
+    <Content Include="egame\images\win.png" />
     <Content Include="egame\loading.html" />
     <Content Include="egame\loading.js" />
     <Content Include="egame\images\loading_atlas_.png" />
+    <Content Include="images\BankerTwo.mp3" />
     <Content Include="images\Chrysanthemum.jpg" />
-    <Content Include="images\Kalimba.mp3" />
     <Content Include="images\test.txt" />
-    <Content Include="images\Wildlife.wmv" />
     <Content Include="lib\createjs\preloadjs-0.6.2.combined.js" />
+    <Content Include="lib\createjs\soundjs-0.6.2.combined.js" />
     <Content Include="lib\createjs\tweenjs-0.6.2.combined.js" />
     <Content Include="lib\jquery\jquery-1.12.3.js" />
     <Content Include="reatejs.html" />
@@ -37,8 +38,13 @@
     <Content Include="lib\createjs\easeljs-0.8.2.combined.js" />
     <Content Include="lib\puremvc\puremvc-typescript-standard-1.0-min.js" />
     <Content Include="lib\puremvc\puremvc-typescript-standard-1.0.js" />
+    <TypeScriptCompile Include="src\utils\res\IResManager.ts" />
+    <TypeScriptCompile Include="src\utils\res\ResManager.ts" />
+    <TypeScriptCompile Include="src\utils\res\SoundResManager.ts" />
     <Content Include="web.config" />
+    <TypeScriptCompile Include="src\utils\res\spritesheetResManger.ts" />
     <TypeScriptCompile Include="src\core\view\meidator\LoadingMeidator.ts" />
+    <TypeScriptCompile Include="src\utils\res\VideoResManager.ts" />
     <TypeScriptCompile Include="说明.ts" />
   </ItemGroup>
   <ItemGroup>
@@ -84,12 +90,16 @@
     <Content Include="tsconfig.json" />
     <Content Include="egame\images\loading_atlas_.json" />
     <Content Include="egame\libs\loading.fla" />
+    <Content Include="egame\images\spritesheetTest.json" />
+    <Content Include="egame\images\win2.json" />
+    <Content Include="images\movie.ogg" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </None>
     <None Include="web.Release.config">
       <DependentUpon>web.config</DependentUpon>

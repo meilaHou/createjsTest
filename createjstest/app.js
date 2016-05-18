@@ -3,6 +3,477 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
+var myaquare1 = {};
+myaquare1.color = "d";
+myaquare1.traceHello = function (info) { };
+var test;
+(function (test) {
+    var Mysquare = (function () {
+        function Mysquare() {
+            this.time = 0;
+        }
+        Mysquare.prototype.traceHello = function (info) {
+            alert(info);
+        };
+        return Mysquare;
+    }());
+    test.Mysquare = Mysquare;
+})(test || (test = {}));
+var Mysquare2 = (function (_super) {
+    __extends(Mysquare2, _super);
+    function Mysquare2() {
+        _super.apply(this, arguments);
+    }
+    Mysquare2.prototype.traceHello = function (info) {
+        _super.prototype.traceHello.call(this, info);
+        alert(info);
+    };
+    Mysquare2.prototype.nihao = function () {
+        _super.prototype.traceHello.call(this, "nihao");
+    };
+    return Mysquare2;
+}(test.Mysquare));
+var myArray;
+myArray = ["Bob", "Fred"];
+var Clock1 = (function () {
+    function Clock1(h, m) {
+        this.time = 0;
+    }
+    ;
+    Clock1.prototype.trace = function () {
+    };
+    return Clock1;
+}());
+var cs = Clock1;
+var newClock = new cs(7, 30);
+console.log(newClock);
+var square = {};
+square.color = "red";
+square.sideLength = 100;
+square.penWidth = 50;
+var square2 = { sideLength: 0, color: "", penWidth: 0 };
+var hello = (function () {
+    function hello(start) {
+        this.interval = 0;
+        this.niaho = function (start) {
+            return "";
+        };
+        this.export = hello;
+    }
+    hello.prototype.reset = function () {
+    };
+    return hello;
+}());
+var puremvc;
+(function (puremvc) {
+    "use strict";
+    var Observer = (function () {
+        function Observer(notifyMethod, notifyContext) {
+            this.notify = null;
+            this.context = null;
+            this.setNotifyMethod(notifyMethod);
+            this.setNotifyContext(notifyContext);
+        }
+        Observer.prototype.getNotifyMethod = function () {
+            return this.notify;
+        };
+        Observer.prototype.setNotifyMethod = function (notifyMethod) {
+            this.notify = notifyMethod;
+        };
+        Observer.prototype.getNotifyContext = function () {
+            return this.context;
+        };
+        Observer.prototype.setNotifyContext = function (notifyContext) {
+            this.context = notifyContext;
+        };
+        Observer.prototype.notifyObserver = function (notification) {
+            this.getNotifyMethod().call(this.getNotifyContext(), notification);
+        };
+        Observer.prototype.compareNotifyContext = function (object) {
+            return object === this.context;
+        };
+        return Observer;
+    }());
+    puremvc.Observer = Observer;
+})(puremvc || (puremvc = {}));
+var puremvc;
+(function (puremvc) {
+    "use strict";
+    var View = (function () {
+        function View() {
+            this.mediatorMap = null;
+            this.observerMap = null;
+            if (View.instance)
+                throw Error(View.SINGLETON_MSG);
+            View.instance = this;
+            this.mediatorMap = {};
+            this.observerMap = {};
+            this.initializeView();
+        }
+        View.prototype.initializeView = function () {
+        };
+        View.prototype.registerObserver = function (notificationName, observer) {
+            var observers = this.observerMap[notificationName];
+            if (observers)
+                observers.push(observer);
+            else
+                this.observerMap[notificationName] = [observer];
+        };
+        View.prototype.removeObserver = function (notificationName, notifyContext) {
+            var observers = this.observerMap[notificationName];
+            var i = observers.length;
+            while (i--) {
+                var observer = observers[i];
+                if (observer.compareNotifyContext(notifyContext)) {
+                    observers.splice(i, 1);
+                    break;
+                }
+            }
+            if (observers.length == 0)
+                delete this.observerMap[notificationName];
+        };
+        View.prototype.notifyObservers = function (notification) {
+            var notificationName = notification.getName();
+            var observersRef = this.observerMap[notificationName];
+            if (observersRef) {
+                var observers = observersRef.slice(0);
+                var len = observers.length;
+                for (var i = 0; i < len; i++) {
+                    var observer = observers[i];
+                    observer.notifyObserver(notification);
+                }
+            }
+        };
+        View.prototype.registerMediator = function (mediator) {
+            var name = mediator.getMediatorName();
+            if (this.mediatorMap[name])
+                return;
+            this.mediatorMap[name] = mediator;
+            var interests = mediator.listNotificationInterests();
+            var len = interests.length;
+            if (len > 0) {
+                var observer = new puremvc.Observer(mediator.handleNotification, mediator);
+                for (var i = 0; i < len; i++)
+                    this.registerObserver(interests[i], observer);
+            }
+            mediator.onRegister();
+        };
+        View.prototype.retrieveMediator = function (mediatorName) {
+            return this.mediatorMap[mediatorName] || null;
+        };
+        View.prototype.removeMediator = function (mediatorName) {
+            var mediator = this.mediatorMap[mediatorName];
+            if (!mediator)
+                return null;
+            var interests = mediator.listNotificationInterests();
+            var i = interests.length;
+            while (i--)
+                this.removeObserver(interests[i], mediator);
+            delete this.mediatorMap[mediatorName];
+            mediator.onRemove();
+            return mediator;
+        };
+        View.prototype.hasMediator = function (mediatorName) {
+            return this.mediatorMap[mediatorName] != null;
+        };
+        View.getInstance = function () {
+            if (!View.instance)
+                View.instance = new View();
+            return View.instance;
+        };
+        View.SINGLETON_MSG = "View singleton already constructed!";
+        return View;
+    }());
+    puremvc.View = View;
+})(puremvc || (puremvc = {}));
+var puremvc;
+(function (puremvc) {
+    "use strict";
+    var Controller = (function () {
+        function Controller() {
+            this.view = null;
+            this.commandMap = null;
+            if (Controller.instance)
+                throw Error(Controller.SINGLETON_MSG);
+            Controller.instance = this;
+            this.commandMap = {};
+            this.initializeController();
+        }
+        Controller.prototype.initializeController = function () {
+            this.view = puremvc.View.getInstance();
+        };
+        Controller.prototype.executeCommand = function (notification) {
+            var commandClassRef = this.commandMap[notification.getName()];
+            if (commandClassRef) {
+                var command = new commandClassRef();
+                command.execute(notification);
+            }
+        };
+        Controller.prototype.registerCommand = function (notificationName, commandClassRef) {
+            if (!this.commandMap[notificationName])
+                this.view.registerObserver(notificationName, new puremvc.Observer(this.executeCommand, this));
+            this.commandMap[notificationName] = commandClassRef;
+        };
+        Controller.prototype.hasCommand = function (notificationName) {
+            return this.commandMap[notificationName] != null;
+        };
+        Controller.prototype.removeCommand = function (notificationName) {
+            if (this.hasCommand(notificationName)) {
+                this.view.removeObserver(notificationName, this);
+                delete this.commandMap[notificationName];
+            }
+        };
+        Controller.getInstance = function () {
+            if (!Controller.instance)
+                Controller.instance = new Controller();
+            return Controller.instance;
+        };
+        Controller.SINGLETON_MSG = "Controller singleton already constructed!";
+        return Controller;
+    }());
+    puremvc.Controller = Controller;
+})(puremvc || (puremvc = {}));
+var puremvc;
+(function (puremvc) {
+    "use strict";
+    var Model = (function () {
+        function Model() {
+            this.proxyMap = null;
+            if (Model.instance)
+                throw Error(Model.SINGLETON_MSG);
+            Model.instance = this;
+            this.proxyMap = {};
+            this.initializeModel();
+        }
+        Model.prototype.initializeModel = function () {
+        };
+        Model.prototype.registerProxy = function (proxy) {
+            this.proxyMap[proxy.getProxyName()] = proxy;
+            proxy.onRegister();
+        };
+        Model.prototype.removeProxy = function (proxyName) {
+            var proxy = this.proxyMap[proxyName];
+            if (proxy) {
+                delete this.proxyMap[proxyName];
+                proxy.onRemove();
+            }
+            return proxy;
+        };
+        Model.prototype.retrieveProxy = function (proxyName) {
+            return this.proxyMap[proxyName] || null;
+        };
+        Model.prototype.hasProxy = function (proxyName) {
+            return this.proxyMap[proxyName] != null;
+        };
+        Model.getInstance = function () {
+            if (!Model.instance)
+                Model.instance = new Model();
+            return Model.instance;
+        };
+        Model.SINGLETON_MSG = "Model singleton already constructed!";
+        return Model;
+    }());
+    puremvc.Model = Model;
+})(puremvc || (puremvc = {}));
+var puremvc;
+(function (puremvc) {
+    "use strict";
+    var Notification = (function () {
+        function Notification(name, body, type) {
+            if (body === void 0) { body = null; }
+            if (type === void 0) { type = null; }
+            this.name = null;
+            this.body = null;
+            this.type = null;
+            this.name = name;
+            this.body = body;
+            this.type = type;
+        }
+        Notification.prototype.getName = function () {
+            return this.name;
+        };
+        Notification.prototype.setBody = function (body) {
+            this.body = body;
+        };
+        Notification.prototype.getBody = function () {
+            return this.body;
+        };
+        Notification.prototype.setType = function (type) {
+            this.type = type;
+        };
+        Notification.prototype.getType = function () {
+            return this.type;
+        };
+        Notification.prototype.toString = function () {
+            var msg = "Notification Name: " + this.getName();
+            msg += "\nBody:" + ((this.getBody() == null) ? "null" : this.getBody().toString());
+            msg += "\nType:" + ((this.getType() == null) ? "null" : this.getType());
+            return msg;
+        };
+        return Notification;
+    }());
+    puremvc.Notification = Notification;
+})(puremvc || (puremvc = {}));
+var puremvc;
+(function (puremvc) {
+    "use strict";
+    var Facade = (function () {
+        function Facade() {
+            this.model = null;
+            this.view = null;
+            this.controller = null;
+            if (Facade.instance)
+                throw Error(Facade.SINGLETON_MSG);
+            Facade.instance = this;
+            this.initializeFacade();
+        }
+        Facade.prototype.initializeFacade = function () {
+            this.initializeModel();
+            this.initializeController();
+            this.initializeView();
+        };
+        Facade.prototype.initializeModel = function () {
+            if (!this.model)
+                this.model = puremvc.Model.getInstance();
+        };
+        Facade.prototype.initializeController = function () {
+            if (!this.controller)
+                this.controller = puremvc.Controller.getInstance();
+        };
+        Facade.prototype.initializeView = function () {
+            if (!this.view)
+                this.view = puremvc.View.getInstance();
+        };
+        Facade.prototype.registerCommand = function (notificationName, commandClassRef) {
+            this.controller.registerCommand(notificationName, commandClassRef);
+        };
+        Facade.prototype.removeCommand = function (notificationName) {
+            this.controller.removeCommand(notificationName);
+        };
+        Facade.prototype.hasCommand = function (notificationName) {
+            return this.controller.hasCommand(notificationName);
+        };
+        Facade.prototype.registerProxy = function (proxy) {
+            this.model.registerProxy(proxy);
+        };
+        Facade.prototype.retrieveProxy = function (proxyName) {
+            return this.model.retrieveProxy(proxyName);
+        };
+        Facade.prototype.removeProxy = function (proxyName) {
+            var proxy;
+            if (this.model)
+                proxy = this.model.removeProxy(proxyName);
+            return proxy;
+        };
+        Facade.prototype.hasProxy = function (proxyName) {
+            return this.model.hasProxy(proxyName);
+        };
+        Facade.prototype.registerMediator = function (mediator) {
+            if (this.view)
+                this.view.registerMediator(mediator);
+        };
+        Facade.prototype.retrieveMediator = function (mediatorName) {
+            return this.view.retrieveMediator(mediatorName);
+        };
+        Facade.prototype.removeMediator = function (mediatorName) {
+            var mediator;
+            if (this.view)
+                mediator = this.view.removeMediator(mediatorName);
+            return mediator;
+        };
+        Facade.prototype.hasMediator = function (mediatorName) {
+            return this.view.hasMediator(mediatorName);
+        };
+        Facade.prototype.notifyObservers = function (notification) {
+            if (this.view)
+                this.view.notifyObservers(notification);
+        };
+        Facade.prototype.sendNotification = function (name, body, type) {
+            if (body === void 0) { body = null; }
+            if (type === void 0) { type = null; }
+            this.notifyObservers(new puremvc.Notification(name, body, type));
+        };
+        Facade.getInstance = function () {
+            if (!Facade.instance)
+                Facade.instance = new Facade();
+            return Facade.instance;
+        };
+        Facade.SINGLETON_MSG = "Facade singleton already constructed!";
+        return Facade;
+    }());
+    puremvc.Facade = Facade;
+})(puremvc || (puremvc = {}));
+var game;
+(function (game) {
+    var AppFacade = (function (_super) {
+        __extends(AppFacade, _super);
+        function AppFacade() {
+            _super.call(this);
+        }
+        AppFacade.getInstance = function () {
+            if (this.instance == null)
+                this.instance = new AppFacade();
+            return (this.instance);
+        };
+        AppFacade.prototype.initializeController = function () {
+            _super.prototype.initializeController.call(this);
+            this.registerCommand(AppFacade.STARTUP, game.StartupCommand);
+        };
+        AppFacade.prototype.startUp = function (rootView) {
+            console.log("facade初始化完成");
+            this.stage = rootView;
+            this.sendNotification(AppFacade.STARTUP, rootView);
+            this.removeCommand(AppFacade.STARTUP);
+        };
+        AppFacade.STARTUP = "startup";
+        return AppFacade;
+    }(puremvc.Facade));
+    game.AppFacade = AppFacade;
+})(game || (game = {}));
+var Greeter = (function () {
+    function Greeter(element) {
+        this.element = element;
+        this.element.innerHTML += "The time is: ";
+        this.span = document.createElement('span');
+        this.element.appendChild(this.span);
+        this.span.innerText = new Date().toUTCString();
+    }
+    Greeter.prototype.start = function () {
+        var _this = this;
+        this.timerToken = setInterval(function () { return _this.span.innerHTML = new Date().toUTCString(); }, 500);
+    };
+    Greeter.prototype.stop = function () {
+        clearTimeout(this.timerToken);
+    };
+    return Greeter;
+}());
+window.onload = function () {
+    var et = new EaseljsTest();
+};
+var EaseljsTest = (function () {
+    function EaseljsTest() {
+        var canvas = document.getElementById("myCanvas");
+        this.mstage = new createjs.Stage(canvas);
+        game.AppFacade.getInstance().startUp(this.mstage);
+        game.AppFacade.getInstance().sendNotification("showLoadingPanel");
+        console.log("发送消息成功");
+        var dfdf;
+        console.log(dfdf);
+        this.mstage.update();
+    }
+    EaseljsTest.prototype.interfacetest = function () {
+    };
+    EaseljsTest.prototype.addTick = function () {
+        createjs.Ticker.addEventListener("tick", handleTicker);
+        function handleTicker() {
+            this.mstage.update();
+        }
+    };
+    EaseljsTest.prototype.handleClick = function (event) {
+        console.log("shape 点击事件");
+    };
+    return EaseljsTest;
+}());
 var Config = (function () {
     function Config() {
     }
@@ -469,345 +940,6 @@ var loadinglib, loadingimages, loadingcreatejs, ss;
 var puremvc;
 (function (puremvc) {
     "use strict";
-    var Observer = (function () {
-        function Observer(notifyMethod, notifyContext) {
-            this.notify = null;
-            this.context = null;
-            this.setNotifyMethod(notifyMethod);
-            this.setNotifyContext(notifyContext);
-        }
-        Observer.prototype.getNotifyMethod = function () {
-            return this.notify;
-        };
-        Observer.prototype.setNotifyMethod = function (notifyMethod) {
-            this.notify = notifyMethod;
-        };
-        Observer.prototype.getNotifyContext = function () {
-            return this.context;
-        };
-        Observer.prototype.setNotifyContext = function (notifyContext) {
-            this.context = notifyContext;
-        };
-        Observer.prototype.notifyObserver = function (notification) {
-            this.getNotifyMethod().call(this.getNotifyContext(), notification);
-        };
-        Observer.prototype.compareNotifyContext = function (object) {
-            return object === this.context;
-        };
-        return Observer;
-    }());
-    puremvc.Observer = Observer;
-})(puremvc || (puremvc = {}));
-var puremvc;
-(function (puremvc) {
-    "use strict";
-    var View = (function () {
-        function View() {
-            this.mediatorMap = null;
-            this.observerMap = null;
-            if (View.instance)
-                throw Error(View.SINGLETON_MSG);
-            View.instance = this;
-            this.mediatorMap = {};
-            this.observerMap = {};
-            this.initializeView();
-        }
-        View.prototype.initializeView = function () {
-        };
-        View.prototype.registerObserver = function (notificationName, observer) {
-            var observers = this.observerMap[notificationName];
-            if (observers)
-                observers.push(observer);
-            else
-                this.observerMap[notificationName] = [observer];
-        };
-        View.prototype.removeObserver = function (notificationName, notifyContext) {
-            var observers = this.observerMap[notificationName];
-            var i = observers.length;
-            while (i--) {
-                var observer = observers[i];
-                if (observer.compareNotifyContext(notifyContext)) {
-                    observers.splice(i, 1);
-                    break;
-                }
-            }
-            if (observers.length == 0)
-                delete this.observerMap[notificationName];
-        };
-        View.prototype.notifyObservers = function (notification) {
-            var notificationName = notification.getName();
-            var observersRef = this.observerMap[notificationName];
-            if (observersRef) {
-                var observers = observersRef.slice(0);
-                var len = observers.length;
-                for (var i = 0; i < len; i++) {
-                    var observer = observers[i];
-                    observer.notifyObserver(notification);
-                }
-            }
-        };
-        View.prototype.registerMediator = function (mediator) {
-            var name = mediator.getMediatorName();
-            if (this.mediatorMap[name])
-                return;
-            this.mediatorMap[name] = mediator;
-            var interests = mediator.listNotificationInterests();
-            var len = interests.length;
-            if (len > 0) {
-                var observer = new puremvc.Observer(mediator.handleNotification, mediator);
-                for (var i = 0; i < len; i++)
-                    this.registerObserver(interests[i], observer);
-            }
-            mediator.onRegister();
-        };
-        View.prototype.retrieveMediator = function (mediatorName) {
-            return this.mediatorMap[mediatorName] || null;
-        };
-        View.prototype.removeMediator = function (mediatorName) {
-            var mediator = this.mediatorMap[mediatorName];
-            if (!mediator)
-                return null;
-            var interests = mediator.listNotificationInterests();
-            var i = interests.length;
-            while (i--)
-                this.removeObserver(interests[i], mediator);
-            delete this.mediatorMap[mediatorName];
-            mediator.onRemove();
-            return mediator;
-        };
-        View.prototype.hasMediator = function (mediatorName) {
-            return this.mediatorMap[mediatorName] != null;
-        };
-        View.getInstance = function () {
-            if (!View.instance)
-                View.instance = new View();
-            return View.instance;
-        };
-        View.SINGLETON_MSG = "View singleton already constructed!";
-        return View;
-    }());
-    puremvc.View = View;
-})(puremvc || (puremvc = {}));
-var puremvc;
-(function (puremvc) {
-    "use strict";
-    var Controller = (function () {
-        function Controller() {
-            this.view = null;
-            this.commandMap = null;
-            if (Controller.instance)
-                throw Error(Controller.SINGLETON_MSG);
-            Controller.instance = this;
-            this.commandMap = {};
-            this.initializeController();
-        }
-        Controller.prototype.initializeController = function () {
-            this.view = puremvc.View.getInstance();
-        };
-        Controller.prototype.executeCommand = function (notification) {
-            var commandClassRef = this.commandMap[notification.getName()];
-            if (commandClassRef) {
-                var command = new commandClassRef();
-                command.execute(notification);
-            }
-        };
-        Controller.prototype.registerCommand = function (notificationName, commandClassRef) {
-            if (!this.commandMap[notificationName])
-                this.view.registerObserver(notificationName, new puremvc.Observer(this.executeCommand, this));
-            this.commandMap[notificationName] = commandClassRef;
-        };
-        Controller.prototype.hasCommand = function (notificationName) {
-            return this.commandMap[notificationName] != null;
-        };
-        Controller.prototype.removeCommand = function (notificationName) {
-            if (this.hasCommand(notificationName)) {
-                this.view.removeObserver(notificationName, this);
-                delete this.commandMap[notificationName];
-            }
-        };
-        Controller.getInstance = function () {
-            if (!Controller.instance)
-                Controller.instance = new Controller();
-            return Controller.instance;
-        };
-        Controller.SINGLETON_MSG = "Controller singleton already constructed!";
-        return Controller;
-    }());
-    puremvc.Controller = Controller;
-})(puremvc || (puremvc = {}));
-var puremvc;
-(function (puremvc) {
-    "use strict";
-    var Model = (function () {
-        function Model() {
-            this.proxyMap = null;
-            if (Model.instance)
-                throw Error(Model.SINGLETON_MSG);
-            Model.instance = this;
-            this.proxyMap = {};
-            this.initializeModel();
-        }
-        Model.prototype.initializeModel = function () {
-        };
-        Model.prototype.registerProxy = function (proxy) {
-            this.proxyMap[proxy.getProxyName()] = proxy;
-            proxy.onRegister();
-        };
-        Model.prototype.removeProxy = function (proxyName) {
-            var proxy = this.proxyMap[proxyName];
-            if (proxy) {
-                delete this.proxyMap[proxyName];
-                proxy.onRemove();
-            }
-            return proxy;
-        };
-        Model.prototype.retrieveProxy = function (proxyName) {
-            return this.proxyMap[proxyName] || null;
-        };
-        Model.prototype.hasProxy = function (proxyName) {
-            return this.proxyMap[proxyName] != null;
-        };
-        Model.getInstance = function () {
-            if (!Model.instance)
-                Model.instance = new Model();
-            return Model.instance;
-        };
-        Model.SINGLETON_MSG = "Model singleton already constructed!";
-        return Model;
-    }());
-    puremvc.Model = Model;
-})(puremvc || (puremvc = {}));
-var puremvc;
-(function (puremvc) {
-    "use strict";
-    var Notification = (function () {
-        function Notification(name, body, type) {
-            if (body === void 0) { body = null; }
-            if (type === void 0) { type = null; }
-            this.name = null;
-            this.body = null;
-            this.type = null;
-            this.name = name;
-            this.body = body;
-            this.type = type;
-        }
-        Notification.prototype.getName = function () {
-            return this.name;
-        };
-        Notification.prototype.setBody = function (body) {
-            this.body = body;
-        };
-        Notification.prototype.getBody = function () {
-            return this.body;
-        };
-        Notification.prototype.setType = function (type) {
-            this.type = type;
-        };
-        Notification.prototype.getType = function () {
-            return this.type;
-        };
-        Notification.prototype.toString = function () {
-            var msg = "Notification Name: " + this.getName();
-            msg += "\nBody:" + ((this.getBody() == null) ? "null" : this.getBody().toString());
-            msg += "\nType:" + ((this.getType() == null) ? "null" : this.getType());
-            return msg;
-        };
-        return Notification;
-    }());
-    puremvc.Notification = Notification;
-})(puremvc || (puremvc = {}));
-var puremvc;
-(function (puremvc) {
-    "use strict";
-    var Facade = (function () {
-        function Facade() {
-            this.model = null;
-            this.view = null;
-            this.controller = null;
-            if (Facade.instance)
-                throw Error(Facade.SINGLETON_MSG);
-            Facade.instance = this;
-            this.initializeFacade();
-        }
-        Facade.prototype.initializeFacade = function () {
-            this.initializeModel();
-            this.initializeController();
-            this.initializeView();
-        };
-        Facade.prototype.initializeModel = function () {
-            if (!this.model)
-                this.model = puremvc.Model.getInstance();
-        };
-        Facade.prototype.initializeController = function () {
-            if (!this.controller)
-                this.controller = puremvc.Controller.getInstance();
-        };
-        Facade.prototype.initializeView = function () {
-            if (!this.view)
-                this.view = puremvc.View.getInstance();
-        };
-        Facade.prototype.registerCommand = function (notificationName, commandClassRef) {
-            this.controller.registerCommand(notificationName, commandClassRef);
-        };
-        Facade.prototype.removeCommand = function (notificationName) {
-            this.controller.removeCommand(notificationName);
-        };
-        Facade.prototype.hasCommand = function (notificationName) {
-            return this.controller.hasCommand(notificationName);
-        };
-        Facade.prototype.registerProxy = function (proxy) {
-            this.model.registerProxy(proxy);
-        };
-        Facade.prototype.retrieveProxy = function (proxyName) {
-            return this.model.retrieveProxy(proxyName);
-        };
-        Facade.prototype.removeProxy = function (proxyName) {
-            var proxy;
-            if (this.model)
-                proxy = this.model.removeProxy(proxyName);
-            return proxy;
-        };
-        Facade.prototype.hasProxy = function (proxyName) {
-            return this.model.hasProxy(proxyName);
-        };
-        Facade.prototype.registerMediator = function (mediator) {
-            if (this.view)
-                this.view.registerMediator(mediator);
-        };
-        Facade.prototype.retrieveMediator = function (mediatorName) {
-            return this.view.retrieveMediator(mediatorName);
-        };
-        Facade.prototype.removeMediator = function (mediatorName) {
-            var mediator;
-            if (this.view)
-                mediator = this.view.removeMediator(mediatorName);
-            return mediator;
-        };
-        Facade.prototype.hasMediator = function (mediatorName) {
-            return this.view.hasMediator(mediatorName);
-        };
-        Facade.prototype.notifyObservers = function (notification) {
-            if (this.view)
-                this.view.notifyObservers(notification);
-        };
-        Facade.prototype.sendNotification = function (name, body, type) {
-            if (body === void 0) { body = null; }
-            if (type === void 0) { type = null; }
-            this.notifyObservers(new puremvc.Notification(name, body, type));
-        };
-        Facade.getInstance = function () {
-            if (!Facade.instance)
-                Facade.instance = new Facade();
-            return Facade.instance;
-        };
-        Facade.SINGLETON_MSG = "Facade singleton already constructed!";
-        return Facade;
-    }());
-    puremvc.Facade = Facade;
-})(puremvc || (puremvc = {}));
-var puremvc;
-(function (puremvc) {
-    "use strict";
     var Notifier = (function () {
         function Notifier() {
             this.facade = null;
@@ -822,257 +954,6 @@ var puremvc;
     }());
     puremvc.Notifier = Notifier;
 })(puremvc || (puremvc = {}));
-var puremvc;
-(function (puremvc) {
-    "use strict";
-    var Mediator = (function (_super) {
-        __extends(Mediator, _super);
-        function Mediator(mediatorName, viewComponent) {
-            if (mediatorName === void 0) { mediatorName = null; }
-            if (viewComponent === void 0) { viewComponent = null; }
-            _super.call(this);
-            this.mediatorName = null;
-            this.viewComponent = null;
-            this.mediatorName = (mediatorName != null) ? mediatorName : Mediator.NAME;
-            this.viewComponent = viewComponent;
-        }
-        Mediator.prototype.getMediatorName = function () {
-            return this.mediatorName;
-        };
-        Mediator.prototype.getViewComponent = function () {
-            return this.viewComponent;
-        };
-        Mediator.prototype.setViewComponent = function (viewComponent) {
-            this.viewComponent = viewComponent;
-        };
-        Mediator.prototype.listNotificationInterests = function () {
-            return new Array();
-        };
-        Mediator.prototype.handleNotification = function (notification) {
-        };
-        Mediator.prototype.onRegister = function () {
-        };
-        Mediator.prototype.onRemove = function () {
-        };
-        Mediator.NAME = 'Mediator';
-        return Mediator;
-    }(puremvc.Notifier));
-    puremvc.Mediator = Mediator;
-})(puremvc || (puremvc = {}));
-var LoadingMeidator = (function (_super) {
-    __extends(LoadingMeidator, _super);
-    function LoadingMeidator(viewComponent) {
-        if (viewComponent === void 0) { viewComponent = null; }
-        _super.call(this, LoadingMeidator.NAME, viewComponent);
-        Config.loadingIndex = this;
-    }
-    LoadingMeidator.prototype.listNotificationInterests = function () {
-        return [
-            "showLoadingPanel"
-        ];
-    };
-    LoadingMeidator.prototype.handleNotification = function (notification) {
-        var data = notification.getBody();
-        console.log("LoadingMeidator 响应成功", notification.getName());
-        switch (notification.getName()) {
-            case "showLoadingPanel":
-                this.usecreatejsSource();
-                break;
-        }
-    };
-    LoadingMeidator.prototype.usecreatejsSource = function () {
-        loadingcreatejs.MotionGuidePlugin.install();
-        this.canvas = document.getElementById("canvas");
-        loadingimages = loadingimages || {};
-        ss = ss || {};
-        var loader = new loadingcreatejs.LoadQueue();
-        loader.addEventListener("fileload", this.handleFileLoad);
-        loader.addEventListener("complete", this.handleComplete.bind(this));
-        loader.loadFile({ src: "../../../../egame/images/loading_atlas_.json?1463196773695", type: "spritesheet", id: "loading_atlas_" }, true);
-        loader.loadManifest(loadinglib.properties.manifest);
-    };
-    LoadingMeidator.prototype.handleFileLoad = function (evt) {
-        if (evt.item.type == "image") {
-            loadingimages[evt.item.id] = evt.result;
-        }
-        console.log("加载资源完毕:" + evt.item.type + " :" + evt.item.id);
-    };
-    LoadingMeidator.prototype.handleComplete = function (evt) {
-        var queue = evt.target;
-        ss["loading_atlas_"] = queue.getResult("loading_atlas_");
-        this.exportRoot = new loadinglib.loading();
-        this.gamestage = new loadingcreatejs.Stage(this.canvas);
-        this.gamestage.addChild(this.exportRoot);
-        this.gamestage.update();
-        loadingcreatejs.Ticker.setFPS(loadinglib.properties.fps);
-        loadingcreatejs.Ticker.addEventListener("tick", this.gamestage);
-        this.startLoadGameRes();
-    };
-    LoadingMeidator.prototype.startLoadGameRes = function () {
-        var queaue = new createjs.LoadQueue(true);
-        var loadItems = [
-            { id: "pic", src: "/images/Chrysanthemum.jpg" },
-            { id: "videos", src: "/images/Wildlife.wmv" },
-            { id: "mp3", src: "/images/Kalimba.mp3" }
-        ];
-        queaue.addEventListener("fileload", this.handleResFileLoad.bind(this));
-        queaue.addEventListener("complete", this.handleResComplete.bind(this));
-        queaue.loadManifest(loadItems, false);
-        queaue.load();
-    };
-    LoadingMeidator.prototype.handleResFileLoad = function (evt) {
-        LoadingMeidator.loadedResArr[LoadingMeidator.loadedResArr.length] =
-            {
-                id: evt.item.id, res: evt.result, types: evt.item.type
-            };
-        console.log("加载资源完毕:" + evt.item.type + " :" + evt.item.id);
-        this.loadlog(evt.item.type + " :" + evt.item.id);
-        var frameNumber = Math.floor(LoadingMeidator.loadedResArr.length / 3 * 99);
-        console.log(frameNumber);
-        this.exportRoot.instance.progressMc.gotoAndStop(frameNumber);
-    };
-    LoadingMeidator.prototype.handleResComplete = function (evt) {
-        console.log("所有游戏资源加载完毕");
-    };
-    LoadingMeidator.prototype.loadlog = function (str) {
-        $("#content textarea").append(str + "<br/>");
-    };
-    LoadingMeidator.NAME = "LoadingMeidator";
-    LoadingMeidator.loadedResArr = [];
-    return LoadingMeidator;
-}(puremvc.Mediator));
-var myaquare1 = {};
-myaquare1.color = "d";
-myaquare1.traceHello = function (info) { };
-var test;
-(function (test) {
-    var Mysquare = (function () {
-        function Mysquare() {
-            this.time = 0;
-        }
-        Mysquare.prototype.traceHello = function (info) {
-            alert(info);
-        };
-        return Mysquare;
-    }());
-    test.Mysquare = Mysquare;
-})(test || (test = {}));
-var Mysquare2 = (function (_super) {
-    __extends(Mysquare2, _super);
-    function Mysquare2() {
-        _super.apply(this, arguments);
-    }
-    Mysquare2.prototype.traceHello = function (info) {
-        _super.prototype.traceHello.call(this, info);
-        alert(info);
-    };
-    Mysquare2.prototype.nihao = function () {
-        _super.prototype.traceHello.call(this, "nihao");
-    };
-    return Mysquare2;
-}(test.Mysquare));
-var myArray;
-myArray = ["Bob", "Fred"];
-var Clock1 = (function () {
-    function Clock1(h, m) {
-        this.time = 0;
-    }
-    ;
-    Clock1.prototype.trace = function () {
-    };
-    return Clock1;
-}());
-var cs = Clock1;
-var newClock = new cs(7, 30);
-console.log(newClock);
-var square = {};
-square.color = "red";
-square.sideLength = 100;
-square.penWidth = 50;
-var square2 = { sideLength: 0, color: "", penWidth: 0 };
-var hello = (function () {
-    function hello(start) {
-        this.interval = 0;
-        this.niaho = function (start) {
-            return "";
-        };
-        this.export = hello;
-    }
-    hello.prototype.reset = function () {
-    };
-    return hello;
-}());
-var game;
-(function (game) {
-    var AppFacade = (function (_super) {
-        __extends(AppFacade, _super);
-        function AppFacade() {
-            _super.call(this);
-        }
-        AppFacade.getInstance = function () {
-            if (this.instance == null)
-                this.instance = new AppFacade();
-            return (this.instance);
-        };
-        AppFacade.prototype.initializeController = function () {
-            _super.prototype.initializeController.call(this);
-            this.registerCommand(AppFacade.STARTUP, game.StartupCommand);
-        };
-        AppFacade.prototype.startUp = function (rootView) {
-            console.log("facade初始化完成");
-            this.stage = rootView;
-            this.sendNotification(AppFacade.STARTUP, rootView);
-            this.removeCommand(AppFacade.STARTUP);
-        };
-        AppFacade.STARTUP = "startup";
-        return AppFacade;
-    }(puremvc.Facade));
-    game.AppFacade = AppFacade;
-})(game || (game = {}));
-var Greeter = (function () {
-    function Greeter(element) {
-        this.element = element;
-        this.element.innerHTML += "The time is: ";
-        this.span = document.createElement('span');
-        this.element.appendChild(this.span);
-        this.span.innerText = new Date().toUTCString();
-    }
-    Greeter.prototype.start = function () {
-        var _this = this;
-        this.timerToken = setInterval(function () { return _this.span.innerHTML = new Date().toUTCString(); }, 500);
-    };
-    Greeter.prototype.stop = function () {
-        clearTimeout(this.timerToken);
-    };
-    return Greeter;
-}());
-window.onload = function () {
-    var et = new EaseljsTest();
-};
-var EaseljsTest = (function () {
-    function EaseljsTest() {
-        var canvas = document.getElementById("myCanvas");
-        this.mstage = new createjs.Stage(canvas);
-        game.AppFacade.getInstance().startUp(this.mstage);
-        game.AppFacade.getInstance().sendNotification("showLoadingPanel");
-        console.log("发送消息成功");
-        var dfdf;
-        console.log(dfdf);
-        this.mstage.update();
-    }
-    EaseljsTest.prototype.interfacetest = function () {
-    };
-    EaseljsTest.prototype.addTick = function () {
-        createjs.Ticker.addEventListener("tick", handleTicker);
-        function handleTicker() {
-            this.mstage.update();
-        }
-    };
-    EaseljsTest.prototype.handleClick = function (event) {
-        console.log("shape 点击事件");
-    };
-    return EaseljsTest;
-}());
 var puremvc;
 (function (puremvc) {
     "use strict";
@@ -1116,6 +997,43 @@ var puremvc;
         return SimpleCommand;
     }(puremvc.Notifier));
     puremvc.SimpleCommand = SimpleCommand;
+})(puremvc || (puremvc = {}));
+var puremvc;
+(function (puremvc) {
+    "use strict";
+    var Mediator = (function (_super) {
+        __extends(Mediator, _super);
+        function Mediator(mediatorName, viewComponent) {
+            if (mediatorName === void 0) { mediatorName = null; }
+            if (viewComponent === void 0) { viewComponent = null; }
+            _super.call(this);
+            this.mediatorName = null;
+            this.viewComponent = null;
+            this.mediatorName = (mediatorName != null) ? mediatorName : Mediator.NAME;
+            this.viewComponent = viewComponent;
+        }
+        Mediator.prototype.getMediatorName = function () {
+            return this.mediatorName;
+        };
+        Mediator.prototype.getViewComponent = function () {
+            return this.viewComponent;
+        };
+        Mediator.prototype.setViewComponent = function (viewComponent) {
+            this.viewComponent = viewComponent;
+        };
+        Mediator.prototype.listNotificationInterests = function () {
+            return new Array();
+        };
+        Mediator.prototype.handleNotification = function (notification) {
+        };
+        Mediator.prototype.onRegister = function () {
+        };
+        Mediator.prototype.onRemove = function () {
+        };
+        Mediator.NAME = 'Mediator';
+        return Mediator;
+    }(puremvc.Notifier));
+    puremvc.Mediator = Mediator;
 })(puremvc || (puremvc = {}));
 var puremvc;
 (function (puremvc) {
@@ -1207,6 +1125,142 @@ var game;
     }(puremvc.SimpleCommand));
     game.ViewPrepCommand = ViewPrepCommand;
 })(game || (game = {}));
+var SoundResManager = (function () {
+    function SoundResManager() {
+        createjs.Sound.alternateExtensions = ["mp3"];
+    }
+    SoundResManager.createSound = function (soundPath, soundName, soundLoadComplete, that) {
+        createjs.Sound.on("fileload", soundLoadComplete, that);
+        var msound = createjs.Sound.registerSound(soundPath, soundName);
+        return msound;
+    };
+    SoundResManager.playSound = function (id, loop) {
+        return createjs.Sound.play(id, createjs.Sound.INTERRUPT_EARLY, 0, 0, loop);
+    };
+    return SoundResManager;
+}());
+var MSound = (function () {
+    function MSound() {
+    }
+    return MSound;
+}());
+var LoadingMeidator = (function (_super) {
+    __extends(LoadingMeidator, _super);
+    function LoadingMeidator(viewComponent) {
+        if (viewComponent === void 0) { viewComponent = null; }
+        _super.call(this, LoadingMeidator.NAME, viewComponent);
+        Config.loadingIndex = this;
+    }
+    LoadingMeidator.prototype.listNotificationInterests = function () {
+        return [
+            "showLoadingPanel"
+        ];
+    };
+    LoadingMeidator.prototype.handleNotification = function (notification) {
+        var data = notification.getBody();
+        console.log("LoadingMeidator 响应成功", notification.getName());
+        switch (notification.getName()) {
+            case "showLoadingPanel":
+                this.usecreatejsSource();
+                break;
+        }
+    };
+    LoadingMeidator.prototype.usecreatejsSource = function () {
+        loadingcreatejs.MotionGuidePlugin.install();
+        this.canvas = document.getElementById("canvas");
+        loadingimages = loadingimages || {};
+        ss = ss || {};
+        var loader = new loadingcreatejs.LoadQueue();
+        loader.addEventListener("fileload", this.handleFileLoad);
+        loader.addEventListener("complete", this.handleComplete.bind(this));
+        loader.loadFile({ src: "../../../../egame/images/loading_atlas_.json?1463196773695", type: "spritesheet", id: "loading_atlas_" }, true);
+        loader.loadManifest(loadinglib.properties.manifest);
+    };
+    LoadingMeidator.prototype.handleFileLoad = function (evt) {
+        if (evt.item.type == "image") {
+            loadingimages[evt.item.id] = evt.result;
+        }
+        console.log("加载资源完毕:" + evt.item.type + " :" + evt.item.id);
+    };
+    LoadingMeidator.prototype.handleComplete = function (evt) {
+        var queue = evt.target;
+        ss["loading_atlas_"] = queue.getResult("loading_atlas_");
+        this.exportRoot = new loadinglib.loading();
+        this.gamestage = new loadingcreatejs.Stage(this.canvas);
+        this.gamestage.addChild(this.exportRoot);
+        this.gamestage.update();
+        loadingcreatejs.Ticker.setFPS(loadinglib.properties.fps);
+        loadingcreatejs.Ticker.addEventListener("tick", this.gamestage);
+        this.startLoadGameRes();
+    };
+    LoadingMeidator.prototype.startLoadGameRes = function () {
+        var queaue = this.resourceLoader = new createjs.LoadQueue(true);
+        var loadItems = [
+            { id: "pic", src: "/images/Chrysanthemum.jpg" },
+            { id: "videos", src: "/images/movie.ogg" },
+            { id: "soundmp3", src: "/images/BankerTwo.mp3" },
+            { id: "mp4", src: "/images/BankerTwo.mp3" },
+            { id: "winspritesheet", src: "/egame/images/win2.json" }
+        ];
+        queaue.loadFile({ src: "/egame/images/win2.json", type: "spritesheet", id: "winspritesheet2" }, true);
+        queaue.addEventListener("fileload", this.handleResFileLoad.bind(this));
+        queaue.addEventListener("complete", this.handleResComplete.bind(this));
+        queaue.loadManifest(loadItems, false);
+        queaue.load();
+    };
+    LoadingMeidator.prototype.handleResFileLoad = function (evt) {
+        LoadingMeidator.loadedResArr[LoadingMeidator.loadedResArr.length] =
+            {
+                id: evt.item.id, res: evt.result, types: evt.item.type
+            };
+        console.log("加载资源完毕:" + evt.item.type + " :" + evt.item.id);
+        this.loadlog(evt.item.type + " :" + evt.item.id);
+        var frameNumber = Math.floor(LoadingMeidator.loadedResArr.length / 5 * 99);
+        console.log(frameNumber);
+        this.exportRoot.instance.progressMc.gotoAndStop(frameNumber);
+    };
+    LoadingMeidator.prototype.handleResComplete = function (evt) {
+        console.log("所有游戏资源加载完毕");
+        var tempspritesheet = this.resourceLoader.getResult("winspritesheet2");
+        console.log(typeof (tempspritesheet));
+        var winsprite = SSResourceManager.createSpriteByPic(tempspritesheet, "winspritesheet2");
+        winsprite.framerate = 20;
+        winsprite.play();
+        this.gamestage.addChild(winsprite);
+        var tempimg = this.resourceLoader.getResult("pic");
+        var tempbitmap = SSResourceManager.getBitmap(tempimg);
+        tempbitmap.x = 100;
+        tempbitmap.scaleX = 0.1;
+        tempbitmap.scaleY = 0.1;
+        this.gamestage.addChild(tempbitmap);
+        SoundResManager.createSound("/images/BankerTwo.mp3", "sound", this.soundLoadComplete, this);
+        var tempvideo = this.resourceLoader.getResult("videos");
+        var tempvideo2 = VideoResManager.createDOMElementVideo(200, 200, "/images/movie.ogg", "huabu2");
+        tempvideo2.x = -10;
+        this.gamestage.addChildAt(tempvideo2, 0);
+        var myVideo2 = VideoResManager.getHVideo("myvideo");
+        if (myVideo2.paused)
+            myVideo2.play();
+        else
+            myVideo2.pause();
+    };
+    LoadingMeidator.prototype.soundLoadComplete = function (event) {
+        var instance = SoundResManager.playSound("sound");
+        instance.on("complete", this.soundPlayComplete, this);
+        instance.volume = 0.5;
+    };
+    LoadingMeidator.prototype.soundPlayComplete = function (evt) {
+        var target = evt.target;
+        this.loadlog(target.position.toString());
+        this.loadlog(target.src + "播放完毕");
+    };
+    LoadingMeidator.prototype.loadlog = function (str) {
+        $("#content textarea").append("    " + str + "<br/>");
+    };
+    LoadingMeidator.NAME = "LoadingMeidator";
+    LoadingMeidator.loadedResArr = [];
+    return LoadingMeidator;
+}(puremvc.Mediator));
 var TestMeidator = (function (_super) {
     __extends(TestMeidator, _super);
     function TestMeidator(viewComponent) {
@@ -1249,4 +1303,171 @@ var TestPanel = (function (_super) {
     };
     return TestPanel;
 }(createjs.MovieClip));
+var ResManager = (function () {
+    function ResManager() {
+    }
+    ResManager.removeElement = function (resName) { };
+    ;
+    ResManager.hasElement = function (resName) { return null; };
+    ;
+    ResManager.delElement = function (resName) {
+        if (ResManager.dic[resName]) {
+            ResManager.dic[resName] = null;
+        }
+    };
+    ;
+    ResManager.getElement = function (resName) { };
+    ;
+    return ResManager;
+}());
+var SSResourceManager = (function (_super) {
+    __extends(SSResourceManager, _super);
+    function SSResourceManager() {
+        _super.call(this);
+    }
+    SSResourceManager.createSpriteByjson = function (jsonstr, spriteName) {
+        var sprite;
+        if (SSResourceManager.strDic[spriteName]) {
+            sprite = SSResourceManager.strDic[spriteName].msprite;
+        }
+        else {
+            var spritesheet = new createjs.SpriteSheet(jsonstr);
+            sprite = new createjs.Sprite(spritesheet);
+            SSResourceManager.strDic[spriteName] = new SSSprite(spriteName, sprite);
+        }
+        return sprite;
+    };
+    SSResourceManager.createSpriteByPic = function (pic, spriteName) {
+        var sprite;
+        if (SSResourceManager.strDic[spriteName]) {
+            sprite = SSResourceManager.strDic[spriteName].msprite;
+        }
+        else {
+            var spritesheet = pic;
+            sprite = new createjs.Sprite(spritesheet);
+            SSResourceManager.strDic[spriteName] = new SSSprite(spriteName, sprite);
+        }
+        return sprite;
+    };
+    SSResourceManager.getBitmap = function (img) {
+        var bitmap;
+        bitmap = new createjs.Bitmap(img);
+        return bitmap;
+    };
+    SSResourceManager.createBitmap = function (img, spriteName) {
+        var bitmap;
+        if (SSResourceManager.strDic[spriteName]) {
+            bitmap = SSResourceManager.strDic[spriteName].msprite;
+        }
+        else {
+            bitmap = new createjs.Bitmap(img);
+            SSResourceManager.strDic[spriteName] = new SSSprite(spriteName, bitmap);
+        }
+        bitmap = new createjs.Bitmap(img);
+        return bitmap;
+    };
+    SSResourceManager.strDic = new Array();
+    return SSResourceManager;
+}(ResManager));
+var SSSprite = (function () {
+    function SSSprite(_name, _sprite) {
+        this.name = _name;
+        this.msprite = _sprite;
+    }
+    return SSSprite;
+}());
+var exampledata = {
+    images: ["sprites.jpg"],
+    frames: { width: 50, height: 50 },
+    animations: {
+        stand: 0,
+        run: [1, 5],
+        jump: [6, 8, "run"]
+    }
+};
+var VideoResManager = (function () {
+    function VideoResManager() {
+    }
+    VideoResManager.getHVideo = function (videoId) {
+        if (this.videoDic[videoId]) {
+            var lVideo = this.videoDic[videoId].hVideo;
+        }
+        else {
+            var lVideo = document.getElementById(videoId);
+        }
+        if (!lVideo) {
+            console.log("没有找到元素:" + videoId);
+            return null;
+        }
+        if (this.videoDic[videoId]) {
+            var lVideoDOMElement = this.videoDic[videoId].csVideo;
+        }
+        else {
+            var lVideoDOMElement = new createjs.DOMElement(videoId);
+        }
+        if (!this.videoDic[videoId]) {
+            this.videoDic[videoId] = new MVideo(videoId, lVideo, lVideoDOMElement);
+        }
+        ;
+        return this.videoDic[videoId].hVideo;
+    };
+    VideoResManager.getCSVideo = function (videoId) {
+        if (this.videoDic[videoId]) {
+            var lVideoDOMElement = this.videoDic[videoId].csVideo;
+        }
+        else {
+            var lVideoDOMElement = null;
+            console.log(videoId + "不存在");
+        }
+        return lVideoDOMElement;
+    };
+    VideoResManager.createDOMElementVideo = function (lWidth, lHeight, lVideoPath, parentid) {
+        var lParent = document.getElementById(parentid);
+        if (!lParent) {
+            var lMesg = "SWElementVideo.prototype.createDOMElementVideo:: Attempting to add a new video element to the DOM, however, unable to find specified DOM parent element [" + parentid + "] ";
+            return null;
+        }
+        if (this.videoDic[parentid]) {
+            var lVideo = this.videoDic[parentid].hVideo;
+        }
+        else {
+            var lVideo = document.createElement('video');
+        }
+        lVideo.src = lVideoPath;
+        lVideo.hidden = false;
+        lVideo.width = lWidth;
+        lVideo.height = lHeight;
+        lVideo.volume = 1;
+        lVideo.controls = true;
+        lVideo.pause();
+        var self = this;
+        lVideo.addEventListener("error", function (evt) {
+            var lErrMesg = "Error::SWElementVideo:: Error loading video element, event.type [" + evt.type + "] Media Details: [" + evt.target + "]";
+            console.log(lErrMesg);
+        });
+        lParent.appendChild(lVideo);
+        if (this.videoDic[parentid]) {
+            var lVideoDOMElement = this.videoDic[parentid].csVideo;
+        }
+        else {
+            var lVideoDOMElement = new createjs.DOMElement(lVideo);
+        }
+        if (!this.videoDic[parentid]) {
+            this.videoDic[parentid] = new MVideo(parentid, lVideo, lVideoDOMElement);
+        }
+        ;
+        return this.videoDic[parentid].csVideo;
+    };
+    ;
+    VideoResManager.videoDic = new Array();
+    return VideoResManager;
+}());
+var MVideo = (function () {
+    function MVideo(_name, _hvideo, _csVideo) {
+        this.name = name;
+        this.csVideo = _csVideo;
+        this.hVideo = _hvideo;
+    }
+    return MVideo;
+}());
 //# sourceMappingURL=app.js.map

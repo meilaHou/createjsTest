@@ -41,3 +41,29 @@ loader.addEventListener("complete", this.handleComplete.bind(this));
 //全局保存this,
 //Config.loadingIndex.startLoadGameRes();//首先将指向本类的索引保存在全局变量中;
 */
+
+/*
+文本文件加载的问题:
+//文本文件的加载注意 文本的文字编码;不然返回undefined,如果没有这个文件,获取时,返回null;
+
+*/
+
+    /*
+    音频和视频的加载
+    1.html5标签
+    2.createjs加载
+    2.1 音频的加载
+    2.1.1 loadqueue 预加载,
+    2.1.2 sound 加载
+    2.2视频的加载
+    2.2.1loadqueque 预加载
+
+
+    音频和视频的界面显示:
+    1.html5标签
+    2.画板中的自定义事件响应
+
+    音频和视频的控制,通过代码控制
+
+
+    */

@@ -10,6 +10,7 @@
     <script src="/lib/createjs/easeljs-0.8.2.combined.js"></script>
     <script src="/lib/jquery/jquery-1.12.3.js"></script>
     <script src="/lib/createjs/preloadjs-0.6.2.combined.js"></script>
+    <script src="/lib/createjs/soundjs-0.6.2.combined.js"></script>
     <!--<script src="../lib/puremvc/puremvc-typescript-standard-1.0-min.js"></script>-->
      <script src="app.js"></script>
 
@@ -25,7 +26,14 @@
     </div>
 
     <div id="content">
-        <textarea></textarea>
+        <textarea></textarea><br/>
+        <video controls="controls" id="myvideo">
+            <source src="/images/movie.ogg" type="audio/ogg" />
+            您的浏览器不支持video标签  
+        </video>
+        <audio controls="controls">
+            <source src="../images/BankerTwo.mp3" type="audio/mpeg" />
+        </audio>
     </div>
     <br />
     <script>
