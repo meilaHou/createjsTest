@@ -5,12 +5,12 @@ module game {
 
 	export class AppFacade extends puremvc.Facade implements puremvc.IFacade{
 
-        public stage: any;
+        public stage: Layout;
 		public constructor(){
 			super();
 		}
 		public static STARTUP:string = "startup";
-		
+        public static CHANGGAMETYPE = "changegametype";
 		public static getInstance():AppFacade{
 			if ( this.instance == null ) this.instance = new AppFacade();
 			return <AppFacade><any> (this.instance);
@@ -18,14 +18,15 @@ module game {
 		
 		public initializeController():void{
 			super.initializeController();
-			this.registerCommand(AppFacade.STARTUP, StartupCommand);
+            this.registerCommand(AppFacade.STARTUP, StartupCommand);
+            this.registerCommand(AppFacade.CHANGGAMETYPE, ChangeModuleCommand);
 		}
 		
 		/**
 		 * 启动PureMVC，在应用程序中调用此方法，并传递应用程序本身的引用
 		 * @param	rootView	-	PureMVC应用程序的根视图root，包含其它所有的View Componet
 		 */
-		public startUp(rootView:createjs.Stage):void{
+		public startUp(rootView:Layout):void{
             console.log("facade初始化完成");
             this.stage = rootView;
 			this.sendNotification(AppFacade.STARTUP, rootView);

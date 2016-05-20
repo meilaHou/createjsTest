@@ -4,10 +4,13 @@ HTMLVideoElement: 从html中获取的video对象,不管是动态创建还是html
 
 */
 
-class VideoResManager {
+class VideoResManager extends ResManager{
     private static videoDic: Array<MVideo> = new Array<MVideo>();
     constructor() {
-
+        super();
+    }
+    public static get objectarr(): Array<any> {
+        return VideoResManager.videoDic;
     }
     ///获取html中已经存在的hvideo,
     public static getHVideo(videoId): HTMLVideoElement {

@@ -1,4 +1,4 @@
-﻿<!--
+<!--
 	NOTES:
 	1. All tokens are represented by '$' sign in the template.
 	2. You can write your code only wherever mentioned.
@@ -20,7 +20,7 @@
 	var createjs = loadingcreatejs;
 </script>
 <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
-<script src="loading.js"></script>
+<script src="loading.js?1463640405774"></script>
 <script>
 var canvas, stage, exportRoot;
 function init() {
@@ -35,7 +35,7 @@ function init() {
 	var loader = new loadingcreatejs.LoadQueue(false);
 	loader.addEventListener("fileload", handleFileLoad);
 	loader.addEventListener("complete", handleComplete);
-	loader.loadFile({src:"../egame/images/loading_atlas_.json", type:"spritesheet", id:"loading_atlas_"}, true);
+	loader.loadFile({src:"../egame/images/loading_atlas_.json?1463640405774", type:"spritesheet", id:"loading_atlas_"}, true);
 	loader.loadManifest(loadinglib.properties.manifest);
 }
 

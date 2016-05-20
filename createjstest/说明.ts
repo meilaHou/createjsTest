@@ -36,10 +36,16 @@ this 的指向
  -             }
 两种方法实现同一个效果;
 
-//绑定指定的this,回调函数中的this便指向本类
+//绑定指定的this,回调函数中的this便指向本类(执行此行代码的类)
 loader.addEventListener("complete", this.handleComplete.bind(this));
 //全局保存this,
 //Config.loadingIndex.startLoadGameRes();//首先将指向本类的索引保存在全局变量中;
+
+继承关系中,父类中使用的this
+1.静态类继承中,使用子类的调用父类方法时,父类中的this,代表子类
+不管这个父类方法使用了其他方法还是没有,是私有还是公有,其中的this,均是指子类
+2.静态类继承中,get 函数体内,指向的是父类
+3.this.属性,指向的是子类;
 */
 
 /*

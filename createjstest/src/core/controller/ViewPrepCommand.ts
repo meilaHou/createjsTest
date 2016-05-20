@@ -21,8 +21,9 @@ module game {
 //            this.facade.registerMediator(new ShopMediator());
 //            this.facade.registerMediator(new MapMediator());
     		
-            this.facade.registerMediator(new LoadingMeidator());
+            this.facade.registerMediator(new LoadingMeidator((this.facade as AppFacade).stage._loadingLayer));
             this.facade.registerMediator(new TestMeidator((this.facade as AppFacade).stage));
+            this.facade.registerMediator(new SkinMediator((this.facade as AppFacade).stage._screenLayer));
 		}
 	}
 }
