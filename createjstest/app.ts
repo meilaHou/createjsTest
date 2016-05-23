@@ -6,10 +6,12 @@
 /// <reference path="src/layout.ts" />
 
 /// <reference path="src/core/appfacade.ts" />
+///需要将没有引用到的ts 引用一次,避免发布时错误;
+/// <include path="egame/commonpoker.ts" />
 
 
 window.onload = () => {
-
+    comnpokecreatejs = createjs;
     //添加一个Ticker类帮助避免多次调用update方法
     var et = new EaseljsTest();
     //this.init();找不到此方法会报对象不支持此操作;
@@ -24,7 +26,7 @@ class EaseljsTest {
         //测试引入createjs正常
        // var stage = this.stage;
         this.mstage = new createjs.Stage(canvas); 
-
+        createjs.Touch.enable(this.mstage);
         this.mylayout = new Layout();
         this.mylayout.init(this.mstage);
         //this.mylayout.showDebug(true);

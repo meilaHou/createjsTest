@@ -11,7 +11,9 @@ var game;
             _super.call(this);
         }
         ViewPrepCommand.prototype.execute = function (notification) {
+            this.facade.registerMediator(new game.LoadingMeidator(this.facade.stage._loadingLayer));
             this.facade.registerMediator(new TestMeidator(this.facade.stage));
+            this.facade.registerMediator(new game.SkinMediator(this.facade.stage._screenLayer));
         };
         return ViewPrepCommand;
     }(puremvc.SimpleCommand));

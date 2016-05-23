@@ -1,5 +1,6 @@
 ﻿/// <reference path="../../../../org/puremvc/typescript/patterns/mediator/mediator.ts" />
 /// <include path="../../../../egame/loading.ts" />
+/// <reference path="../../../../myconfig.ts" />
 /// <reference path="../../../utils/res/soundresmanager.ts" />
 
 module game {
@@ -8,7 +9,7 @@ module game {
         public static NAME: string = "LoadingMeidator";
         public constructor(viewComponent: any = null) {
             super(LoadingMeidator.NAME, viewComponent);
-            Config.loadingIndex = this;
+            MyConfig.loadingIndex = this;
         }
         public listNotificationInterests(): Array<any> {
             return [
@@ -20,7 +21,7 @@ module game {
             console.log("LoadingMeidator 响应成功", notification.getName());
             switch (notification.getName()) {
                 case "showLoadingPanel":
-                    this.usecreatejsSource();
+                    this. usecreatejsSource();
                     break;
             }
         }
@@ -45,7 +46,7 @@ module game {
             //file参数 LoadItem | Object | String
             loader.loadFile({ src: "../../../../egame/images/loading_atlas_.json?1463196773695", type: "spritesheet", id: "loading_atlas_" }, true);
             loader.loadManifest(loadinglib.properties.manifest);
-
+            loader.loadManifest(comnpokelib.properties.manifest)
             //this.startLoadGameRes();
         }
 

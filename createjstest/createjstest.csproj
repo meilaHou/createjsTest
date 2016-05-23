@@ -13,17 +13,19 @@
     <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <ItemGroup>
     <Content Include="app.css" />
     <Content Include="app.js" />
-    <TypeScriptCompile Include="Config.ts" />
+    <TypeScriptCompile Include="egame\commonpoker.ts" />
+    <TypeScriptCompile Include="MyConfig.ts" />
     <TypeScriptCompile Include="egame\bjlskin.ts" />
     <TypeScriptCompile Include="egame\loading.ts" />
     <Content Include="egame\bjlskin.js" />
+    <Content Include="egame\commonpoker.js" />
     <Content Include="egame\images\bjlskin_atlas_.png" />
     <Content Include="egame\images\win.png" />
     <Content Include="egame\loading.html" />
@@ -43,6 +45,8 @@
     <Content Include="lib\puremvc\puremvc-typescript-standard-1.0.js" />
     <TypeScriptCompile Include="src\core\controller\modulecommand\ChangeModuleCommand.ts" />
     <TypeScriptCompile Include="src\core\view\meidator\SkinMediator.ts" />
+    <TypeScriptCompile Include="src\core\view\panel\BjlSkinPanel.ts" />
+    <TypeScriptCompile Include="src\core\view\panel\SkinPanel.ts" />
     <TypeScriptCompile Include="src\IContainer.ts" />
     <TypeScriptCompile Include="src\Layout.ts" />
     <TypeScriptCompile Include="src\LayoutContainer.ts" />
@@ -102,6 +106,7 @@
     <Content Include="egame\images\win2.json" />
     <Content Include="images\movie.ogg" />
     <Content Include="egame\images\bjlskin_atlas_.json" />
+    <None Include="Properties\PublishProfiles\bcgame.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

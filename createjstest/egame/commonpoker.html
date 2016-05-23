@@ -1,0 +1,60 @@
+<!--
+	NOTES:
+	1. All tokens are represented by '$' sign in the template.
+	2. You can write your code only wherever mentioned.
+	3. "DO NOT" alter the tokens in the template html as they are required during publishing.
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>commonpoker</title>
+<!-- write your code here -->
+
+
+
+<script>
+	// change the default namespace for the CreateJS libraries:
+	var comnpokecreatejs = comnpokecreatejs||{};
+	var createjs = comnpokecreatejs;
+</script>
+<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+<script src="commonpoker.js?1463823634868"></script>
+<script>
+var canvas, stage, exportRoot;
+function init() {
+	// --- write your JS code here ---
+	
+	canvas = document.getElementById("canvas");
+
+	var loader = new comnpokecreatejs.LoadQueue(false);
+	loader.installPlugin(comnpokecreatejs.Sound);
+	loader.addEventListener("complete", handleComplete);
+	loader.loadManifest(comnpokelib.properties.manifest);
+}
+
+function handleComplete(evt) {
+	exportRoot = new comnpokelib.commonpoker();
+
+	stage = new comnpokecreatejs.Stage(canvas);
+	stage.addChild(exportRoot);
+	stage.update();
+
+	comnpokecreatejs.Ticker.setFPS(comnpokelib.properties.fps);
+	comnpokecreatejs.Ticker.addEventListener("tick", stage);
+}
+
+
+function playSound(id, loop) {
+	return comnpokecreatejs.Sound.play(id, comnpokecreatejs.Sound.INTERRUPT_EARLY, 0, 0, loop);
+}
+</script>
+
+<!-- write your code here -->
+
+</head>
+<body onload="init();" style="background-color:#D4D4D4;margin:0px;">
+	<canvas id="canvas" width="1050" height="680" style="background-color:#FFFFFF"></canvas>
+</body>
+</html>

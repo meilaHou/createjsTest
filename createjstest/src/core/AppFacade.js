@@ -18,6 +18,7 @@ var game;
         AppFacade.prototype.initializeController = function () {
             _super.prototype.initializeController.call(this);
             this.registerCommand(AppFacade.STARTUP, game.StartupCommand);
+            this.registerCommand(AppFacade.CHANGGAMETYPE, game.ChangeModuleCommand);
         };
         AppFacade.prototype.startUp = function (rootView) {
             console.log("facade初始化完成");
@@ -26,6 +27,7 @@ var game;
             this.removeCommand(AppFacade.STARTUP);
         };
         AppFacade.STARTUP = "startup";
+        AppFacade.CHANGGAMETYPE = "changegametype";
         return AppFacade;
     }(puremvc.Facade));
     game.AppFacade = AppFacade;
