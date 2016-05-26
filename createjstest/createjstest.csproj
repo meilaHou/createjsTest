@@ -47,9 +47,10 @@
     <TypeScriptCompile Include="src\core\view\meidator\SkinMediator.ts" />
     <TypeScriptCompile Include="src\core\view\panel\BjlSkinPanel.ts" />
     <TypeScriptCompile Include="src\core\view\panel\SkinPanel.ts" />
-    <TypeScriptCompile Include="src\IContainer.ts" />
-    <TypeScriptCompile Include="src\Layout.ts" />
-    <TypeScriptCompile Include="src\LayoutContainer.ts" />
+    <TypeScriptCompile Include="src\utils\layout\IContainer.ts" />
+    <TypeScriptCompile Include="src\utils\layout\Layout.ts" />
+    <TypeScriptCompile Include="src\utils\layout\LayoutContainer.ts" />
+    <TypeScriptCompile Include="src\utils\ClassUtils.ts" />
     <TypeScriptCompile Include="src\utils\res\IResManager.ts" />
     <TypeScriptCompile Include="src\utils\res\ResManager.ts" />
     <TypeScriptCompile Include="src\utils\res\SoundResManager.ts" />

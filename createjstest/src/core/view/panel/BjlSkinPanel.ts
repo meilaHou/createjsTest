@@ -9,8 +9,15 @@ module game {
         private inits() {
             this.content = new bjllib.bjlskin();
             this.addChild(this.content);
+            this.addEventListener("tick",this.ontickHandler.bind(this));
             this.resourceLoader.type = this.ssKey;
             this.loadSceneRes();
+       }
+        private choumaBounds: any;
+        private ontickHandler(evt) {
+            if (!this.choumaBounds) return;
+            this.choumaBounds.x = this.stage.mouseX;
+            this.choumaBounds.y = this.stage.mouseY;
         }
         private loadSceneRes() {
             this.resourceLoader.loadManifest(bjllib.properties.manifest, false);
@@ -50,7 +57,7 @@ module game {
             for (var i = 0; i < 5; i++)
             {
                 this.tablemc["chipsBarMc"]["mc" + i]["txt"].text = chouma[i];
-                this.tablemc["chipsBarMc"]["mc" + i].addEventListener("click", this.choumaClick);
+                this.tablemc["chipsBarMc"]["mc" + i].addEventListener("click", this.choumaClick.bind(this));
             }
             this.createFapai();
             this.changeState(FAPAI);
@@ -84,6 +91,7 @@ module game {
         }
         private shoupai() {
             var pokemc: createjs.MovieClip = this.tablemc["PokerMc"];
+            var adsf = new createjs.Shape();
             for (var i = 0; i < pokemc.numChildren; i++) {
                 var tempmc: createjs.MovieClip = pokemc.getChildAt(i) as createjs.MovieClip;
                 
@@ -97,12 +105,64 @@ module game {
 
         }
         private choumaClick(evt) {
-            var sf = evt.target["txt"];
-            var adf = this;
-            var adfadf = this["txt"];
-            var sfsafs = evt.currentTarget["txt"].text;
-            alert(sfsafs);
+            //var obj = evt.target["txt"];
+           // var adf = this;
+           // var adfadf = this["txt"];
+            //var obj = evt.currentTarget["txt"].text;
+            var obj = evt.currentTarget as createjs.MovieClip;
+           // alert(sfsafs);
+            //var myBounds = utils.ClassUtils.getObjByClass(utils.ClassUtils.getClassName(obj));
+            this.removeChild(this.choumaBounds);
+            //this.choumaBounds = obj.clone();//movieclip 不能被克隆;
+            this.addChild(this.choumaBounds);
+
+
+            
+            this.testFunc();
         }
+
+        private testFunc() {
+            //============clone==============
+            var text = new createjs.Text("Hello World", "20px Arial", "#ff7700");
+            createjs.Tween.get(text).to({ guide: { path: [0, 0, 0, 200, 200, 200, 200, 0, 0, 0] } }, 7000);
+            var shapes = new createjs.Shape();
+            //shapes.graphics.beginFill("0xff00ff");
+            shapes.graphics.moveTo(0, 0).curveTo(0, 200, 200, 200).curveTo(200, 0, 0, 0);
+            shapes.cache(0, 0, 200, 200);
+            text.x = 100;
+            text.y = 50;
+            //text.textBaseline = "alphabetic";
+            var clonetext = text.clone();
+            clonetext.text = "nihao shijie!!!";
+            this.stage.addChild(shapes);
+            this.stage.addChild(text);
+            this.stage.addChild(clonetext);
+            //=========AlphaMaskFilter=======AlphaMapFilter=======
+            var box = new createjs.Shape();
+            //box.graphics.beginLinearGradientFill(["#ff0000", "#0000ff"], [0, 1], 0, 0, 0, 100)
+            box.graphics.beginLinearGradientFill(["#000000", "rgba(0, 0, 0, 0)"], [0, 1], 0, 0, 100, 100)
+            box.graphics.drawRect(0, 0, 100, 100);
+            box.cache(0, 0, 100, 100);
+            var bmp = new createjs.Bitmap("/images/Chrysanthemum.jpg");
+            bmp.filters = [
+               // new createjs.AlphaMapFilter(box.cacheCanvas as HTMLCanvasElement)//第一种遮罩
+                new createjs.AlphaMaskFilter(box.cacheCanvas as HTMLCanvasElement)//第二种遮罩
+            ];
+            bmp.cache(0, 0, 100, 100);
+            this.stage.addChild(bmp);
+            //===============BlurFilter==============
+            var shape = new createjs.Shape().set({ x: 100, y: 100 });
+            shape.graphics.beginFill("#ff0000").drawCircle(0, 0, 50);
+
+            var blurFilter = new createjs.BlurFilter(50, 5, 1);
+            shape.filters = [blurFilter];
+            var bounds = blurFilter.getBounds();
+
+            shape.cache(-50 + bounds.x, -50 + bounds.y, 100 + bounds.width, 100 + bounds.height);
+            this.stage.addChild(shape);
+            
+        }
+
         private limitmcClickHandler(evt) {
             this.tablemc["limitedMc"].visible = !this.tablemc["limitedMc"].visible;
         }

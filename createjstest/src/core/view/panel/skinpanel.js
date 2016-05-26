@@ -32,6 +32,9 @@ var game;
             this.resourceLoader = null;
             this.content = null;
             this.ssKey = "";
+            this.clear();
+        };
+        SkinPanel.prototype.clear = function () {
         };
         return SkinPanel;
     }(createjs.MovieClip));
