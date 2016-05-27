@@ -1,5 +1,6 @@
 ﻿/// <reference path="skinpanel.ts" />
-/// <reference path="../../../../egame/bjlskin.ts" />
+/// <include path="../../../../egame/bjlskin.ts" />
+
 module game {
    export class BjlSKinPanel extends SkinPanel {
        constructor(ss: any) {

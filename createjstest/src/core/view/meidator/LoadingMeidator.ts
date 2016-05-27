@@ -1,6 +1,5 @@
 ﻿/// <reference path="../../../../org/puremvc/typescript/patterns/mediator/mediator.ts" />
 /// <include path="../../../../egame/loading.ts" />
-/// <reference path="../../../../myconfig.ts" />
 /// <reference path="../../../utils/res/soundresmanager.ts" />
 
 module game {
@@ -45,8 +44,9 @@ module game {
             //loader.on("complete", this.handleComplete, null, false, { count: 3, hander: this.startLoadGameRes });
             //file参数 LoadItem | Object | String
             loader.loadFile({ src: "../../../../egame/images/loading_atlas_.json?1463196773695", type: "spritesheet", id: "loading_atlas_" }, true);
+           
             loader.loadManifest(loadinglib.properties.manifest);
-            loader.loadManifest(comnpokelib.properties.manifest)
+            
             //this.startLoadGameRes();
         }
 
@@ -62,6 +62,7 @@ module game {
         private handleComplete(evt) {
             var queue = evt.target;
             ss["loading_atlas_"] = queue.getResult("loading_atlas_");
+            
             this.exportRoot = new loadinglib.loading();
             //console.log(ss["loading_atlas_"]);
             //for (var i in ss) {
@@ -93,11 +94,13 @@ module game {
                 { id: "pic", src: "/images/Chrysanthemum.jpg" },
                 { id: "winspritesheet", src: "/egame/images/win2.json" }//文本文件的加载注意 文本的文字编码;不然返回undefined,如果没有这个文件,获取时,返回null;
             ];
+            queaue.loadFile({ src: "../../../../egame/images/commonpoker_atlas_.json?1463196773695", type: "spritesheet", id: "commonpoker_atlas_" }, true);
             queaue.loadFile({ src: "/egame/images/win2.json", type: "spritesheet", id: "winspritesheet2" }, true);
             queaue.loadFile({ src: "/egame/images/bjlskin_atlas_.json", type: "spritesheet", id: "bjlskin" }, true);
             queaue.addEventListener("fileload", this.handleResFileLoad.bind(this));
             queaue.addEventListener("complete", this.handleResComplete.bind(this));
             queaue.loadManifest(loadItems, false);
+            queaue.loadManifest(comnpokelib.properties.manifest,false)
             queaue.load();
 
         }
@@ -109,7 +112,7 @@ module game {
                 };
             console.log("加载资源完毕:" + evt.item.type + " :" + evt.item.id);
             this.loadlog(evt.item.type + " :" + evt.item.id);
-            var frameNumber = Math.floor(LoadingMeidator.loadedResArr.length / 3 * 99);
+            var frameNumber = Math.floor(LoadingMeidator.loadedResArr.length / 10 * 99);
             console.log(frameNumber);
             this.exportRoot.instance.progressMc.gotoAndStop(frameNumber);
             this.exportRoot.instance.messageTxt.text = evt.item.type + " :" + evt.item.id +":加载完毕";
@@ -125,7 +128,7 @@ module game {
             //{
             //    alert("winspritesheet2");
             //};
-
+            ss["commonpoker_atlas_"] = this.resourceLoader.getResult("commonpoker_atlas_");
             var data: Object = { ss: this.resourceLoader.getResult("bjlskin"), type:"bjlskin"};
             this.sendNotification(AppFacade.CHANGGAMETYPE, data);
             (this.viewComponent as createjs.Container).removeAllChildren();
@@ -144,7 +147,7 @@ module game {
         //    this.loadlog(target.src + "播放完毕");
         //}
         private loadlog(str: string) {
-            $("#content textarea").append("    " + str + "<br/>");
+            $("#content textarea").append("    " + str + "");
         }
 
     }

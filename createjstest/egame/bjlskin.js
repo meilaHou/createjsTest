@@ -9,33 +9,33 @@ lib.properties = {
 	fps: 24,
 	color: "#FFFFFF",
 	manifest: [
-		{src:"../egame/sounds/WelcomeSound.mp3?1464244520253", id:"WelcomeSound"},
-		{src:"../egame/sounds/BackgroundSound.mp3?1464244520253", id:"BackgroundSound"},
-		{src:"../egame/sounds/TieWinSound.mp3?1464244520253", id:"TieWinSound"},
-		{src:"../egame/sounds/BankerTwo.mp3?1464244520253", id:"BankerTwo"},
-		{src:"../egame/sounds/BankerZero.mp3?1464244520253", id:"BankerZero"},
-		{src:"../egame/sounds/BankerOne.mp3?1464244520253", id:"BankerOne"},
-		{src:"../egame/sounds/BankerThree.mp3?1464244520253", id:"BankerThree"},
-		{src:"../egame/sounds/BankerFour.mp3?1464244520253", id:"BankerFour"},
-		{src:"../egame/sounds/BankerFive.mp3?1464244520253", id:"BankerFive"},
-		{src:"../egame/sounds/BankerSix.mp3?1464244520253", id:"BankerSix"},
-		{src:"../egame/sounds/BankerSeven.mp3?1464244520253", id:"BankerSeven"},
-		{src:"../egame/sounds/BankerEight.mp3?1464244520253", id:"BankerEight"},
-		{src:"../egame/sounds/BankerNine.mp3?1464244520253", id:"BankerNine"},
-		{src:"../egame/sounds/BankerWinSound.mp3?1464244520253", id:"BankerWinSound"},
-		{src:"../egame/sounds/BankerGetSound.mp3?1464244520253", id:"BankerGetSound"},
-		{src:"../egame/sounds/PlayerTwo.mp3?1464244520253", id:"PlayerTwo"},
-		{src:"../egame/sounds/PlayerZero.mp3?1464244520253", id:"PlayerZero"},
-		{src:"../egame/sounds/PlayerOne.mp3?1464244520253", id:"PlayerOne"},
-		{src:"../egame/sounds/PlayerThree.mp3?1464244520253", id:"PlayerThree"},
-		{src:"../egame/sounds/PlayerFour.mp3?1464244520253", id:"PlayerFour"},
-		{src:"../egame/sounds/PlayerFive.mp3?1464244520253", id:"PlayerFive"},
-		{src:"../egame/sounds/PlayerSix.mp3?1464244520253", id:"PlayerSix"},
-		{src:"../egame/sounds/PlayerSeven.mp3?1464244520253", id:"PlayerSeven"},
-		{src:"../egame/sounds/PlayerEight.mp3?1464244520253", id:"PlayerEight"},
-		{src:"../egame/sounds/PlayerNine.mp3?1464244520253", id:"PlayerNine"},
-		{src:"../egame/sounds/PlayerWinSound.mp3?1464244520253", id:"PlayerWinSound"},
-		{src:"../egame/sounds/PlayerGetSound.mp3?1464244520253", id:"PlayerGetSound"}
+		{src:"../egame/sounds/WelcomeSound.mp3?1464255079276", id:"WelcomeSound"},
+		{src:"../egame/sounds/BackgroundSound.mp3?1464255079276", id:"BackgroundSound"},
+		{src:"../egame/sounds/TieWinSound.mp3?1464255079276", id:"TieWinSound"},
+		{src:"../egame/sounds/BankerTwo.mp3?1464255079276", id:"BankerTwo"},
+		{src:"../egame/sounds/BankerZero.mp3?1464255079276", id:"BankerZero"},
+		{src:"../egame/sounds/BankerOne.mp3?1464255079276", id:"BankerOne"},
+		{src:"../egame/sounds/BankerThree.mp3?1464255079276", id:"BankerThree"},
+		{src:"../egame/sounds/BankerFour.mp3?1464255079276", id:"BankerFour"},
+		{src:"../egame/sounds/BankerFive.mp3?1464255079276", id:"BankerFive"},
+		{src:"../egame/sounds/BankerSix.mp3?1464255079276", id:"BankerSix"},
+		{src:"../egame/sounds/BankerSeven.mp3?1464255079276", id:"BankerSeven"},
+		{src:"../egame/sounds/BankerEight.mp3?1464255079276", id:"BankerEight"},
+		{src:"../egame/sounds/BankerNine.mp3?1464255079276", id:"BankerNine"},
+		{src:"../egame/sounds/BankerWinSound.mp3?1464255079276", id:"BankerWinSound"},
+		{src:"../egame/sounds/BankerGetSound.mp3?1464255079276", id:"BankerGetSound"},
+		{src:"../egame/sounds/PlayerTwo.mp3?1464255079276", id:"PlayerTwo"},
+		{src:"../egame/sounds/PlayerZero.mp3?1464255079276", id:"PlayerZero"},
+		{src:"../egame/sounds/PlayerOne.mp3?1464255079276", id:"PlayerOne"},
+		{src:"../egame/sounds/PlayerThree.mp3?1464255079276", id:"PlayerThree"},
+		{src:"../egame/sounds/PlayerFour.mp3?1464255079276", id:"PlayerFour"},
+		{src:"../egame/sounds/PlayerFive.mp3?1464255079276", id:"PlayerFive"},
+		{src:"../egame/sounds/PlayerSix.mp3?1464255079276", id:"PlayerSix"},
+		{src:"../egame/sounds/PlayerSeven.mp3?1464255079276", id:"PlayerSeven"},
+		{src:"../egame/sounds/PlayerEight.mp3?1464255079276", id:"PlayerEight"},
+		{src:"../egame/sounds/PlayerNine.mp3?1464255079276", id:"PlayerNine"},
+		{src:"../egame/sounds/PlayerWinSound.mp3?1464255079276", id:"PlayerWinSound"},
+		{src:"../egame/sounds/PlayerGetSound.mp3?1464255079276", id:"PlayerGetSound"}
 	]
 };
 
@@ -584,100 +584,121 @@ lib.properties = {
 
 
 
-(lib.Bitmap9 = function() {
+(lib.Bitmap85 = function() {
 	this.spriteSheet = ss["bjlskin_atlas_"];
 	this.gotoAndStop(77);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.feipai = function() {
+(lib.Bitmap86 = function() {
 	this.spriteSheet = ss["bjlskin_atlas_"];
 	this.gotoAndStop(78);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.框框 = function() {
+(lib.Bitmap87 = function() {
 	this.spriteSheet = ss["bjlskin_atlas_"];
 	this.gotoAndStop(79);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.汇总1 = function() {
+(lib.Bitmap9 = function() {
 	this.spriteSheet = ss["bjlskin_atlas_"];
 	this.gotoAndStop(80);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.牌盒右 = function() {
+(lib.feipai = function() {
 	this.spriteSheet = ss["bjlskin_atlas_"];
 	this.gotoAndStop(81);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.牌盒右满 = function() {
+(lib.框框 = function() {
 	this.spriteSheet = ss["bjlskin_atlas_"];
 	this.gotoAndStop(82);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.牌盒左 = function() {
+(lib.汇总1 = function() {
 	this.spriteSheet = ss["bjlskin_atlas_"];
 	this.gotoAndStop(83);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.叶子1 = function() {
+(lib.牌盒右 = function() {
 	this.spriteSheet = ss["bjlskin_atlas_"];
 	this.gotoAndStop(84);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.叶子2 = function() {
+(lib.牌盒右满 = function() {
 	this.spriteSheet = ss["bjlskin_atlas_"];
 	this.gotoAndStop(85);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.叶子3 = function() {
+(lib.牌盒左 = function() {
 	this.spriteSheet = ss["bjlskin_atlas_"];
 	this.gotoAndStop(86);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.叶子4 = function() {
+(lib.叶子1 = function() {
 	this.spriteSheet = ss["bjlskin_atlas_"];
 	this.gotoAndStop(87);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.底1 = function() {
+(lib.叶子2 = function() {
 	this.spriteSheet = ss["bjlskin_atlas_"];
 	this.gotoAndStop(88);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.底3 = function() {
+(lib.叶子3 = function() {
 	this.spriteSheet = ss["bjlskin_atlas_"];
 	this.gotoAndStop(89);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.玻璃 = function() {
+(lib.叶子4 = function() {
 	this.spriteSheet = ss["bjlskin_atlas_"];
 	this.gotoAndStop(90);
+}).prototype = p = new cjs.Sprite();
+
+
+
+(lib.底1 = function() {
+	this.spriteSheet = ss["bjlskin_atlas_"];
+	this.gotoAndStop(91);
+}).prototype = p = new cjs.Sprite();
+
+
+
+(lib.底3 = function() {
+	this.spriteSheet = ss["bjlskin_atlas_"];
+	this.gotoAndStop(92);
+}).prototype = p = new cjs.Sprite();
+
+
+
+(lib.玻璃 = function() {
+	this.spriteSheet = ss["bjlskin_atlas_"];
+	this.gotoAndStop(93);
 }).prototype = p = new cjs.Sprite();
 
 
@@ -763,14 +784,12 @@ p.nominalBounds = new cjs.Rectangle(0,0,148.2,51.5);
 	this.initialize(mode,startPosition,loop,{});
 
 	// 图层 1
-	this.shape = new cjs.Shape();
-	this.shape.graphics.lf(["rgba(0,192,209,0.698)","rgba(0,192,209,0.498)"],[0.451,0.82],0.3,-26.5,0.3,25.7).s().p("AovDSQCNh+Dsi/Ij3D/IHOl+QCqADDDgDIA7gLIC8gRIAVAFIAVAAQAOAtgDAAIgdAQIhMA0Qg8AxASgLQARgLCGhKIAAAFIjrCuIDqibIAJAhIo2FuIkHAGIAdgYIASgfIgSACIgqAYIhhAgImOAWgAp+ClIglgTICFhXIgcAAIF8ktICKAHIoJGpIgHAHQgMAHh1APg");
-	this.shape.setTransform(71.1,26.3);
+	this.instance = new lib.Bitmap87();
 
-	this.timeline.addTween(cjs.Tween.get(this.shape).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(0,0,142.2,52.7);
+p.nominalBounds = new cjs.Rectangle(0,0,142,53);
 
 
 (lib.亮牌3 = function(mode,startPosition,loop) {
@@ -1220,7 +1239,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,95,20);
 
 	// 图层 2
 	this.shape = new cjs.Shape();
-	this.shape.graphics.bf(cjs.SpriteSheetUtils.extractFrame(ss["bjlskin_atlas_"],80), null, new cjs.Matrix2D(1,0,0,1,-13,-14.5)).s().p("Ai8BlQg0AAAAgzIAAhjQAAgzA0AAIF6AAQAzAAAAAzIAABjQAAAzgzAAg");
+	this.shape.graphics.bf(cjs.SpriteSheetUtils.extractFrame(ss["bjlskin_atlas_"],83), null, new cjs.Matrix2D(1,0,0,1,-13,-14.5)).s().p("Ai8BlQg0AAAAgzIAAhjQAAgzA0AAIF6AAQAzAAAAAzIAABjQAAAzgzAAg");
 	this.shape.setTransform(25,11);
 
 	this.shape_1 = new cjs.Shape();
@@ -2200,6 +2219,14 @@ p.nominalBounds = new cjs.Rectangle(0,0,69,35);
 (lib.闲对win = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
+	// timeline functions:
+	this.frame_0 = function() {
+		this.stop();
+	}
+
+	// actions tween:
+	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(40));
+
 	// 图层 1 (mask)
 	var mask = new cjs.Shape();
 	mask._off = true;
@@ -2260,6 +2287,14 @@ p.nominalBounds = new cjs.Rectangle(0.1,-1.2,182.1,135.1);
 
 (lib.闲win = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
+
+	// timeline functions:
+	this.frame_0 = function() {
+		this.stop();
+	}
+
+	// actions tween:
+	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(40));
 
 	// 图层 1 (mask)
 	var mask = new cjs.Shape();
@@ -2345,6 +2380,14 @@ p.nominalBounds = new cjs.Rectangle(-2,-2,32,28);
 (lib.庄对win = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
+	// timeline functions:
+	this.frame_0 = function() {
+		this.stop();
+	}
+
+	// actions tween:
+	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(40));
+
 	// 图层 1 (mask)
 	var mask = new cjs.Shape();
 	mask._off = true;
@@ -2413,36 +2456,48 @@ p.nominalBounds = new cjs.Rectangle(-237.8,-239,664.4,577.5);
 (lib.庄win = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
+	// timeline functions:
+	this.frame_0 = function() {
+		this.stop();
+	}
+
+	// actions tween:
+	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(40));
+
 	// 图层 1 (mask)
 	var mask = new cjs.Shape();
 	mask._off = true;
-	mask.graphics.p("AqDBmIAAAAIgEgLIjKpRIAXgDIAJgBQIQhEHHiOIAigLIKKRRIggAMQjoBdj6BIQlhBnmGBAIgbAGgAC3q0QnJCSoTBEIgCAAIgEACQgCACgBADIAAACIAAACIAAACIGBSBQABADADACIACABIAFAAIACAAQGLhBFlhoQDxhGDhhYQADgBACgDIABgEIAAgFIgBgBIpkwOIgBgDQgCgDgDgBIgDgBIgDABgAk/FpIAkgJIgphsIgiARIgLgdIBCggIA3CPIAkgJIAKAcIhqAagAhlE9QgIgEgDgHQgDgIAEgIQAEgGAJgCQAJgCAIADQAIAEADAJQADAHgEAHQgDAHgKACIgFABQgGAAgGgDgAgODkQgQgrAHgcIAEgKQAIgSAVgFIADgBQATgFAQAGQARAFAPASQAOASALAdQAQArgHAaQgGAbgeAHQgJADgIAAQgxAAgahIgAAXCWQgZAGAXA+QAWA6AZgGQAZgGgXg8QgVg3gWAAIgEABgACjEPQgIgEgEgIQgCgIADgHQAFgHAJgBQAJgDAIAEQAIADADAJQADAIgEAGQgDAHgKACIgGABQgFAAgGgCgADlD9IgLgcQAJADAKAAIAPgCIABAAQApgKgTg2IgBAAQgEARgSAIIgGABIgJABQgQABgQgJQgTgLgIgXIAAAAQgGgMABgLQgBgMAGgLQAKgUAagHQAMgDALACIAPADQAHAEAHAEQATANANAbIAGAOIAEAJQAMAngIAbQgJAegkAJIgPACIgPABIgIgCgADfBmQgKACgEAKQgBAEAAAGQAAAGADAGQACAHAEAEQAEAGAFADQAGADAFABIAKgBIAFgCQAGgDACgHQAEgIgEgMIgCgDQgCgGgEgDIgIgIIgHgEQgEgCgEAAIgGABgAiHDlQgIgDgDgIQgDgIAEgGQAFgHAJgBQAJgEAHAFQAIADADAIQADAIgDAHQgEAHgKADIgFAAQgGAAgGgEgAFxDbIgNgfQAXAHATgFQAPgDAFgJQAHgKgFgNIgEgIQgMgQgfAHQgLADgQAFIgkhcIBdgXIALAeIg+AOIANAkIAOgEQAagHAUAJQALAGAHAJQAIAIAEAMIACADQAIAZgLARQgMAUgeAIQgQADgNAAIgOgBgAlNAUQAYhSgqhkIg5iVIC4gtQgVgWgQgPIBIgkIAyA0ICegoIAXA5IloBZIAjBYQA+CfgmBeQgogggigSgAjsgTICggpIgphlIh+AeIgXg5IB+ggIgehIIBFgRIAeBIICAgfIAYA4IiBAhIApBmICZgnIAYA6Il+Bfg");
-	mask.setTransform(85,72.8);
+	mask.graphics.p("AtRrZIajAAIAAWzI6jAAg");
+	mask.setTransform(85,73);
 
 	// 图层 2
 	this.instance = new lib.光();
 	this.instance.setTransform(37.8,154,0.071,0.056,-1.8,0,0,97,89.7);
 	this.instance._off = true;
-	this.instance.filters = [new cjs.BlurFilter(5, 5, 3)];
-	this.instance.cache(-2,-2,201,184);
 
 	this.instance.mask = mask;
 
 	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1).to({_off:false},0).to({regX:97.1,regY:89.1,scaleX:1.59,scaleY:1.34,x:55.2,y:82.1,alpha:0.73},38,cjs.Ease.get(1)).wait(1));
 
 	// 图层 3
-	this.shape = new cjs.Shape();
-	this.shape.graphics.f("rgba(255,255,255,0)").s().p("AqDBmIAAAAIgEgLIjKpRIAXgDIAJgBQIQhEHHiOIAigLIKKRRIggAMQjoBdj6BIQlhBnmGBAIgbAGg");
-	this.shape.setTransform(85,72.8);
+	this.instance_1 = new lib.Bitmap86();
 
-	this.timeline.addTween(cjs.Tween.get(this.shape).to({_off:true},1).wait(39));
+	this.timeline.addTween(cjs.Tween.get(this.instance_1).to({_off:true},1).wait(39));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(0,0,170.1,145.6);
+p.nominalBounds = new cjs.Rectangle(0,0,170,146);
 
 
 (lib.和win = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
+
+	// timeline functions:
+	this.frame_0 = function() {
+		this.stop();
+	}
+
+	// actions tween:
+	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(40));
 
 	// 图层 3 (mask)
 	var mask = new cjs.Shape();
@@ -3190,13 +3245,13 @@ p.nominalBounds = new cjs.Rectangle(0,0,1052,223.7);
 	this.betsItemMc3 = new lib.tieArea();
 	this.betsItemMc3.setTransform(523.6,201.8,1,1,0,0,0,114,34.6);
 
-	this.betsItemMc2 = new lib.playerArea();
-	this.betsItemMc2.setTransform(339.8,208.2,1,1,0,0,0,74,59.3);
-
 	this.betsItemMc4 = new lib.bankerPairArea();
 	this.betsItemMc4.setTransform(579.6,252.8,1,1,0,0,0,53.1,27.7);
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.betsItemMc4},{t:this.betsItemMc2},{t:this.betsItemMc3},{t:this.betsItemMc5},{t:this.betsItemMc1}]}).wait(1));
+	this.betsItemMc2 = new lib.playerArea();
+	this.betsItemMc2.setTransform(339.8,208.2,1,1,0,0,0,74,59.3);
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.betsItemMc2},{t:this.betsItemMc4},{t:this.betsItemMc3},{t:this.betsItemMc5},{t:this.betsItemMc1}]}).wait(1));
 
 	// history
 	this.historyMc = new lib.HistoryMc();

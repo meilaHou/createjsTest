@@ -1,4 +1,7 @@
 ﻿module game {
+    /*
+    包含下载功能,下载界面所需的内容;通用资源下载,用资源管理器下载并管理;
+    */
     export class SkinPanel extends createjs.MovieClip {
         protected content: createjs.MovieClip;
         protected resourceLoader: createjs.LoadQueue = new createjs.LoadQueue();
