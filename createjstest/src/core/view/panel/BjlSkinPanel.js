@@ -58,7 +58,6 @@ var game;
                 this.tablemc["chipsBarMc"]["mc" + i]["txt"].text = chouma[i];
                 this.tablemc["chipsBarMc"]["mc" + i].addEventListener("click", this.choumaClick.bind(this));
             }
-            this.createFapai();
             this.changeState(FAPAI);
         };
         BjlSKinPanel.prototype.createFapai = function () {

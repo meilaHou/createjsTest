@@ -20,21 +20,31 @@
 	var createjs = comnpokecreatejs;
 </script>
 <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
-<script src="commonpoker.js?1463823634868"></script>
+<script src="commonpoker.js?1464258424400"></script>
 <script>
 var canvas, stage, exportRoot;
 function init() {
 	// --- write your JS code here ---
 	
 	canvas = document.getElementById("canvas");
+	comnpokeimages = comnpokeimages||{};
+	ss = ss||{};
 
 	var loader = new comnpokecreatejs.LoadQueue(false);
 	loader.installPlugin(comnpokecreatejs.Sound);
+	loader.addEventListener("fileload", handleFileLoad);
 	loader.addEventListener("complete", handleComplete);
+	loader.loadFile({src:"../egame/images/commonpoker_atlas_.json?1464258424400", type:"spritesheet", id:"commonpoker_atlas_"}, true);
 	loader.loadManifest(comnpokelib.properties.manifest);
 }
 
+function handleFileLoad(evt) {
+	if (evt.item.type == "image") { comnpokeimages[evt.item.id] = evt.result; }
+}
+
 function handleComplete(evt) {
+	var queue = evt.target;
+	ss["commonpoker_atlas_"] = queue.getResult("commonpoker_atlas_");
 	exportRoot = new comnpokelib.commonpoker();
 
 	stage = new comnpokecreatejs.Stage(canvas);

@@ -481,7 +481,6 @@
         // 图层 2
         this.instance = new lib.loading条1();
         this.instance.setTransform(323.8, 43.3, 1, 1, 0, 0, 0, 287.8, 44.3);
-        this.instance.shadow = new cjs.Shadow("rgba(4,0,0,1)", -1, 2, 13);
 
         this.timeline.addTween(cjs.Tween.get(this.instance).wait(100));
 
@@ -594,7 +593,6 @@
         // 图层 4
         this.instance_1 = new lib.loading3();
         this.instance_1.setTransform(326, 39, 1, 1, 0, 0, 0, 273, 9);
-        this.instance_1.shadow = new cjs.Shadow("rgba(0,0,0,1)", 0, 0, 6);
 
         this.instance_1.mask = mask;
 
@@ -621,12 +619,11 @@
         // 图层 3
         this.instance_5 = new lib.loadingbg();
         this.instance_5.setTransform(326, 40, 1, 1, 0, 0, 0, 326, 24);
-        this.instance_5.shadow = new cjs.Shadow("rgba(4,0,0,1)", -3, 6, 12);
 
         this.timeline.addTween(cjs.Tween.get(this.instance_5).wait(100));
 
     }).prototype = p = new cjs.MovieClip();
-    p.nominalBounds = new cjs.Rectangle(-17, -14, 682, 120);
+    p.nominalBounds = new cjs.Rectangle(0, -1, 652, 88.6);
 
 
     (lib.GameLoading = function (mode, startPosition, loop) {

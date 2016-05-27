@@ -20,13 +20,13 @@
   <ItemGroup>
     <Content Include="app.css" />
     <Content Include="app.js" />
-    <TypeScriptCompile Include="egame\commonpoker.ts" />
-    <TypeScriptCompile Include="MyConfig.ts" />
-    <TypeScriptCompile Include="egame\bjlskin.ts" />
-    <TypeScriptCompile Include="egame\loading.ts" />
+    <TypeScriptCompile Include="egame\bjlskints.ts" />
+    <TypeScriptCompile Include="egame\commonpokerts.ts" />
+    <TypeScriptCompile Include="egame\loadingts.ts" />
     <Content Include="egame\bjlskin.js" />
     <Content Include="egame\commonpoker.js" />
     <Content Include="egame\images\bjlskin_atlas_.png" />
+    <Content Include="egame\images\commonpoker_atlas_.png" />
     <Content Include="egame\images\win.png" />
     <Content Include="egame\loading.html" />
     <Content Include="egame\loading.js" />
@@ -107,6 +107,7 @@
     <Content Include="egame\images\win2.json" />
     <Content Include="images\movie.ogg" />
     <Content Include="egame\images\bjlskin_atlas_.json" />
+    <Content Include="egame\images\commonpoker_atlas_.json" />
     <None Include="Properties\PublishProfiles\bcgame.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
