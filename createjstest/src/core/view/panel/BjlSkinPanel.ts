@@ -111,7 +111,7 @@ module game {
         }
 
         private createFapai() {
-            this.stage.mouseChildren = true;
+
             for (var i = 0; i < 4; i++)
             {
                 var fapaimc: createjs.MovieClip = new comnpokelib.FlipPokerMc_0();
@@ -140,7 +140,29 @@ module game {
             }
             //一秒延迟后收牌;
             this.shoupai();
+            setTimeout(this.playwinAnim.bind(this), 1000, Math.ceil(Math.random() * 2));
+        }
+        winsprite: createjs.Sprite;
+        private playwinAnim(num: number) {
+            this.winsprite = SSResourceManager.getSprite("winspritesheet2");
+            this.winsprite.addEventListener("animationend", this.winAnimateOverHandler.bind(this));
+            if (num == 1) {
+                this.winsprite.x = this.tablemc["playerWinMc"].x-60;
+                this.winsprite.y = this.tablemc["playerWinMc"].y-50;
+
+            } else if (num == 2) {
+                this.winsprite.x = this.tablemc["bankerWinMc"].x-60;
+                this.winsprite.y = this.tablemc["bankerWinMc"].y-50;
+            }
+            this.winsprite.gotoAndPlay(1);
+            this.tablemc.addChild(this.winsprite);
             
+        }
+
+        private winAnimateOverHandler(evt) {
+            this.winsprite.gotoAndStop(this.winsprite.currentFrame-2);
+
+            this.winsprite.removeAllEventListeners("animationend");
         }
         //响应操作
         private shoupai() {
@@ -288,6 +310,9 @@ module game {
                     opbtn["openPaiBtn"].visible = false;
                     opbtn["flyPaiBtn"].visible = true;
                     opbtn["reBetsBtn"].visible = false;
+
+                    this.stage.mouseChildren = true;
+                    this.tablemc.removeChild(this.winsprite);
                     break;
                 case YAZHU:
                     var chouma = this.choumaBounds.getChildAt(0);

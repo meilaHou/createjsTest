@@ -119,8 +119,8 @@ module game {
         }
         private handleResComplete(evt) {
             console.log("所有游戏资源加载完毕");
-            //var spritesheet = this.resourceLoader.getResult("winspritesheet2") as createjs.SpriteSheet;
-            //var sprite = SSResourceManager.createSprite(spritesheet, "winspritesheet2");
+            var spritesheet = this.resourceLoader.getResult("winspritesheet2") as createjs.SpriteSheet;
+            var sprite = SSResourceManager.createSprite(spritesheet, "winspritesheet2");
             //sprite.play();
             //this.viewComponent.addChild(sprite);
             //SSResourceManager.delElement("winspritesheet2");

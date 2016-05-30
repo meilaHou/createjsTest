@@ -4536,6 +4536,8 @@ var game;
         };
         LoadingMeidator.prototype.handleResComplete = function (evt) {
             console.log("所有游戏资源加载完毕");
+            var spritesheet = this.resourceLoader.getResult("winspritesheet2");
+            var sprite = SSResourceManager.createSprite(spritesheet, "winspritesheet2");
             ss["commonpoker_atlas_"] = this.resourceLoader.getResult("commonpoker_atlas_");
             var data = { ss: this.resourceLoader.getResult("bjlskin"), type: "bjlskin" };
             this.sendNotification(game.AppFacade.CHANGGAMETYPE, data);
@@ -4755,7 +4757,6 @@ var game;
             this.changeState(YAZHU);
         };
         BjlSKinPanel.prototype.createFapai = function () {
-            this.stage.mouseChildren = true;
             for (var i = 0; i < 4; i++) {
                 var fapaimc = new comnpokelib.FlipPokerMc_0();
                 var randomnum1 = Math.ceil(Math.random() * 4) * 100;
@@ -4779,6 +4780,25 @@ var game;
                 tempmc.play();
             }
             this.shoupai();
+            setTimeout(this.playwinAnim.bind(this), 1000, Math.ceil(Math.random() * 2));
+        };
+        BjlSKinPanel.prototype.playwinAnim = function (num) {
+            this.winsprite = SSResourceManager.getSprite("winspritesheet2");
+            this.winsprite.addEventListener("animationend", this.winAnimateOverHandler.bind(this));
+            if (num == 1) {
+                this.winsprite.x = this.tablemc["playerWinMc"].x - 60;
+                this.winsprite.y = this.tablemc["playerWinMc"].y - 50;
+            }
+            else if (num == 2) {
+                this.winsprite.x = this.tablemc["bankerWinMc"].x - 60;
+                this.winsprite.y = this.tablemc["bankerWinMc"].y - 50;
+            }
+            this.winsprite.gotoAndPlay(1);
+            this.tablemc.addChild(this.winsprite);
+        };
+        BjlSKinPanel.prototype.winAnimateOverHandler = function (evt) {
+            this.winsprite.gotoAndStop(this.winsprite.currentFrame - 2);
+            this.winsprite.removeAllEventListeners("animationend");
         };
         BjlSKinPanel.prototype.shoupai = function () {
             var pokemc = this.tablemc["PokerMc"];
@@ -4884,6 +4904,8 @@ var game;
                     opbtn["openPaiBtn"].visible = false;
                     opbtn["flyPaiBtn"].visible = true;
                     opbtn["reBetsBtn"].visible = false;
+                    this.stage.mouseChildren = true;
+                    this.tablemc.removeChild(this.winsprite);
                     break;
                 case YAZHU:
                     var chouma = this.choumaBounds.getChildAt(0);
