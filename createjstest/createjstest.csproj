@@ -179,6 +179,7 @@
     <TypeScriptOutFile>app.js</TypeScriptOutFile>
     <TypeScriptOutDir>F:\workspace\basicutilstest\createjsTest\createjstest\lib</TypeScriptOutDir>
     <TypeScriptModuleKind>amd</TypeScriptModuleKind>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <TypeScriptRemoveComments>true</TypeScriptRemoveComments>

@@ -3,546 +3,6 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var myaquare1 = {};
-myaquare1.color = "d";
-myaquare1.traceHello = function (info) { };
-var test;
-(function (test) {
-    var Mysquare = (function () {
-        function Mysquare() {
-            this.time = 0;
-        }
-        Mysquare.prototype.traceHello = function (info) {
-            alert(info);
-        };
-        return Mysquare;
-    }());
-    test.Mysquare = Mysquare;
-})(test || (test = {}));
-var Mysquare2 = (function (_super) {
-    __extends(Mysquare2, _super);
-    function Mysquare2() {
-        _super.apply(this, arguments);
-    }
-    Mysquare2.prototype.traceHello = function (info) {
-        _super.prototype.traceHello.call(this, info);
-        alert(info);
-    };
-    Mysquare2.prototype.nihao = function () {
-        _super.prototype.traceHello.call(this, "nihao");
-    };
-    return Mysquare2;
-}(test.Mysquare));
-var myArray;
-myArray = ["Bob", "Fred"];
-var Clock1 = (function () {
-    function Clock1(h, m) {
-        this.time = 0;
-    }
-    ;
-    Clock1.prototype.trace = function () {
-    };
-    return Clock1;
-}());
-var cs = Clock1;
-var newClock = new cs(7, 30);
-console.log(newClock);
-var square = {};
-square.color = "red";
-square.sideLength = 100;
-square.penWidth = 50;
-var square2 = { sideLength: 0, color: "", penWidth: 0 };
-var hello = (function () {
-    function hello(start) {
-        this.interval = 0;
-        this.niaho = function (start) {
-            return "";
-        };
-        this.export = hello;
-    }
-    hello.prototype.reset = function () {
-    };
-    return hello;
-}());
-var Layout = (function (_super) {
-    __extends(Layout, _super);
-    function Layout() {
-        _super.call(this);
-    }
-    Layout.prototype.init = function (stage) {
-        this.name = "layout";
-        this._stage = stage;
-        this._sceneUILayer = new LayOutContainer();
-        this._sceneUILayer.name = "sceneUILayer";
-        this._panelLayer = new LayOutContainer();
-        this._panelLayer.name = "panelLayer";
-        this._loadingLayer = new LayOutContainer();
-        this._loadingLayer.name = "loadingLayer";
-        this._tipLayer = new LayOutContainer();
-        this._tipLayer.name = "tipLayer";
-        this._alertLayer = new LayOutContainer();
-        this._alertLayer.name = "alertLayer";
-        this._mouseLayer = new LayOutContainer();
-        this._mouseLayer.name = "_mouseLayer";
-        this._chatLayer = new LayOutContainer();
-        this._chatLayer.name = "_chatLayer";
-        this._screenLayer = new LayOutContainer();
-        this._screenLayer.name = "_screenLayer";
-        this._effectLayer = new LayOutContainer();
-        this._effectLayer.name = "effectLayer";
-        this._newGuilderLayer = new LayOutContainer();
-        this._newGuilderLayer.name = "_newGuilderLayer";
-        this.addChild(this._sceneUILayer);
-        this.addChild(this._chatLayer);
-        this.addChild(this._panelLayer);
-        this.addChild(this._alertLayer);
-        this.addChild(this._screenLayer);
-        this.addChild(this._loadingLayer);
-        this.addChild(this._tipLayer);
-        this.addChild(this._effectLayer);
-        this.addChild(this._newGuilderLayer);
-        this._stage.addChild(this._mouseLayer);
-        this._stage.addChild(this);
-    };
-    Object.defineProperty(Layout.prototype, "stageWidth", {
-        get: function () {
-            var canvas = this._stage.canvas;
-            return canvas.width;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Layout.prototype, "stageHeight", {
-        get: function () {
-            var canvas = this._stage.canvas;
-            return canvas.height;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Layout.prototype.showDebug = function (bln) {
-        for (var i = 0; i < this.numChildren; i++) {
-            var temp = this.getChildAt(i);
-            if (temp instanceof LayOutContainer) {
-                temp.showPostion(bln);
-            }
-        }
-        this._mouseLayer.showPostion(bln);
-    };
-    return Layout;
-}(createjs.Container));
-var puremvc;
-(function (puremvc) {
-    "use strict";
-    var Observer = (function () {
-        function Observer(notifyMethod, notifyContext) {
-            this.notify = null;
-            this.context = null;
-            this.setNotifyMethod(notifyMethod);
-            this.setNotifyContext(notifyContext);
-        }
-        Observer.prototype.getNotifyMethod = function () {
-            return this.notify;
-        };
-        Observer.prototype.setNotifyMethod = function (notifyMethod) {
-            this.notify = notifyMethod;
-        };
-        Observer.prototype.getNotifyContext = function () {
-            return this.context;
-        };
-        Observer.prototype.setNotifyContext = function (notifyContext) {
-            this.context = notifyContext;
-        };
-        Observer.prototype.notifyObserver = function (notification) {
-            this.getNotifyMethod().call(this.getNotifyContext(), notification);
-        };
-        Observer.prototype.compareNotifyContext = function (object) {
-            return object === this.context;
-        };
-        return Observer;
-    }());
-    puremvc.Observer = Observer;
-})(puremvc || (puremvc = {}));
-var puremvc;
-(function (puremvc) {
-    "use strict";
-    var View = (function () {
-        function View() {
-            this.mediatorMap = null;
-            this.observerMap = null;
-            if (View.instance)
-                throw Error(View.SINGLETON_MSG);
-            View.instance = this;
-            this.mediatorMap = {};
-            this.observerMap = {};
-            this.initializeView();
-        }
-        View.prototype.initializeView = function () {
-        };
-        View.prototype.registerObserver = function (notificationName, observer) {
-            var observers = this.observerMap[notificationName];
-            if (observers)
-                observers.push(observer);
-            else
-                this.observerMap[notificationName] = [observer];
-        };
-        View.prototype.removeObserver = function (notificationName, notifyContext) {
-            var observers = this.observerMap[notificationName];
-            var i = observers.length;
-            while (i--) {
-                var observer = observers[i];
-                if (observer.compareNotifyContext(notifyContext)) {
-                    observers.splice(i, 1);
-                    break;
-                }
-            }
-            if (observers.length == 0)
-                delete this.observerMap[notificationName];
-        };
-        View.prototype.notifyObservers = function (notification) {
-            var notificationName = notification.getName();
-            var observersRef = this.observerMap[notificationName];
-            if (observersRef) {
-                var observers = observersRef.slice(0);
-                var len = observers.length;
-                for (var i = 0; i < len; i++) {
-                    var observer = observers[i];
-                    observer.notifyObserver(notification);
-                }
-            }
-        };
-        View.prototype.registerMediator = function (mediator) {
-            var name = mediator.getMediatorName();
-            if (this.mediatorMap[name])
-                return;
-            this.mediatorMap[name] = mediator;
-            var interests = mediator.listNotificationInterests();
-            var len = interests.length;
-            if (len > 0) {
-                var observer = new puremvc.Observer(mediator.handleNotification, mediator);
-                for (var i = 0; i < len; i++)
-                    this.registerObserver(interests[i], observer);
-            }
-            mediator.onRegister();
-        };
-        View.prototype.retrieveMediator = function (mediatorName) {
-            return this.mediatorMap[mediatorName] || null;
-        };
-        View.prototype.removeMediator = function (mediatorName) {
-            var mediator = this.mediatorMap[mediatorName];
-            if (!mediator)
-                return null;
-            var interests = mediator.listNotificationInterests();
-            var i = interests.length;
-            while (i--)
-                this.removeObserver(interests[i], mediator);
-            delete this.mediatorMap[mediatorName];
-            mediator.onRemove();
-            return mediator;
-        };
-        View.prototype.hasMediator = function (mediatorName) {
-            return this.mediatorMap[mediatorName] != null;
-        };
-        View.getInstance = function () {
-            if (!View.instance)
-                View.instance = new View();
-            return View.instance;
-        };
-        View.SINGLETON_MSG = "View singleton already constructed!";
-        return View;
-    }());
-    puremvc.View = View;
-})(puremvc || (puremvc = {}));
-var puremvc;
-(function (puremvc) {
-    "use strict";
-    var Controller = (function () {
-        function Controller() {
-            this.view = null;
-            this.commandMap = null;
-            if (Controller.instance)
-                throw Error(Controller.SINGLETON_MSG);
-            Controller.instance = this;
-            this.commandMap = {};
-            this.initializeController();
-        }
-        Controller.prototype.initializeController = function () {
-            this.view = puremvc.View.getInstance();
-        };
-        Controller.prototype.executeCommand = function (notification) {
-            var commandClassRef = this.commandMap[notification.getName()];
-            if (commandClassRef) {
-                var command = new commandClassRef();
-                command.execute(notification);
-            }
-        };
-        Controller.prototype.registerCommand = function (notificationName, commandClassRef) {
-            if (!this.commandMap[notificationName])
-                this.view.registerObserver(notificationName, new puremvc.Observer(this.executeCommand, this));
-            this.commandMap[notificationName] = commandClassRef;
-        };
-        Controller.prototype.hasCommand = function (notificationName) {
-            return this.commandMap[notificationName] != null;
-        };
-        Controller.prototype.removeCommand = function (notificationName) {
-            if (this.hasCommand(notificationName)) {
-                this.view.removeObserver(notificationName, this);
-                delete this.commandMap[notificationName];
-            }
-        };
-        Controller.getInstance = function () {
-            if (!Controller.instance)
-                Controller.instance = new Controller();
-            return Controller.instance;
-        };
-        Controller.SINGLETON_MSG = "Controller singleton already constructed!";
-        return Controller;
-    }());
-    puremvc.Controller = Controller;
-})(puremvc || (puremvc = {}));
-var puremvc;
-(function (puremvc) {
-    "use strict";
-    var Model = (function () {
-        function Model() {
-            this.proxyMap = null;
-            if (Model.instance)
-                throw Error(Model.SINGLETON_MSG);
-            Model.instance = this;
-            this.proxyMap = {};
-            this.initializeModel();
-        }
-        Model.prototype.initializeModel = function () {
-        };
-        Model.prototype.registerProxy = function (proxy) {
-            this.proxyMap[proxy.getProxyName()] = proxy;
-            proxy.onRegister();
-        };
-        Model.prototype.removeProxy = function (proxyName) {
-            var proxy = this.proxyMap[proxyName];
-            if (proxy) {
-                delete this.proxyMap[proxyName];
-                proxy.onRemove();
-            }
-            return proxy;
-        };
-        Model.prototype.retrieveProxy = function (proxyName) {
-            return this.proxyMap[proxyName] || null;
-        };
-        Model.prototype.hasProxy = function (proxyName) {
-            return this.proxyMap[proxyName] != null;
-        };
-        Model.getInstance = function () {
-            if (!Model.instance)
-                Model.instance = new Model();
-            return Model.instance;
-        };
-        Model.SINGLETON_MSG = "Model singleton already constructed!";
-        return Model;
-    }());
-    puremvc.Model = Model;
-})(puremvc || (puremvc = {}));
-var puremvc;
-(function (puremvc) {
-    "use strict";
-    var Notification = (function () {
-        function Notification(name, body, type) {
-            if (body === void 0) { body = null; }
-            if (type === void 0) { type = null; }
-            this.name = null;
-            this.body = null;
-            this.type = null;
-            this.name = name;
-            this.body = body;
-            this.type = type;
-        }
-        Notification.prototype.getName = function () {
-            return this.name;
-        };
-        Notification.prototype.setBody = function (body) {
-            this.body = body;
-        };
-        Notification.prototype.getBody = function () {
-            return this.body;
-        };
-        Notification.prototype.setType = function (type) {
-            this.type = type;
-        };
-        Notification.prototype.getType = function () {
-            return this.type;
-        };
-        Notification.prototype.toString = function () {
-            var msg = "Notification Name: " + this.getName();
-            msg += "\nBody:" + ((this.getBody() == null) ? "null" : this.getBody().toString());
-            msg += "\nType:" + ((this.getType() == null) ? "null" : this.getType());
-            return msg;
-        };
-        return Notification;
-    }());
-    puremvc.Notification = Notification;
-})(puremvc || (puremvc = {}));
-var puremvc;
-(function (puremvc) {
-    "use strict";
-    var Facade = (function () {
-        function Facade() {
-            this.model = null;
-            this.view = null;
-            this.controller = null;
-            if (Facade.instance)
-                throw Error(Facade.SINGLETON_MSG);
-            Facade.instance = this;
-            this.initializeFacade();
-        }
-        Facade.prototype.initializeFacade = function () {
-            this.initializeModel();
-            this.initializeController();
-            this.initializeView();
-        };
-        Facade.prototype.initializeModel = function () {
-            if (!this.model)
-                this.model = puremvc.Model.getInstance();
-        };
-        Facade.prototype.initializeController = function () {
-            if (!this.controller)
-                this.controller = puremvc.Controller.getInstance();
-        };
-        Facade.prototype.initializeView = function () {
-            if (!this.view)
-                this.view = puremvc.View.getInstance();
-        };
-        Facade.prototype.registerCommand = function (notificationName, commandClassRef) {
-            this.controller.registerCommand(notificationName, commandClassRef);
-        };
-        Facade.prototype.removeCommand = function (notificationName) {
-            this.controller.removeCommand(notificationName);
-        };
-        Facade.prototype.hasCommand = function (notificationName) {
-            return this.controller.hasCommand(notificationName);
-        };
-        Facade.prototype.registerProxy = function (proxy) {
-            this.model.registerProxy(proxy);
-        };
-        Facade.prototype.retrieveProxy = function (proxyName) {
-            return this.model.retrieveProxy(proxyName);
-        };
-        Facade.prototype.removeProxy = function (proxyName) {
-            var proxy;
-            if (this.model)
-                proxy = this.model.removeProxy(proxyName);
-            return proxy;
-        };
-        Facade.prototype.hasProxy = function (proxyName) {
-            return this.model.hasProxy(proxyName);
-        };
-        Facade.prototype.registerMediator = function (mediator) {
-            if (this.view)
-                this.view.registerMediator(mediator);
-        };
-        Facade.prototype.retrieveMediator = function (mediatorName) {
-            return this.view.retrieveMediator(mediatorName);
-        };
-        Facade.prototype.removeMediator = function (mediatorName) {
-            var mediator;
-            if (this.view)
-                mediator = this.view.removeMediator(mediatorName);
-            return mediator;
-        };
-        Facade.prototype.hasMediator = function (mediatorName) {
-            return this.view.hasMediator(mediatorName);
-        };
-        Facade.prototype.notifyObservers = function (notification) {
-            if (this.view)
-                this.view.notifyObservers(notification);
-        };
-        Facade.prototype.sendNotification = function (name, body, type) {
-            if (body === void 0) { body = null; }
-            if (type === void 0) { type = null; }
-            this.notifyObservers(new puremvc.Notification(name, body, type));
-        };
-        Facade.getInstance = function () {
-            if (!Facade.instance)
-                Facade.instance = new Facade();
-            return Facade.instance;
-        };
-        Facade.SINGLETON_MSG = "Facade singleton already constructed!";
-        return Facade;
-    }());
-    puremvc.Facade = Facade;
-})(puremvc || (puremvc = {}));
-var game;
-(function (game) {
-    var AppFacade = (function (_super) {
-        __extends(AppFacade, _super);
-        function AppFacade() {
-            _super.call(this);
-        }
-        AppFacade.getInstance = function () {
-            if (this.instance == null)
-                this.instance = new AppFacade();
-            return (this.instance);
-        };
-        AppFacade.prototype.initializeController = function () {
-            _super.prototype.initializeController.call(this);
-            this.registerCommand(AppFacade.STARTUP, game.StartupCommand);
-            this.registerCommand(AppFacade.CHANGGAMETYPE, game.ChangeModuleCommand);
-        };
-        AppFacade.prototype.startUp = function (rootView) {
-            console.log("facade初始化完成");
-            this.stage = rootView;
-            this.sendNotification(AppFacade.STARTUP, rootView);
-            this.removeCommand(AppFacade.STARTUP);
-        };
-        AppFacade.STARTUP = "startup";
-        AppFacade.CHANGGAMETYPE = "changegametype";
-        return AppFacade;
-    }(puremvc.Facade));
-    game.AppFacade = AppFacade;
-})(game || (game = {}));
-window.onload = function () {
-    var et = new EaseljsTest();
-    createjs.MotionGuidePlugin.install();
-    setTimeout(et.init.bind(et), 100);
-};
-var EaseljsTest = (function () {
-    function EaseljsTest() {
-    }
-    EaseljsTest.prototype.init = function () {
-        var canvas = document.getElementById("myCanvas");
-        this.mstage = new createjs.Stage(canvas);
-        createjs.Touch.enable(this.mstage);
-        this.mylayout = new Layout();
-        this.mylayout.init(this.mstage);
-        game.AppFacade.getInstance().startUp(this.mylayout);
-        game.AppFacade.getInstance().sendNotification("showLoadingPanel");
-        console.log("发送消息成功");
-        this.addTick();
-        var dfdf;
-        console.log(dfdf);
-        this.mstage.update();
-    };
-    EaseljsTest.prototype.addTick = function () {
-        createjs.Ticker.setFPS(30);
-        createjs.Ticker.addEventListener("tick", this.handleTicker.bind(this));
-    };
-    EaseljsTest.prototype.handleTicker = function () {
-        this.mstage.update();
-    };
-    EaseljsTest.prototype.handleClick = function (event) {
-        console.log("shape 点击事件");
-    };
-    return EaseljsTest;
-}());
-var FAPAI = "FAPAI";
-var YAZHU = "YAZHUADFDF";
-var JIESUAN = "DSFDFDSF";
-var MyConfig = (function () {
-    function MyConfig() {
-    }
-    MyConfig.gameType = "bjlskin";
-    MyConfig.gameState = "";
-    return MyConfig;
-}());
 (function (lib, img, cjs, ss) {
     var p;
     lib.properties = {
@@ -551,33 +11,33 @@ var MyConfig = (function () {
         fps: 24,
         color: "#FFFFFF",
         manifest: [
-            { src: "../egame/sounds/WelcomeSound.mp3?1464246701698", id: "WelcomeSound" },
-            { src: "../egame/sounds/BackgroundSound.mp3?1464246701698", id: "BackgroundSound" },
-            { src: "../egame/sounds/TieWinSound.mp3?1464246701698", id: "TieWinSound" },
-            { src: "../egame/sounds/BankerTwo.mp3?1464246701698", id: "BankerTwo" },
-            { src: "../egame/sounds/BankerZero.mp3?1464246701698", id: "BankerZero" },
-            { src: "../egame/sounds/BankerOne.mp3?1464246701698", id: "BankerOne" },
-            { src: "../egame/sounds/BankerThree.mp3?1464246701698", id: "BankerThree" },
-            { src: "../egame/sounds/BankerFour.mp3?1464246701698", id: "BankerFour" },
-            { src: "../egame/sounds/BankerFive.mp3?1464246701698", id: "BankerFive" },
-            { src: "../egame/sounds/BankerSix.mp3?1464246701698", id: "BankerSix" },
-            { src: "../egame/sounds/BankerSeven.mp3?1464246701698", id: "BankerSeven" },
-            { src: "../egame/sounds/BankerEight.mp3?1464246701698", id: "BankerEight" },
-            { src: "../egame/sounds/BankerNine.mp3?1464246701698", id: "BankerNine" },
-            { src: "../egame/sounds/BankerWinSound.mp3?1464246701698", id: "BankerWinSound" },
-            { src: "../egame/sounds/BankerGetSound.mp3?1464246701698", id: "BankerGetSound" },
-            { src: "../egame/sounds/PlayerTwo.mp3?1464246701698", id: "PlayerTwo" },
-            { src: "../egame/sounds/PlayerZero.mp3?1464246701698", id: "PlayerZero" },
-            { src: "../egame/sounds/PlayerOne.mp3?1464246701698", id: "PlayerOne" },
-            { src: "../egame/sounds/PlayerThree.mp3?1464246701698", id: "PlayerThree" },
-            { src: "../egame/sounds/PlayerFour.mp3?1464246701698", id: "PlayerFour" },
-            { src: "../egame/sounds/PlayerFive.mp3?1464246701698", id: "PlayerFive" },
-            { src: "../egame/sounds/PlayerSix.mp3?1464246701698", id: "PlayerSix" },
-            { src: "../egame/sounds/PlayerSeven.mp3?1464246701698", id: "PlayerSeven" },
-            { src: "../egame/sounds/PlayerEight.mp3?1464246701698", id: "PlayerEight" },
-            { src: "../egame/sounds/PlayerNine.mp3?1464246701698", id: "PlayerNine" },
-            { src: "../egame/sounds/PlayerWinSound.mp3?1464246701698", id: "PlayerWinSound" },
-            { src: "../egame/sounds/PlayerGetSound.mp3?1464246701698", id: "PlayerGetSound" }
+            { src: "../egame/sounds/WelcomeSound.mp3?1467022014856", id: "WelcomeSound" },
+            { src: "../egame/sounds/BackgroundSound.mp3?1467022014856", id: "BackgroundSound" },
+            { src: "../egame/sounds/TieWinSound.mp3?1467022014856", id: "TieWinSound" },
+            { src: "../egame/sounds/BankerTwo.mp3?1467022014856", id: "BankerTwo" },
+            { src: "../egame/sounds/BankerZero.mp3?1467022014856", id: "BankerZero" },
+            { src: "../egame/sounds/BankerOne.mp3?1467022014856", id: "BankerOne" },
+            { src: "../egame/sounds/BankerThree.mp3?1467022014857", id: "BankerThree" },
+            { src: "../egame/sounds/BankerFour.mp3?1467022014857", id: "BankerFour" },
+            { src: "../egame/sounds/BankerFive.mp3?1467022014857", id: "BankerFive" },
+            { src: "../egame/sounds/BankerSix.mp3?1467022014857", id: "BankerSix" },
+            { src: "../egame/sounds/BankerSeven.mp3?1467022014857", id: "BankerSeven" },
+            { src: "../egame/sounds/BankerEight.mp3?1467022014857", id: "BankerEight" },
+            { src: "../egame/sounds/BankerNine.mp3?1467022014857", id: "BankerNine" },
+            { src: "../egame/sounds/BankerWinSound.mp3?1467022014857", id: "BankerWinSound" },
+            { src: "../egame/sounds/BankerGetSound.mp3?1467022014857", id: "BankerGetSound" },
+            { src: "../egame/sounds/PlayerTwo.mp3?1467022014857", id: "PlayerTwo" },
+            { src: "../egame/sounds/PlayerZero.mp3?1467022014857", id: "PlayerZero" },
+            { src: "../egame/sounds/PlayerOne.mp3?1467022014857", id: "PlayerOne" },
+            { src: "../egame/sounds/PlayerThree.mp3?1467022014857", id: "PlayerThree" },
+            { src: "../egame/sounds/PlayerFour.mp3?1467022014857", id: "PlayerFour" },
+            { src: "../egame/sounds/PlayerFive.mp3?1467022014857", id: "PlayerFive" },
+            { src: "../egame/sounds/PlayerSix.mp3?1467022014857", id: "PlayerSix" },
+            { src: "../egame/sounds/PlayerSeven.mp3?1467022014857", id: "PlayerSeven" },
+            { src: "../egame/sounds/PlayerEight.mp3?1467022014857", id: "PlayerEight" },
+            { src: "../egame/sounds/PlayerNine.mp3?1467022014857", id: "PlayerNine" },
+            { src: "../egame/sounds/PlayerWinSound.mp3?1467022014857", id: "PlayerWinSound" },
+            { src: "../egame/sounds/PlayerGetSound.mp3?1467022014857", id: "PlayerGetSound" }
         ]
     };
     (lib.开牌 = function () {
@@ -1130,19 +590,6 @@ var MyConfig = (function () {
         this.timeline.addTween(cjs.Tween.get(this.shape_1).wait(1));
     }).prototype = p = new cjs.MovieClip();
     p.nominalBounds = new cjs.Rectangle(0, 0, 43, 43.1);
-    (lib.LOGO = function (mode, startPosition, loop) {
-        this.initialize(mode, startPosition, loop, {});
-        this.instance = new lib._333333();
-        this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
-    }).prototype = p = new cjs.MovieClip();
-    p.nominalBounds = new cjs.Rectangle(0, 0, 246, 54);
-    (lib.底框 = function (mode, startPosition, loop) {
-        this.initialize(mode, startPosition, loop, {});
-        this.instance = new lib.底3();
-        this.instance.setTransform(0, 0.4, 0.687, 0.687);
-        this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
-    }).prototype = p = new cjs.MovieClip();
-    p.nominalBounds = new cjs.Rectangle(0, 0.4, 1050, 158.7);
     (lib.问路斜杠 = function (mode, startPosition, loop) {
         this.initialize(mode, startPosition, loop, {});
         this.frame_0 = function () {
@@ -1184,11 +631,24 @@ var MyConfig = (function () {
         this.shape_1.graphics.f().s("#DF0303").ss(1, 1, 1).p("AAbAAQAAALgIAIQgIAHgLAAQgKAAgIgHQgIgIAAgLQAAgKAIgIQAIgIAKAAQALAAAIAIQAIAIAAAKg");
         this.shape_1.setTransform(3.5, 3.4);
         this.shape_2 = new cjs.Shape();
-        this.shape_2.graphics.f().s("#0043EE").ss(1, 1, 1).p("AAbAAQAAAKgIAJQgIAIgLAAQgKAAgIgIQgIgJAAgKQAAgKAIgIQAIgIAKAAQALAAAIAIQAIAIAAAKgAAjAAQAAAOgLAKQgLALgNAAQgNAAgKgLQgLgKAAgOQAAgOALgLQAKgJANAAQANAAALAJQALALAAAOg");
+        this.shape_2.graphics.f().s("#0043EE").ss(1, 1, 1).p("AAjAAQAAAOgLAKQgLALgNAAQgNAAgKgLQgLgKAAgOQAAgOALgLQAKgJANAAQANAAALAJQALALAAAOgAAbAAQAAAKgIAJQgIAIgLAAQgKAAgIgIQgIgJAAgKQAAgKAIgIQAIgIAKAAQALAAAIAIQAIAIAAAKg");
         this.shape_2.setTransform(3.5, 3.5);
         this.timeline.addTween(cjs.Tween.get({}).to({ state: [{ t: this.shape_1 }, { t: this.shape }] }).to({ state: [{ t: this.shape_2 }] }, 1).wait(1));
     }).prototype = p = new cjs.MovieClip();
     p.nominalBounds = new cjs.Rectangle(-1, -1, 9, 9);
+    (lib.LOGO = function (mode, startPosition, loop) {
+        this.initialize(mode, startPosition, loop, {});
+        this.instance = new lib._333333();
+        this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+    }).prototype = p = new cjs.MovieClip();
+    p.nominalBounds = new cjs.Rectangle(0, 0, 246, 54);
+    (lib.底框 = function (mode, startPosition, loop) {
+        this.initialize(mode, startPosition, loop, {});
+        this.instance = new lib.底3();
+        this.instance.setTransform(0, 0.4, 0.687, 0.687);
+        this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+    }).prototype = p = new cjs.MovieClip();
+    p.nominalBounds = new cjs.Rectangle(0, 0.4, 1050, 158.7);
     (lib.Circle_Red = function (mode, startPosition, loop) {
         this.initialize(mode, startPosition, loop, {});
         this.shape = new cjs.Shape();
@@ -1245,6 +705,26 @@ var MyConfig = (function () {
         this.timeline.addTween(cjs.Tween.get({}).to({ state: [{ t: this.shape_3 }, { t: this.shape_2 }, { t: this.shape_1 }, { t: this.shape }] }).wait(1));
     }).prototype = p = new cjs.MovieClip();
     p.nominalBounds = new cjs.Rectangle(0, 0, 45, 45);
+    (lib.元件3_1 = function (mode, startPosition, loop) {
+        this.initialize(mode, startPosition, loop, {});
+        this.shape = new cjs.Shape();
+        this.shape.graphics.bf(cjs.SpriteSheetUtils.extractFrame(ss["bjlskin_atlas_"], 19), null, new cjs.Matrix2D(1, 0, 0, 1, -324.7, -291.7)).s().p("ArFFoIAArPIWLAAIAALPg");
+        this.shape.setTransform(71, 36);
+        this.timeline.addTween(cjs.Tween.get(this.shape).wait(1));
+    }).prototype = p = new cjs.MovieClip();
+    p.nominalBounds = new cjs.Rectangle(0, 0, 142, 72);
+    (lib.元件2 = function (mode, startPosition, loop) {
+        this.initialize(mode, startPosition, loop, {});
+        this.instance = new lib.Bitmap24();
+        this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+    }).prototype = p = new cjs.MovieClip();
+    p.nominalBounds = new cjs.Rectangle(0, 0, 136, 68);
+    (lib.元件1_1 = function (mode, startPosition, loop) {
+        this.initialize(mode, startPosition, loop, {});
+        this.instance_10 = new lib.Bitmap19();
+        this.timeline.addTween(cjs.Tween.get(this.instance_10).wait(1));
+    }).prototype = p = new cjs.MovieClip();
+    p.nominalBounds = new cjs.Rectangle(0, 0, 163, 139);
     (lib.玩家信息3 = function (mode, startPosition, loop) {
         this.initialize(mode, startPosition, loop, {});
         this.instance = new lib.Bitmap69();
@@ -1609,7 +1089,7 @@ var MyConfig = (function () {
         this.timeline.addTween(cjs.Tween.get(this.mc).to({ scaleX: 1.5, scaleY: 1.5, alpha: 1 }, 6).to({ scaleX: 1, scaleY: 1 }, 2).wait(1));
     }).prototype = p = new cjs.MovieClip();
     p.nominalBounds = new cjs.Rectangle(6, 7.1, 11, 17.5);
-    (lib.元件2 = function (mode, startPosition, loop) {
+    (lib.元件2_1 = function (mode, startPosition, loop) {
         this.initialize(mode, startPosition, loop, {});
         this.frame_0 = function () {
             this.stop();
@@ -2045,10 +1525,10 @@ var MyConfig = (function () {
     p.nominalBounds = new cjs.Rectangle(-62, -61.9, 390.7, 235.2);
     (lib.tieArea = function (mode, startPosition, loop) {
         this.initialize(mode, startPosition, loop, { win: 0, down: 1, hover: 2, normal: 3 });
-        this.frame_0 = function () {
+        this.frame_1 = function () {
             this.stop();
         };
-        this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(4));
+        this.timeline.addTween(cjs.Tween.get(this).wait(1).call(this.frame_1).wait(3));
         this.clearBtn = new lib.删除按钮();
         this.clearBtn.setTransform(195, 0.8);
         new cjs.ButtonHelper(this.clearBtn, 0, 1, 2, false, new lib.删除按钮(), 3);
@@ -2083,15 +1563,15 @@ var MyConfig = (function () {
         this.timeline.addTween(cjs.Tween.get({}).to({ state: [{ t: this.instance_5 }, { t: this.instance_4 }] }).to({ state: [{ t: this.instance_6 }] }, 1).wait(3));
         this.instance_7 = new lib.和区();
         this.instance_7.setTransform(114.6, 31.7, 1, 1, 0, 0, 0, 117.2, 33.3);
-        this.timeline.addTween(cjs.Tween.get(this.instance_7).wait(1).to({ alpha: 0.301 }, 0).wait(1).to({ alpha: 1 }, 0).wait(1).to({ alpha: 0 }, 0).wait(1));
+        this.timeline.addTween(cjs.Tween.get(this.instance_7).wait(1).to({ alpha: 0.301 }, 0).wait(1).to({ alpha: 1 }, 0).wait(1).to({ alpha: 0.012 }, 0).wait(1));
     }).prototype = p = new cjs.MovieClip();
     p.nominalBounds = new cjs.Rectangle(-259.6, -258.6, 751, 584);
     (lib.playerPairArea = function (mode, startPosition, loop) {
         this.initialize(mode, startPosition, loop, { "win": 0, "down": 1, "hover": 2, "normal": 3 });
-        this.frame_0 = function () {
+        this.frame_1 = function () {
             this.stop();
         };
-        this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(4));
+        this.timeline.addTween(cjs.Tween.get(this).wait(1).call(this.frame_1).wait(3));
         this.clearBtn = new lib.删除按钮();
         this.clearBtn.setTransform(113.6, 10);
         new cjs.ButtonHelper(this.clearBtn, 0, 1, 2, false, new lib.删除按钮(), 3);
@@ -2127,15 +1607,15 @@ var MyConfig = (function () {
         this.instance_6.shadow = new cjs.Shadow("rgba(255,255,0,1)", 0, 0, 244);
         this.instance_7 = new lib.Bitmap27();
         this.instance_7.setTransform(-2.6, 0.4);
-        this.timeline.addTween(cjs.Tween.get({}).to({ state: [{ t: this.instance_6, p: { alpha: 1 } }] }).to({ state: [{ t: this.instance_7 }] }, 1).to({ state: [{ t: this.instance_6, p: { alpha: 1 } }] }, 1).to({ state: [{ t: this.instance_6, p: { alpha: 0 } }] }, 1).wait(1));
+        this.timeline.addTween(cjs.Tween.get({}).to({ state: [{ t: this.instance_6, p: { alpha: 1 } }] }).to({ state: [{ t: this.instance_7 }] }, 1).to({ state: [{ t: this.instance_6, p: { alpha: 1 } }] }, 1).to({ state: [{ t: this.instance_6, p: { alpha: 0.012 } }] }, 1).wait(1));
     }).prototype = p = new cjs.MovieClip();
     p.nominalBounds = new cjs.Rectangle(-259.6, -256.6, 653, 585);
     (lib.playerArea = function (mode, startPosition, loop) {
         this.initialize(mode, startPosition, loop, { "win": 0, "down": 1, "hover": 2, "normal": 3 });
-        this.frame_0 = function () {
+        this.frame_1 = function () {
             this.stop();
         };
-        this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(4));
+        this.timeline.addTween(cjs.Tween.get(this).wait(1).call(this.frame_1).wait(3));
         this.clearBtn = new lib.删除按钮();
         this.clearBtn.setTransform(135, 14.5);
         new cjs.ButtonHelper(this.clearBtn, 0, 1, 2, false, new lib.删除按钮(), 3);
@@ -2172,15 +1652,15 @@ var MyConfig = (function () {
         this.instance_8 = new lib.闲区();
         this.instance_8.setTransform(76.7, 64.1, 1, 1, 0, 0, 0, 81.2, 69.5);
         this.instance_8.shadow = new cjs.Shadow("rgba(255,255,0,1)", 0, 0, 244);
-        this.timeline.addTween(cjs.Tween.get({}).to({ state: [{ t: this.instance_6 }] }).to({ state: [{ t: this.instance_7 }] }, 1).to({ state: [{ t: this.instance_8, p: { alpha: 1 } }] }, 1).to({ state: [{ t: this.instance_8, p: { alpha: 0 } }] }, 1).wait(1));
+        this.timeline.addTween(cjs.Tween.get({}).to({ state: [{ t: this.instance_6 }] }).to({ state: [{ t: this.instance_7 }] }, 1).to({ state: [{ t: this.instance_8, p: { alpha: 1 } }] }, 1).to({ state: [{ t: this.instance_8, p: { alpha: 0.012 } }] }, 1).wait(1));
     }).prototype = p = new cjs.MovieClip();
     p.nominalBounds = new cjs.Rectangle(-261.5, -262.4, 679, 656);
     (lib.bankerPairArea = function (mode, startPosition, loop) {
         this.initialize(mode, startPosition, loop, { "win": 0, "down": 1, "hover": 2, "normal": 3 });
-        this.frame_0 = function () {
+        this.frame_1 = function () {
             this.stop();
         };
-        this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(4));
+        this.timeline.addTween(cjs.Tween.get(this).wait(1).call(this.frame_1).wait(3));
         this.clearBtn = new lib.删除按钮();
         this.clearBtn.setTransform(99, 4);
         new cjs.ButtonHelper(this.clearBtn, 0, 1, 2, false, new lib.删除按钮(), 3);
@@ -2205,23 +1685,24 @@ var MyConfig = (function () {
         this.instance_4 = new lib.庄对();
         this.instance_4.setTransform(58.8, 34.8, 1, 1, 0, 0, 0, 26.2, 21.5);
         this.timeline.addTween(cjs.Tween.get({}).to({ state: [{ t: this.instance_4, p: { alpha: 1 } }, { t: this.instance_3 }] }).to({ state: [{ t: this.instance_4, p: { alpha: 0.801 } }] }, 1).wait(3));
-        this.instance_5 = new lib.Bitmap21();
-        this.instance_5.setTransform(-258.2, -256.7);
-        this.instance_6 = new lib.Bitmap22();
-        this.instance_6.setTransform(-1.2, 0.3);
-        this.instance_7 = new lib.Bitmap23();
-        this.instance_7.setTransform(-258.2, -256.7);
-        this.instance_8 = new lib.Bitmap24();
-        this.instance_8.setTransform(-1.2, 0.3);
-        this.timeline.addTween(cjs.Tween.get({}).to({ state: [{ t: this.instance_5 }] }).to({ state: [{ t: this.instance_6 }] }, 1).to({ state: [{ t: this.instance_7 }] }, 1).to({ state: [{ t: this.instance_8 }] }, 1).wait(1));
+        this.shape = new cjs.Shape();
+        this.shape.graphics.bf(cjs.SpriteSheetUtils.extractFrame(ss["bjlskin_atlas_"], 17), null, new cjs.Matrix2D(1, 0, 0, 1, -325.2, -291.7)).s().p("Aq2GGIAAsLIVtAAIAAMLg");
+        this.shape.setTransform(67, 35);
+        this.instance_5 = new lib.Bitmap22();
+        this.instance_5.setTransform(-1.2, 0.3);
+        this.instance_6 = new lib.元件3_1();
+        this.instance_6.setTransform(66.5, 35, 1, 1, 0, 0, 0, 71, 36);
+        this.instance_7 = new lib.元件2();
+        this.instance_7.setTransform(66.8, 34.3, 1, 1, 0, 0, 0, 68, 34);
+        this.timeline.addTween(cjs.Tween.get({}).to({ state: [{ t: this.shape }] }).to({ state: [{ t: this.instance_5 }] }, 1).to({ state: [{ t: this.instance_6, p: { alpha: 1 } }] }, 1).to({ state: [{ t: this.instance_7 }, { t: this.instance_6, p: { alpha: 0.012 } }] }, 1).wait(1));
     }).prototype = p = new cjs.MovieClip();
-    p.nominalBounds = new cjs.Rectangle(-258.2, -256.7, 653, 585);
+    p.nominalBounds = new cjs.Rectangle(-104.4, -123.7, 331, 321);
     (lib.bankerArea = function (mode, startPosition, loop) {
         this.initialize(mode, startPosition, loop, { "win": 0, "down": 1, "hover": 2, "normal": 3 });
-        this.frame_0 = function () {
+        this.frame_1 = function () {
             this.stop();
         };
-        this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(4));
+        this.timeline.addTween(cjs.Tween.get(this).wait(1).call(this.frame_1).wait(3));
         this.clearBtn = new lib.删除按钮();
         this.clearBtn.setTransform(84, 0);
         new cjs.ButtonHelper(this.clearBtn, 0, 1, 2, false, new lib.删除按钮(), 3);
@@ -2255,9 +1736,9 @@ var MyConfig = (function () {
         this.instance_6.shadow = new cjs.Shadow("rgba(255,255,0,1)", 0, 0, 244);
         this.instance_7 = new lib.Bitmap16();
         this.instance_7.setTransform(-1.1, -3.1);
-        this.instance_8 = new lib.Bitmap19();
-        this.instance_8.setTransform(-1.1, -3.1);
-        this.timeline.addTween(cjs.Tween.get({}).to({ state: [{ t: this.instance_6 }] }).to({ state: [{ t: this.instance_7 }] }, 1).to({ state: [{ t: this.instance_6 }] }, 1).to({ state: [{ t: this.instance_8 }] }, 1).wait(1));
+        this.instance_8 = new lib.元件1_1();
+        this.instance_8.setTransform(80.4, 66.4, 1, 1, 0, 0, 0, 81.5, 69.5);
+        this.timeline.addTween(cjs.Tween.get({}).to({ state: [{ t: this.instance_6, p: { alpha: 1 } }] }).to({ state: [{ t: this.instance_7 }] }, 1).to({ state: [{ t: this.instance_6, p: { alpha: 1 } }] }, 1).to({ state: [{ t: this.instance_8 }, { t: this.instance_6, p: { alpha: 0.012 } }] }, 1).wait(1));
     }).prototype = p = new cjs.MovieClip();
     p.nominalBounds = new cjs.Rectangle(-258.1, -260.1, 680, 656);
     (lib.opBtns = function (mode, startPosition, loop) {
@@ -2391,7 +1872,7 @@ var MyConfig = (function () {
         this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
         this.bankerPointMc = new lib.元件4();
         this.bankerPointMc.setTransform(589.8, 164.8, 1, 1, 0, 0, 0, 12.2, 18.8);
-        this.playerPointMc = new lib.元件2();
+        this.playerPointMc = new lib.元件2_1();
         this.playerPointMc.setTransform(462.1, 164.9, 1, 1, 0, 0, 0, 12.2, 18.8);
         this.timeline.addTween(cjs.Tween.get({}).to({ state: [{ t: this.playerPointMc }, { t: this.bankerPointMc }] }).wait(1));
         this.miPokerBtn0 = new lib.亮牌();
@@ -4176,6 +3657,345 @@ var loadinglib, loadingimages, loadingcreatejs, ss;
 var puremvc;
 (function (puremvc) {
     "use strict";
+    var Observer = (function () {
+        function Observer(notifyMethod, notifyContext) {
+            this.notify = null;
+            this.context = null;
+            this.setNotifyMethod(notifyMethod);
+            this.setNotifyContext(notifyContext);
+        }
+        Observer.prototype.getNotifyMethod = function () {
+            return this.notify;
+        };
+        Observer.prototype.setNotifyMethod = function (notifyMethod) {
+            this.notify = notifyMethod;
+        };
+        Observer.prototype.getNotifyContext = function () {
+            return this.context;
+        };
+        Observer.prototype.setNotifyContext = function (notifyContext) {
+            this.context = notifyContext;
+        };
+        Observer.prototype.notifyObserver = function (notification) {
+            this.getNotifyMethod().call(this.getNotifyContext(), notification);
+        };
+        Observer.prototype.compareNotifyContext = function (object) {
+            return object === this.context;
+        };
+        return Observer;
+    }());
+    puremvc.Observer = Observer;
+})(puremvc || (puremvc = {}));
+var puremvc;
+(function (puremvc) {
+    "use strict";
+    var View = (function () {
+        function View() {
+            this.mediatorMap = null;
+            this.observerMap = null;
+            if (View.instance)
+                throw Error(View.SINGLETON_MSG);
+            View.instance = this;
+            this.mediatorMap = {};
+            this.observerMap = {};
+            this.initializeView();
+        }
+        View.prototype.initializeView = function () {
+        };
+        View.prototype.registerObserver = function (notificationName, observer) {
+            var observers = this.observerMap[notificationName];
+            if (observers)
+                observers.push(observer);
+            else
+                this.observerMap[notificationName] = [observer];
+        };
+        View.prototype.removeObserver = function (notificationName, notifyContext) {
+            var observers = this.observerMap[notificationName];
+            var i = observers.length;
+            while (i--) {
+                var observer = observers[i];
+                if (observer.compareNotifyContext(notifyContext)) {
+                    observers.splice(i, 1);
+                    break;
+                }
+            }
+            if (observers.length == 0)
+                delete this.observerMap[notificationName];
+        };
+        View.prototype.notifyObservers = function (notification) {
+            var notificationName = notification.getName();
+            var observersRef = this.observerMap[notificationName];
+            if (observersRef) {
+                var observers = observersRef.slice(0);
+                var len = observers.length;
+                for (var i = 0; i < len; i++) {
+                    var observer = observers[i];
+                    observer.notifyObserver(notification);
+                }
+            }
+        };
+        View.prototype.registerMediator = function (mediator) {
+            var name = mediator.getMediatorName();
+            if (this.mediatorMap[name])
+                return;
+            this.mediatorMap[name] = mediator;
+            var interests = mediator.listNotificationInterests();
+            var len = interests.length;
+            if (len > 0) {
+                var observer = new puremvc.Observer(mediator.handleNotification, mediator);
+                for (var i = 0; i < len; i++)
+                    this.registerObserver(interests[i], observer);
+            }
+            mediator.onRegister();
+        };
+        View.prototype.retrieveMediator = function (mediatorName) {
+            return this.mediatorMap[mediatorName] || null;
+        };
+        View.prototype.removeMediator = function (mediatorName) {
+            var mediator = this.mediatorMap[mediatorName];
+            if (!mediator)
+                return null;
+            var interests = mediator.listNotificationInterests();
+            var i = interests.length;
+            while (i--)
+                this.removeObserver(interests[i], mediator);
+            delete this.mediatorMap[mediatorName];
+            mediator.onRemove();
+            return mediator;
+        };
+        View.prototype.hasMediator = function (mediatorName) {
+            return this.mediatorMap[mediatorName] != null;
+        };
+        View.getInstance = function () {
+            if (!View.instance)
+                View.instance = new View();
+            return View.instance;
+        };
+        View.SINGLETON_MSG = "View singleton already constructed!";
+        return View;
+    }());
+    puremvc.View = View;
+})(puremvc || (puremvc = {}));
+var puremvc;
+(function (puremvc) {
+    "use strict";
+    var Controller = (function () {
+        function Controller() {
+            this.view = null;
+            this.commandMap = null;
+            if (Controller.instance)
+                throw Error(Controller.SINGLETON_MSG);
+            Controller.instance = this;
+            this.commandMap = {};
+            this.initializeController();
+        }
+        Controller.prototype.initializeController = function () {
+            this.view = puremvc.View.getInstance();
+        };
+        Controller.prototype.executeCommand = function (notification) {
+            var commandClassRef = this.commandMap[notification.getName()];
+            if (commandClassRef) {
+                var command = new commandClassRef();
+                command.execute(notification);
+            }
+        };
+        Controller.prototype.registerCommand = function (notificationName, commandClassRef) {
+            if (!this.commandMap[notificationName])
+                this.view.registerObserver(notificationName, new puremvc.Observer(this.executeCommand, this));
+            this.commandMap[notificationName] = commandClassRef;
+        };
+        Controller.prototype.hasCommand = function (notificationName) {
+            return this.commandMap[notificationName] != null;
+        };
+        Controller.prototype.removeCommand = function (notificationName) {
+            if (this.hasCommand(notificationName)) {
+                this.view.removeObserver(notificationName, this);
+                delete this.commandMap[notificationName];
+            }
+        };
+        Controller.getInstance = function () {
+            if (!Controller.instance)
+                Controller.instance = new Controller();
+            return Controller.instance;
+        };
+        Controller.SINGLETON_MSG = "Controller singleton already constructed!";
+        return Controller;
+    }());
+    puremvc.Controller = Controller;
+})(puremvc || (puremvc = {}));
+var puremvc;
+(function (puremvc) {
+    "use strict";
+    var Model = (function () {
+        function Model() {
+            this.proxyMap = null;
+            if (Model.instance)
+                throw Error(Model.SINGLETON_MSG);
+            Model.instance = this;
+            this.proxyMap = {};
+            this.initializeModel();
+        }
+        Model.prototype.initializeModel = function () {
+        };
+        Model.prototype.registerProxy = function (proxy) {
+            this.proxyMap[proxy.getProxyName()] = proxy;
+            proxy.onRegister();
+        };
+        Model.prototype.removeProxy = function (proxyName) {
+            var proxy = this.proxyMap[proxyName];
+            if (proxy) {
+                delete this.proxyMap[proxyName];
+                proxy.onRemove();
+            }
+            return proxy;
+        };
+        Model.prototype.retrieveProxy = function (proxyName) {
+            return this.proxyMap[proxyName] || null;
+        };
+        Model.prototype.hasProxy = function (proxyName) {
+            return this.proxyMap[proxyName] != null;
+        };
+        Model.getInstance = function () {
+            if (!Model.instance)
+                Model.instance = new Model();
+            return Model.instance;
+        };
+        Model.SINGLETON_MSG = "Model singleton already constructed!";
+        return Model;
+    }());
+    puremvc.Model = Model;
+})(puremvc || (puremvc = {}));
+var puremvc;
+(function (puremvc) {
+    "use strict";
+    var Notification = (function () {
+        function Notification(name, body, type) {
+            if (body === void 0) { body = null; }
+            if (type === void 0) { type = null; }
+            this.name = null;
+            this.body = null;
+            this.type = null;
+            this.name = name;
+            this.body = body;
+            this.type = type;
+        }
+        Notification.prototype.getName = function () {
+            return this.name;
+        };
+        Notification.prototype.setBody = function (body) {
+            this.body = body;
+        };
+        Notification.prototype.getBody = function () {
+            return this.body;
+        };
+        Notification.prototype.setType = function (type) {
+            this.type = type;
+        };
+        Notification.prototype.getType = function () {
+            return this.type;
+        };
+        Notification.prototype.toString = function () {
+            var msg = "Notification Name: " + this.getName();
+            msg += "\nBody:" + ((this.getBody() == null) ? "null" : this.getBody().toString());
+            msg += "\nType:" + ((this.getType() == null) ? "null" : this.getType());
+            return msg;
+        };
+        return Notification;
+    }());
+    puremvc.Notification = Notification;
+})(puremvc || (puremvc = {}));
+var puremvc;
+(function (puremvc) {
+    "use strict";
+    var Facade = (function () {
+        function Facade() {
+            this.model = null;
+            this.view = null;
+            this.controller = null;
+            if (Facade.instance)
+                throw Error(Facade.SINGLETON_MSG);
+            Facade.instance = this;
+            this.initializeFacade();
+        }
+        Facade.prototype.initializeFacade = function () {
+            this.initializeModel();
+            this.initializeController();
+            this.initializeView();
+        };
+        Facade.prototype.initializeModel = function () {
+            if (!this.model)
+                this.model = puremvc.Model.getInstance();
+        };
+        Facade.prototype.initializeController = function () {
+            if (!this.controller)
+                this.controller = puremvc.Controller.getInstance();
+        };
+        Facade.prototype.initializeView = function () {
+            if (!this.view)
+                this.view = puremvc.View.getInstance();
+        };
+        Facade.prototype.registerCommand = function (notificationName, commandClassRef) {
+            this.controller.registerCommand(notificationName, commandClassRef);
+        };
+        Facade.prototype.removeCommand = function (notificationName) {
+            this.controller.removeCommand(notificationName);
+        };
+        Facade.prototype.hasCommand = function (notificationName) {
+            return this.controller.hasCommand(notificationName);
+        };
+        Facade.prototype.registerProxy = function (proxy) {
+            this.model.registerProxy(proxy);
+        };
+        Facade.prototype.retrieveProxy = function (proxyName) {
+            return this.model.retrieveProxy(proxyName);
+        };
+        Facade.prototype.removeProxy = function (proxyName) {
+            var proxy;
+            if (this.model)
+                proxy = this.model.removeProxy(proxyName);
+            return proxy;
+        };
+        Facade.prototype.hasProxy = function (proxyName) {
+            return this.model.hasProxy(proxyName);
+        };
+        Facade.prototype.registerMediator = function (mediator) {
+            if (this.view)
+                this.view.registerMediator(mediator);
+        };
+        Facade.prototype.retrieveMediator = function (mediatorName) {
+            return this.view.retrieveMediator(mediatorName);
+        };
+        Facade.prototype.removeMediator = function (mediatorName) {
+            var mediator;
+            if (this.view)
+                mediator = this.view.removeMediator(mediatorName);
+            return mediator;
+        };
+        Facade.prototype.hasMediator = function (mediatorName) {
+            return this.view.hasMediator(mediatorName);
+        };
+        Facade.prototype.notifyObservers = function (notification) {
+            if (this.view)
+                this.view.notifyObservers(notification);
+        };
+        Facade.prototype.sendNotification = function (name, body, type) {
+            if (body === void 0) { body = null; }
+            if (type === void 0) { type = null; }
+            this.notifyObservers(new puremvc.Notification(name, body, type));
+        };
+        Facade.getInstance = function () {
+            if (!Facade.instance)
+                Facade.instance = new Facade();
+            return Facade.instance;
+        };
+        Facade.SINGLETON_MSG = "Facade singleton already constructed!";
+        return Facade;
+    }());
+    puremvc.Facade = Facade;
+})(puremvc || (puremvc = {}));
+var puremvc;
+(function (puremvc) {
+    "use strict";
     var Notifier = (function () {
         function Notifier() {
             this.facade = null;
@@ -4193,36 +4013,6 @@ var puremvc;
 var puremvc;
 (function (puremvc) {
     "use strict";
-    var MacroCommand = (function (_super) {
-        __extends(MacroCommand, _super);
-        function MacroCommand() {
-            _super.call(this);
-            this.subCommands = null;
-            this.subCommands = new Array();
-            this.initializeMacroCommand();
-        }
-        MacroCommand.prototype.initializeMacroCommand = function () {
-        };
-        MacroCommand.prototype.addSubCommand = function (commandClassRef) {
-            this.subCommands.push(commandClassRef);
-        };
-        MacroCommand.prototype.execute = function (notification) {
-            var subCommands = this.subCommands.slice(0);
-            var len = this.subCommands.length;
-            for (var i = 0; i < len; i++) {
-                var commandClassRef = subCommands[i];
-                var commandInstance = new commandClassRef();
-                commandInstance.execute(notification);
-            }
-            this.subCommands.splice(0);
-        };
-        return MacroCommand;
-    }(puremvc.Notifier));
-    puremvc.MacroCommand = MacroCommand;
-})(puremvc || (puremvc = {}));
-var puremvc;
-(function (puremvc) {
-    "use strict";
     var SimpleCommand = (function (_super) {
         __extends(SimpleCommand, _super);
         function SimpleCommand() {
@@ -4234,6 +4024,21 @@ var puremvc;
     }(puremvc.Notifier));
     puremvc.SimpleCommand = SimpleCommand;
 })(puremvc || (puremvc = {}));
+var game;
+(function (game) {
+    var ChangeModuleCommand = (function (_super) {
+        __extends(ChangeModuleCommand, _super);
+        function ChangeModuleCommand() {
+            _super.call(this);
+        }
+        ChangeModuleCommand.prototype.execute = function (notification) {
+            var skinmeiator = this.facade.retrieveMediator(game.SkinMediator.NAME);
+            skinmeiator.showScene(notification.getBody());
+        };
+        return ChangeModuleCommand;
+    }(puremvc.SimpleCommand));
+    game.ChangeModuleCommand = ChangeModuleCommand;
+})(game || (game = {}));
 var puremvc;
 (function (puremvc) {
     "use strict";
@@ -4271,287 +4076,6 @@ var puremvc;
     }(puremvc.Notifier));
     puremvc.Mediator = Mediator;
 })(puremvc || (puremvc = {}));
-var puremvc;
-(function (puremvc) {
-    "use strict";
-    var Proxy = (function (_super) {
-        __extends(Proxy, _super);
-        function Proxy(proxyName, data) {
-            if (proxyName === void 0) { proxyName = null; }
-            if (data === void 0) { data = null; }
-            _super.call(this);
-            this.proxyName = null;
-            this.data = null;
-            this.proxyName = (proxyName != null) ? proxyName : Proxy.NAME;
-            if (data != null)
-                this.setData(data);
-        }
-        Proxy.prototype.getProxyName = function () {
-            return this.proxyName;
-        };
-        Proxy.prototype.setData = function (data) {
-            this.data = data;
-        };
-        Proxy.prototype.getData = function () {
-            return this.data;
-        };
-        Proxy.prototype.onRegister = function () {
-        };
-        Proxy.prototype.onRemove = function () {
-        };
-        Proxy.NAME = "Proxy";
-        return Proxy;
-    }(puremvc.Notifier));
-    puremvc.Proxy = Proxy;
-})(puremvc || (puremvc = {}));
-var game;
-(function (game) {
-    var ControllerPrepCommand = (function (_super) {
-        __extends(ControllerPrepCommand, _super);
-        function ControllerPrepCommand() {
-            _super.call(this);
-        }
-        ControllerPrepCommand.prototype.execute = function (notification) {
-        };
-        return ControllerPrepCommand;
-    }(puremvc.SimpleCommand));
-    game.ControllerPrepCommand = ControllerPrepCommand;
-})(game || (game = {}));
-var game;
-(function (game) {
-    var ModelPrepCommand = (function (_super) {
-        __extends(ModelPrepCommand, _super);
-        function ModelPrepCommand() {
-            _super.call(this);
-        }
-        ModelPrepCommand.prototype.execute = function (notification) {
-        };
-        return ModelPrepCommand;
-    }(puremvc.SimpleCommand));
-    game.ModelPrepCommand = ModelPrepCommand;
-})(game || (game = {}));
-var game;
-(function (game) {
-    var ChangeModuleCommand = (function (_super) {
-        __extends(ChangeModuleCommand, _super);
-        function ChangeModuleCommand() {
-            _super.call(this);
-        }
-        ChangeModuleCommand.prototype.execute = function (notification) {
-            var skinmeiator = this.facade.retrieveMediator(game.SkinMediator.NAME);
-            skinmeiator.showScene(notification.getBody());
-        };
-        return ChangeModuleCommand;
-    }(puremvc.SimpleCommand));
-    game.ChangeModuleCommand = ChangeModuleCommand;
-})(game || (game = {}));
-var game;
-(function (game) {
-    var StartupCommand = (function (_super) {
-        __extends(StartupCommand, _super);
-        function StartupCommand() {
-            _super.call(this);
-        }
-        StartupCommand.prototype.initializeMacroCommand = function () {
-            this.addSubCommand(game.ControllerPrepCommand);
-            this.addSubCommand(game.ModelPrepCommand);
-            this.addSubCommand(game.ViewPrepCommand);
-        };
-        return StartupCommand;
-    }(puremvc.MacroCommand));
-    game.StartupCommand = StartupCommand;
-})(game || (game = {}));
-var game;
-(function (game) {
-    var ViewPrepCommand = (function (_super) {
-        __extends(ViewPrepCommand, _super);
-        function ViewPrepCommand() {
-            _super.call(this);
-        }
-        ViewPrepCommand.prototype.execute = function (notification) {
-            this.facade.registerMediator(new game.LoadingMeidator(this.facade.stage._loadingLayer));
-            this.facade.registerMediator(new TestMeidator(this.facade.stage));
-            this.facade.registerMediator(new game.SkinMediator(this.facade.stage._screenLayer));
-        };
-        return ViewPrepCommand;
-    }(puremvc.SimpleCommand));
-    game.ViewPrepCommand = ViewPrepCommand;
-})(game || (game = {}));
-var ResManager = (function () {
-    function ResManager() {
-    }
-    ResManager.removeElement = function (resName) { };
-    ;
-    ResManager.hasElement = function (resName, mediatorName) {
-        var resName = ResManager.contactId(resName, mediatorName);
-        var arr = this.getCurrentdic();
-        return arr[resName];
-    };
-    ;
-    ResManager.delElement = function (resName, mediatorName) {
-        var resName = ResManager.contactId(resName, mediatorName);
-        var arr = this.getCurrentdic();
-        this.name;
-        if (arr[resName]) {
-            arr[resName] = null;
-        }
-    };
-    ;
-    ResManager.getCurrentdic = function () {
-        var className = this.getFuncName(this);
-        var arr;
-        switch (className) {
-            case "SSResourceManager":
-                arr = SSResourceManager.objectarr;
-                break;
-            case "SoundResManager":
-                arr = SoundResManager.objectarr;
-                break;
-            case "VideoResManager":
-                arr = VideoResManager.objectarr;
-                break;
-        }
-        return arr;
-    };
-    ResManager.getFuncName = function (func) {
-        var funcName = String(func);
-        return funcName.match(/function\s*([^(]*)\(/)[1];
-    };
-    ResManager.contactId = function (spriteName, mediatorName) {
-        if (!mediatorName)
-            mediatorName = "";
-        mediatorName = mediatorName.replace(" ", "");
-        spriteName = spriteName.replace(" ", "");
-        if (!spriteName) {
-            throw new Error("资源id 不能为空:" + spriteName);
-        }
-        var spriteName = spriteName + mediatorName;
-        return spriteName;
-    };
-    ResManager.name = "";
-    return ResManager;
-}());
-var SoundResManager = (function (_super) {
-    __extends(SoundResManager, _super);
-    function SoundResManager() {
-        _super.call(this);
-        createjs.Sound.alternateExtensions = ["mp3"];
-    }
-    Object.defineProperty(SoundResManager, "objectarr", {
-        get: function () {
-            return SoundResManager.soundDic;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    SoundResManager.createSound = function (soundPath, soundName, soundLoadComplete, that) {
-        createjs.Sound.on(soundName, soundLoadComplete, that);
-        var msound = createjs.Sound.registerSound(soundPath, soundName);
-        SoundResManager.soundDic[soundName] = soundName;
-        return msound;
-    };
-    SoundResManager.playSound = function (id, loop) {
-        return createjs.Sound.play(id, createjs.Sound.INTERRUPT_EARLY, 0, 0, loop);
-    };
-    SoundResManager.soundDic = new Array();
-    return SoundResManager;
-}(ResManager));
-var MSound = (function () {
-    function MSound() {
-    }
-    return MSound;
-}());
-var game;
-(function (game) {
-    var LoadingMeidator = (function (_super) {
-        __extends(LoadingMeidator, _super);
-        function LoadingMeidator(viewComponent) {
-            if (viewComponent === void 0) { viewComponent = null; }
-            _super.call(this, LoadingMeidator.NAME, viewComponent);
-            MyConfig.loadingIndex = this;
-        }
-        LoadingMeidator.prototype.listNotificationInterests = function () {
-            return [
-                "showLoadingPanel"
-            ];
-        };
-        LoadingMeidator.prototype.handleNotification = function (notification) {
-            var data = notification.getBody();
-            console.log("LoadingMeidator 响应成功", notification.getName());
-            switch (notification.getName()) {
-                case "showLoadingPanel":
-                    this.usecreatejsSource();
-                    break;
-            }
-        };
-        LoadingMeidator.prototype.usecreatejsSource = function () {
-            loadingcreatejs.MotionGuidePlugin.install();
-            loadingimages = loadingimages || {};
-            ss = ss || {};
-            var loader = new loadingcreatejs.LoadQueue();
-            loader.addEventListener("fileload", this.handleFileLoad);
-            loader.addEventListener("complete", this.handleComplete.bind(this));
-            loader.loadFile({ src: "../../../../egame/images/loading_atlas_.json?1463196773695", type: "spritesheet", id: "loading_atlas_" }, true);
-            loader.loadManifest(loadinglib.properties.manifest);
-        };
-        LoadingMeidator.prototype.handleFileLoad = function (evt) {
-            if (evt.item.type == "image") {
-                loadingimages[evt.item.id] = evt.result;
-            }
-            console.log("加载资源完毕:" + evt.item.type + " :" + evt.item.id);
-        };
-        LoadingMeidator.prototype.handleComplete = function (evt) {
-            var queue = evt.target;
-            ss["loading_atlas_"] = queue.getResult("loading_atlas_");
-            this.exportRoot = new loadinglib.loading();
-            this.viewComponent.addChild(this.exportRoot);
-            this.startLoadGameRes();
-        };
-        LoadingMeidator.prototype.startLoadGameRes = function () {
-            var queaue = this.resourceLoader = new createjs.LoadQueue(true);
-            var loadItems = [
-                { id: "pic", src: "/images/Chrysanthemum.jpg" },
-                { id: "winspritesheet", src: "/egame/images/win2.json" }
-            ];
-            queaue.loadFile({ src: "../../../../egame/images/commonpoker_atlas_.json?1463196773695", type: "spritesheet", id: "commonpoker_atlas_" }, true);
-            queaue.loadFile({ src: "/egame/images/win2.json", type: "spritesheet", id: "winspritesheet2" }, true);
-            queaue.loadFile({ src: "/egame/images/bjlskin_atlas_.json", type: "spritesheet", id: "bjlskin" }, true);
-            queaue.addEventListener("fileload", this.handleResFileLoad.bind(this));
-            queaue.addEventListener("complete", this.handleResComplete.bind(this));
-            queaue.loadManifest(loadItems, false);
-            queaue.loadManifest(comnpokelib.properties.manifest, false);
-            queaue.load();
-        };
-        LoadingMeidator.prototype.handleResFileLoad = function (evt) {
-            LoadingMeidator.loadedResArr[LoadingMeidator.loadedResArr.length] =
-                {
-                    id: evt.item.id, res: evt.result, types: evt.item.type
-                };
-            console.log("加载资源完毕:" + evt.item.type + " :" + evt.item.id);
-            this.loadlog(evt.item.type + " :" + evt.item.id);
-            var frameNumber = Math.floor(LoadingMeidator.loadedResArr.length / 10 * 99);
-            console.log(frameNumber);
-            this.exportRoot.instance.progressMc.gotoAndStop(frameNumber);
-            this.exportRoot.instance.messageTxt.text = evt.item.type + " :" + evt.item.id + ":加载完毕";
-        };
-        LoadingMeidator.prototype.handleResComplete = function (evt) {
-            console.log("所有游戏资源加载完毕");
-            var spritesheet = this.resourceLoader.getResult("winspritesheet2");
-            var sprite = SSResourceManager.createSprite(spritesheet, "winspritesheet2");
-            ss["commonpoker_atlas_"] = this.resourceLoader.getResult("commonpoker_atlas_");
-            var data = { ss: this.resourceLoader.getResult("bjlskin"), type: "bjlskin" };
-            this.sendNotification(game.AppFacade.CHANGGAMETYPE, data);
-            this.viewComponent.removeAllChildren();
-        };
-        LoadingMeidator.prototype.loadlog = function (str) {
-            $("#content textarea").append("    " + str + "");
-        };
-        LoadingMeidator.NAME = "LoadingMeidator";
-        LoadingMeidator.loadedResArr = [];
-        return LoadingMeidator;
-    }(puremvc.Mediator));
-    game.LoadingMeidator = LoadingMeidator;
-})(game || (game = {}));
 var game;
 (function (game) {
     var SkinMediator = (function (_super) {
@@ -4589,35 +4113,6 @@ var game;
     }(puremvc.Mediator));
     game.SkinMediator = SkinMediator;
 })(game || (game = {}));
-var TestMeidator = (function (_super) {
-    __extends(TestMeidator, _super);
-    function TestMeidator(viewComponent) {
-        if (viewComponent === void 0) { viewComponent = null; }
-        _super.call(this, TestMeidator.NAME, viewComponent);
-        console.log("创建testmediator 成功");
-    }
-    TestMeidator.prototype.listNotificationInterests = function () {
-        return [
-            "showTestPanel"
-        ];
-    };
-    TestMeidator.prototype.handleNotification = function (notification) {
-        var data = notification.getBody();
-        console.log("testmediator 响应成功", notification.getName());
-        switch (notification.getName()) {
-            case "showTestPanel": {
-                if (this.viewComponent == null) {
-                    console.log("画板舞台不存在");
-                    return;
-                }
-                this.viewComponent.addChild(new TestPanel());
-                console.log("创建面板成功");
-            }
-        }
-    };
-    TestMeidator.NAME = "TestMediator";
-    return TestMeidator;
-}(puremvc.Mediator));
 var game;
 (function (game) {
     var SkinPanel = (function (_super) {
@@ -4711,6 +4206,9 @@ var game;
                 && a.y - a.regY < b.y + b.regY;
         };
         BjlSKinPanel.prototype.loadSceneRes = function () {
+            this.addEventListener("addToStage", function (evt) {
+                this.initStartStatus();
+            }.bind(this));
             this.resourceLoader.loadManifest(bjllib.properties.manifest, false);
             this.resourceLoader.load();
         };
@@ -4720,6 +4218,10 @@ var game;
             this.initStartStatus();
         };
         BjlSKinPanel.prototype.initStartStatus = function () {
+            if (this.isInit) {
+                return;
+            }
+            this.isInit = true;
             this.content = new bjllib.bjlskin();
             this.addChild(this.content);
             this.addEventListener("tick", this.ontickHandler.bind(this));
@@ -4728,6 +4230,7 @@ var game;
             this.tablemc = this.content["instance"];
             for (var i = 1; i < 6; i++) {
                 this.tablemc["betsItemMc" + i].clearBtn.visible = false;
+                this.tablemc["betsItemMc" + i].mouseChildren = false;
                 this.tablemc["betsItemMc" + i].addEventListener("click", this.betItemClickHandler.bind(this));
             }
             this.tablemc["playerPointMc"].visible = false;
@@ -4932,47 +4435,73 @@ var game;
     }(game.SkinPanel));
     game.BjlSKinPanel = BjlSKinPanel;
 })(game || (game = {}));
-var TestPanel = (function (_super) {
-    __extends(TestPanel, _super);
-    function TestPanel() {
+var Layout = (function (_super) {
+    __extends(Layout, _super);
+    function Layout() {
         _super.call(this);
-        this.createChildren();
     }
-    TestPanel.prototype.createChildren = function () {
-        var text = new createjs.Text("hello testpanel", "normal 32px microsoft yahei", "#222222");
-        text.x = 0;
-        this.addChild(text);
+    Layout.prototype.init = function (stage) {
+        this.name = "layout";
+        this._stage = stage;
+        this._sceneUILayer = new LayOutContainer();
+        this._sceneUILayer.name = "sceneUILayer";
+        this._panelLayer = new LayOutContainer();
+        this._panelLayer.name = "panelLayer";
+        this._loadingLayer = new LayOutContainer();
+        this._loadingLayer.name = "loadingLayer";
+        this._tipLayer = new LayOutContainer();
+        this._tipLayer.name = "tipLayer";
+        this._alertLayer = new LayOutContainer();
+        this._alertLayer.name = "alertLayer";
+        this._mouseLayer = new LayOutContainer();
+        this._mouseLayer.name = "_mouseLayer";
+        this._chatLayer = new LayOutContainer();
+        this._chatLayer.name = "_chatLayer";
+        this._screenLayer = new LayOutContainer();
+        this._screenLayer.name = "_screenLayer";
+        this._effectLayer = new LayOutContainer();
+        this._effectLayer.name = "effectLayer";
+        this._newGuilderLayer = new LayOutContainer();
+        this._newGuilderLayer.name = "_newGuilderLayer";
+        this.addChild(this._sceneUILayer);
+        this.addChild(this._chatLayer);
+        this.addChild(this._panelLayer);
+        this.addChild(this._alertLayer);
+        this.addChild(this._screenLayer);
+        this.addChild(this._loadingLayer);
+        this.addChild(this._tipLayer);
+        this.addChild(this._effectLayer);
+        this.addChild(this._newGuilderLayer);
+        this._stage.addChild(this._mouseLayer);
+        this._stage.addChild(this);
     };
-    return TestPanel;
-}(createjs.MovieClip));
-var utils;
-(function (utils) {
-    var ClassUtils = (function () {
-        function ClassUtils() {
-        }
-        ClassUtils.getClassName = function (ClassObj) {
-            var _text = ClassObj.toString();
-            var _scriptArr = document.scripts;
-            for (var i = 0; i < _scriptArr.length; i++) {
-                var _start = _scriptArr[i]["text"].indexOf(_text);
-                if (_start != -1) {
-                    if (/^function\s*\(.*\).*\r\n/.test(_text)) {
-                        var _tempArr = _scriptArr[i]["text"].substr(0, _start).split('\r\n');
-                        return _tempArr[_tempArr.length - 1].replace(/(var)|(\s*)/g, '').replace(/=/g, '');
-                    }
-                    else
-                        return _text.match(/^function\s*([^\(]+).*\r\n/)[1];
-                }
+    Object.defineProperty(Layout.prototype, "stageWidth", {
+        get: function () {
+            var canvas = this._stage.canvas;
+            return canvas.width;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Layout.prototype, "stageHeight", {
+        get: function () {
+            var canvas = this._stage.canvas;
+            return canvas.height;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Layout.prototype.showDebug = function (bln) {
+        for (var i = 0; i < this.numChildren; i++) {
+            var temp = this.getChildAt(i);
+            if (temp instanceof LayOutContainer) {
+                temp.showPostion(bln);
             }
-        };
-        ClassUtils.getObjByClass = function (className) {
-            var func = eval(className);
-            return new func(arguments[1], arguments[2], arguments[3]);
-        };
-        return ClassUtils;
-    }());
-    utils.ClassUtils = ClassUtils;
-})(utils || (utils = {}));
+        }
+        this._mouseLayer.showPostion(bln);
+    };
+    return Layout;
+}(createjs.Container));
 var LayOutContainer = (function (_super) {
     __extends(LayOutContainer, _super);
     function LayOutContainer() {
@@ -5004,6 +4533,118 @@ var LayOutContainer = (function (_super) {
     };
     return LayOutContainer;
 }(createjs.Container));
+var utils;
+(function (utils) {
+    var ClassUtils = (function () {
+        function ClassUtils() {
+        }
+        ClassUtils.getClassName = function (ClassObj) {
+            var _text = ClassObj.toString();
+            var _scriptArr = document.scripts;
+            for (var i = 0; i < _scriptArr.length; i++) {
+                var _start = _scriptArr[i]["text"].indexOf(_text);
+                if (_start != -1) {
+                    if (/^function\s*\(.*\).*\r\n/.test(_text)) {
+                        var _tempArr = _scriptArr[i]["text"].substr(0, _start).split('\r\n');
+                        return _tempArr[_tempArr.length - 1].replace(/(var)|(\s*)/g, '').replace(/=/g, '');
+                    }
+                    else
+                        return _text.match(/^function\s*([^\(]+).*\r\n/)[1];
+                }
+            }
+        };
+        ClassUtils.getObjByClass = function (className) {
+            var func = eval(className);
+            return new func(arguments[1], arguments[2], arguments[3]);
+        };
+        return ClassUtils;
+    }());
+    utils.ClassUtils = ClassUtils;
+})(utils || (utils = {}));
+var ResManager = (function () {
+    function ResManager() {
+    }
+    ResManager.removeElement = function (resName) { };
+    ;
+    ResManager.hasElement = function (resName, mediatorName) {
+        var resName = ResManager.contactId(resName, mediatorName);
+        var arr = this.getCurrentdic();
+        return arr[resName];
+    };
+    ;
+    ResManager.delElement = function (resName, mediatorName) {
+        var resName = ResManager.contactId(resName, mediatorName);
+        var arr = this.getCurrentdic();
+        this.name;
+        if (arr[resName]) {
+            arr[resName] = null;
+        }
+    };
+    ;
+    ResManager.getCurrentdic = function () {
+        var className = this.getFuncName(this);
+        var arr;
+        switch (className) {
+            case "SSResourceManager":
+                arr = SSResourceManager.objectarr;
+                break;
+            case "SoundResManager":
+                arr = SoundResManager.objectarr;
+                break;
+            case "VideoResManager":
+                arr = VideoResManager.objectarr;
+                break;
+        }
+        return arr;
+    };
+    ResManager.getFuncName = function (func) {
+        var funcName = String(func);
+        return funcName.match(/function\s*([^(]*)\(/)[1];
+    };
+    ResManager.contactId = function (spriteName, mediatorName) {
+        if (!mediatorName)
+            mediatorName = "";
+        mediatorName = mediatorName.replace(" ", "");
+        spriteName = spriteName.replace(" ", "");
+        if (!spriteName) {
+            throw new Error("资源id 不能为空:" + spriteName);
+        }
+        var spriteName = spriteName + mediatorName;
+        return spriteName;
+    };
+    ResManager.name = "";
+    return ResManager;
+}());
+var SoundResManager = (function (_super) {
+    __extends(SoundResManager, _super);
+    function SoundResManager() {
+        _super.call(this);
+        createjs.Sound.alternateExtensions = ["mp3"];
+    }
+    Object.defineProperty(SoundResManager, "objectarr", {
+        get: function () {
+            return SoundResManager.soundDic;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    SoundResManager.createSound = function (soundPath, soundName, soundLoadComplete, that) {
+        createjs.Sound.on(soundName, soundLoadComplete, that);
+        var msound = createjs.Sound.registerSound(soundPath, soundName);
+        SoundResManager.soundDic[soundName] = soundName;
+        return msound;
+    };
+    SoundResManager.playSound = function (id, loop) {
+        return createjs.Sound.play(id, createjs.Sound.INTERRUPT_EARLY, 0, 0, loop);
+    };
+    SoundResManager.soundDic = new Array();
+    return SoundResManager;
+}(ResManager));
+var MSound = (function () {
+    function MSound() {
+    }
+    return MSound;
+}());
 var SSResourceManager = (function (_super) {
     __extends(SSResourceManager, _super);
     function SSResourceManager() {
@@ -5079,6 +4720,97 @@ var exampledata = {
         jump: [6, 8, "run"]
     }
 };
+var game;
+(function (game) {
+    var LoadingMeidator = (function (_super) {
+        __extends(LoadingMeidator, _super);
+        function LoadingMeidator(viewComponent) {
+            if (viewComponent === void 0) { viewComponent = null; }
+            _super.call(this, LoadingMeidator.NAME, viewComponent);
+            MyConfig.loadingIndex = this;
+        }
+        LoadingMeidator.prototype.listNotificationInterests = function () {
+            return [
+                "showLoadingPanel"
+            ];
+        };
+        LoadingMeidator.prototype.handleNotification = function (notification) {
+            var data = notification.getBody();
+            console.log("LoadingMeidator 响应成功", notification.getName());
+            switch (notification.getName()) {
+                case "showLoadingPanel":
+                    this.usecreatejsSource();
+                    break;
+            }
+        };
+        LoadingMeidator.prototype.usecreatejsSource = function () {
+            loadingcreatejs.MotionGuidePlugin.install();
+            loadingimages = loadingimages || {};
+            ss = ss || {};
+            var loader = new loadingcreatejs.LoadQueue();
+            loader.addEventListener("fileload", this.handleFileLoad);
+            loader.addEventListener("complete", this.handleComplete.bind(this));
+            loader.loadFile({ src: "../../../../egame/images/loading_atlas_.json?1463196773695", type: "spritesheet", id: "loading_atlas_" }, true);
+            loader.loadManifest(loadinglib.properties.manifest);
+        };
+        LoadingMeidator.prototype.handleFileLoad = function (evt) {
+            if (evt.item.type == "image") {
+                loadingimages[evt.item.id] = evt.result;
+            }
+            console.log("加载资源完毕:" + evt.item.type + " :" + evt.item.id);
+        };
+        LoadingMeidator.prototype.handleComplete = function (evt) {
+            var queue = evt.target;
+            ss["loading_atlas_"] = queue.getResult("loading_atlas_");
+            this.exportRoot = new loadinglib.loading();
+            this.viewComponent.addChild(this.exportRoot);
+            this.startLoadGameRes();
+        };
+        LoadingMeidator.prototype.startLoadGameRes = function () {
+            var queaue = this.resourceLoader = new createjs.LoadQueue(true);
+            var loadItems = [
+                { id: "pic", src: "/images/Chrysanthemum.jpg" },
+                { id: "winspritesheet", src: "/egame/images/win2.json" }
+            ];
+            queaue.loadFile({ src: "../../../../egame/images/commonpoker_atlas_.json?1463196773695", type: "spritesheet", id: "commonpoker_atlas_" }, true);
+            queaue.loadFile({ src: "/egame/images/win2.json", type: "spritesheet", id: "winspritesheet2" }, true);
+            queaue.loadFile({ src: "/egame/images/bjlskin_atlas_.json", type: "spritesheet", id: "bjlskin" }, true);
+            queaue.addEventListener("fileload", this.handleResFileLoad.bind(this));
+            queaue.addEventListener("complete", this.handleResComplete.bind(this));
+            queaue.loadManifest(loadItems, false);
+            queaue.loadManifest(comnpokelib.properties.manifest, false);
+            queaue.load();
+        };
+        LoadingMeidator.prototype.handleResFileLoad = function (evt) {
+            LoadingMeidator.loadedResArr[LoadingMeidator.loadedResArr.length] =
+                {
+                    id: evt.item.id, res: evt.result, types: evt.item.type
+                };
+            console.log("加载资源完毕:" + evt.item.type + " :" + evt.item.id);
+            this.loadlog(evt.item.type + " :" + evt.item.id);
+            var frameNumber = Math.floor(LoadingMeidator.loadedResArr.length / 10 * 99);
+            console.log(frameNumber);
+            this.exportRoot.instance.progressMc.gotoAndStop(frameNumber);
+            this.exportRoot.instance.messageTxt.text = evt.item.type + " :" + evt.item.id + ":加载完毕";
+        };
+        LoadingMeidator.prototype.handleResComplete = function (evt) {
+            console.log("所有游戏资源加载完毕");
+            var spritesheet = this.resourceLoader.getResult("winspritesheet2");
+            var sprite = SSResourceManager.createSprite(spritesheet, "winspritesheet2");
+            ss["commonpoker_atlas_"] = this.resourceLoader.getResult("commonpoker_atlas_");
+            var data = { ss: this.resourceLoader.getResult("bjlskin"), type: "bjlskin" };
+            this.sendNotification(game.AppFacade.CHANGGAMETYPE, data);
+            this.viewComponent.removeAllChildren();
+        };
+        LoadingMeidator.prototype.loadlog = function (str) {
+            $("#content textarea").append("    " + str + "");
+        };
+        LoadingMeidator.NAME = "LoadingMeidator";
+        LoadingMeidator.loadedResArr = [];
+        return LoadingMeidator;
+    }(puremvc.Mediator));
+    game.LoadingMeidator = LoadingMeidator;
+})(game || (game = {}));
 var VideoResManager = (function (_super) {
     __extends(VideoResManager, _super);
     function VideoResManager() {
@@ -5173,4 +4905,304 @@ var MVideo = (function () {
     }
     return MVideo;
 }());
+var myaquare1 = {};
+myaquare1.color = "d";
+myaquare1.traceHello = function (info) { };
+var test;
+(function (test) {
+    var Mysquare = (function () {
+        function Mysquare() {
+            this.time = 0;
+        }
+        Mysquare.prototype.traceHello = function (info) {
+            alert(info);
+        };
+        return Mysquare;
+    }());
+    test.Mysquare = Mysquare;
+})(test || (test = {}));
+var Mysquare2 = (function (_super) {
+    __extends(Mysquare2, _super);
+    function Mysquare2() {
+        _super.apply(this, arguments);
+    }
+    Mysquare2.prototype.traceHello = function (info) {
+        _super.prototype.traceHello.call(this, info);
+        alert(info);
+    };
+    Mysquare2.prototype.nihao = function () {
+        _super.prototype.traceHello.call(this, "nihao");
+    };
+    return Mysquare2;
+}(test.Mysquare));
+var myArray;
+myArray = ["Bob", "Fred"];
+var Clock1 = (function () {
+    function Clock1(h, m) {
+        this.time = 0;
+    }
+    ;
+    Clock1.prototype.trace = function () {
+    };
+    return Clock1;
+}());
+var cs = Clock1;
+var newClock = new cs(7, 30);
+console.log(newClock);
+var square = {};
+square.color = "red";
+square.sideLength = 100;
+square.penWidth = 50;
+var square2 = { sideLength: 0, color: "", penWidth: 0 };
+var hello = (function () {
+    function hello(start) {
+        this.interval = 0;
+        this.niaho = function (start) {
+            return "";
+        };
+        this.export = hello;
+    }
+    hello.prototype.reset = function () {
+    };
+    return hello;
+}());
+var game;
+(function (game) {
+    var AppFacade = (function (_super) {
+        __extends(AppFacade, _super);
+        function AppFacade() {
+            _super.call(this);
+        }
+        AppFacade.getInstance = function () {
+            if (this.instance == null)
+                this.instance = new AppFacade();
+            return (this.instance);
+        };
+        AppFacade.prototype.initializeController = function () {
+            _super.prototype.initializeController.call(this);
+            this.registerCommand(AppFacade.STARTUP, game.StartupCommand);
+            this.registerCommand(AppFacade.CHANGGAMETYPE, game.ChangeModuleCommand);
+        };
+        AppFacade.prototype.startUp = function (rootView) {
+            console.log("facade初始化完成");
+            this.stage = rootView;
+            this.sendNotification(AppFacade.STARTUP, rootView);
+            this.removeCommand(AppFacade.STARTUP);
+        };
+        AppFacade.STARTUP = "startup";
+        AppFacade.CHANGGAMETYPE = "changegametype";
+        return AppFacade;
+    }(puremvc.Facade));
+    game.AppFacade = AppFacade;
+})(game || (game = {}));
+window.onload = function () {
+    var et = new EaseljsTest();
+    createjs.MotionGuidePlugin.install();
+    setTimeout(et.init.bind(et), 100);
+};
+var EaseljsTest = (function () {
+    function EaseljsTest() {
+    }
+    EaseljsTest.prototype.init = function () {
+        var canvas = document.getElementById("myCanvas");
+        this.mstage = new createjs.Stage(canvas);
+        createjs.Touch.enable(this.mstage);
+        this.mylayout = new Layout();
+        this.mylayout.init(this.mstage);
+        game.AppFacade.getInstance().startUp(this.mylayout);
+        game.AppFacade.getInstance().sendNotification("showLoadingPanel");
+        console.log("发送消息成功");
+        this.addTick();
+        var dfdf;
+        console.log(dfdf);
+        if (document["attachEvent"]) {
+            document["attachEvent"]("click", this.addTick);
+        }
+        this.mstage.update();
+    };
+    EaseljsTest.prototype.addTick = function () {
+        createjs.Ticker.setFPS(30);
+        createjs.Ticker.addEventListener("tick", this.handleTicker.bind(this));
+    };
+    EaseljsTest.prototype.handleTicker = function () {
+        this.mstage.update();
+    };
+    EaseljsTest.prototype.handleClick = function (event) {
+        console.log("shape 点击事件");
+    };
+    return EaseljsTest;
+}());
+var FAPAI = "FAPAI";
+var YAZHU = "YAZHUADFDF";
+var JIESUAN = "DSFDFDSF";
+var MyConfig = (function () {
+    function MyConfig() {
+    }
+    MyConfig.gameType = "bjlskin";
+    MyConfig.gameState = "";
+    return MyConfig;
+}());
+var puremvc;
+(function (puremvc) {
+    "use strict";
+    var MacroCommand = (function (_super) {
+        __extends(MacroCommand, _super);
+        function MacroCommand() {
+            _super.call(this);
+            this.subCommands = null;
+            this.subCommands = new Array();
+            this.initializeMacroCommand();
+        }
+        MacroCommand.prototype.initializeMacroCommand = function () {
+        };
+        MacroCommand.prototype.addSubCommand = function (commandClassRef) {
+            this.subCommands.push(commandClassRef);
+        };
+        MacroCommand.prototype.execute = function (notification) {
+            var subCommands = this.subCommands.slice(0);
+            var len = this.subCommands.length;
+            for (var i = 0; i < len; i++) {
+                var commandClassRef = subCommands[i];
+                var commandInstance = new commandClassRef();
+                commandInstance.execute(notification);
+            }
+            this.subCommands.splice(0);
+        };
+        return MacroCommand;
+    }(puremvc.Notifier));
+    puremvc.MacroCommand = MacroCommand;
+})(puremvc || (puremvc = {}));
+var puremvc;
+(function (puremvc) {
+    "use strict";
+    var Proxy = (function (_super) {
+        __extends(Proxy, _super);
+        function Proxy(proxyName, data) {
+            if (proxyName === void 0) { proxyName = null; }
+            if (data === void 0) { data = null; }
+            _super.call(this);
+            this.proxyName = null;
+            this.data = null;
+            this.proxyName = (proxyName != null) ? proxyName : Proxy.NAME;
+            if (data != null)
+                this.setData(data);
+        }
+        Proxy.prototype.getProxyName = function () {
+            return this.proxyName;
+        };
+        Proxy.prototype.setData = function (data) {
+            this.data = data;
+        };
+        Proxy.prototype.getData = function () {
+            return this.data;
+        };
+        Proxy.prototype.onRegister = function () {
+        };
+        Proxy.prototype.onRemove = function () {
+        };
+        Proxy.NAME = "Proxy";
+        return Proxy;
+    }(puremvc.Notifier));
+    puremvc.Proxy = Proxy;
+})(puremvc || (puremvc = {}));
+var game;
+(function (game) {
+    var ControllerPrepCommand = (function (_super) {
+        __extends(ControllerPrepCommand, _super);
+        function ControllerPrepCommand() {
+            _super.call(this);
+        }
+        ControllerPrepCommand.prototype.execute = function (notification) {
+        };
+        return ControllerPrepCommand;
+    }(puremvc.SimpleCommand));
+    game.ControllerPrepCommand = ControllerPrepCommand;
+})(game || (game = {}));
+var game;
+(function (game) {
+    var ModelPrepCommand = (function (_super) {
+        __extends(ModelPrepCommand, _super);
+        function ModelPrepCommand() {
+            _super.call(this);
+        }
+        ModelPrepCommand.prototype.execute = function (notification) {
+        };
+        return ModelPrepCommand;
+    }(puremvc.SimpleCommand));
+    game.ModelPrepCommand = ModelPrepCommand;
+})(game || (game = {}));
+var game;
+(function (game) {
+    var StartupCommand = (function (_super) {
+        __extends(StartupCommand, _super);
+        function StartupCommand() {
+            _super.call(this);
+        }
+        StartupCommand.prototype.initializeMacroCommand = function () {
+            this.addSubCommand(game.ControllerPrepCommand);
+            this.addSubCommand(game.ModelPrepCommand);
+            this.addSubCommand(game.ViewPrepCommand);
+        };
+        return StartupCommand;
+    }(puremvc.MacroCommand));
+    game.StartupCommand = StartupCommand;
+})(game || (game = {}));
+var game;
+(function (game) {
+    var ViewPrepCommand = (function (_super) {
+        __extends(ViewPrepCommand, _super);
+        function ViewPrepCommand() {
+            _super.call(this);
+        }
+        ViewPrepCommand.prototype.execute = function (notification) {
+            this.facade.registerMediator(new game.LoadingMeidator(this.facade.stage._loadingLayer));
+            this.facade.registerMediator(new TestMeidator(this.facade.stage));
+            this.facade.registerMediator(new game.SkinMediator(this.facade.stage._screenLayer));
+        };
+        return ViewPrepCommand;
+    }(puremvc.SimpleCommand));
+    game.ViewPrepCommand = ViewPrepCommand;
+})(game || (game = {}));
+var TestMeidator = (function (_super) {
+    __extends(TestMeidator, _super);
+    function TestMeidator(viewComponent) {
+        if (viewComponent === void 0) { viewComponent = null; }
+        _super.call(this, TestMeidator.NAME, viewComponent);
+        console.log("创建testmediator 成功");
+    }
+    TestMeidator.prototype.listNotificationInterests = function () {
+        return [
+            "showTestPanel"
+        ];
+    };
+    TestMeidator.prototype.handleNotification = function (notification) {
+        var data = notification.getBody();
+        console.log("testmediator 响应成功", notification.getName());
+        switch (notification.getName()) {
+            case "showTestPanel": {
+                if (this.viewComponent == null) {
+                    console.log("画板舞台不存在");
+                    return;
+                }
+                this.viewComponent.addChild(new TestPanel());
+                console.log("创建面板成功");
+            }
+        }
+    };
+    TestMeidator.NAME = "TestMediator";
+    return TestMeidator;
+}(puremvc.Mediator));
+var TestPanel = (function (_super) {
+    __extends(TestPanel, _super);
+    function TestPanel() {
+        _super.call(this);
+        this.createChildren();
+    }
+    TestPanel.prototype.createChildren = function () {
+        var text = new createjs.Text("hello testpanel", "normal 32px microsoft yahei", "#222222");
+        text.x = 0;
+        this.addChild(text);
+    };
+    return TestPanel;
+}(createjs.MovieClip));
 //# sourceMappingURL=app.js.map

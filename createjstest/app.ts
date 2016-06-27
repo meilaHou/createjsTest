@@ -42,7 +42,8 @@ class EaseljsTest {
         this.addTick();
         var dfdf: any;
         console.log(dfdf);
-
+        if (document["attachEvent"]) {
+            document["attachEvent"]("click",this.addTick)}
         this.mstage.update();
     }
 

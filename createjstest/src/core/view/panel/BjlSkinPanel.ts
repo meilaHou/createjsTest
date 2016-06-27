@@ -56,6 +56,12 @@ module game {
             && a.y - a.regY < b.y + b.regY;   // b的下边超出了a的上边
         }
         private loadSceneRes() {
+
+            //测试用,界面展示与此界面资源加载同步执行
+            this.addEventListener("addToStage", function (evt) {
+                this.initStartStatus();
+
+            }.bind(this));
             this.resourceLoader.loadManifest(bjllib.properties.manifest, false);
 
             this.resourceLoader.load();
@@ -68,7 +74,10 @@ module game {
         }
         private tablemc:createjs.MovieClip;
         private initStartStatus() {
-
+            if (this.isInit) {
+                return;
+            }
+            this.isInit = true;
             this.content = new bjllib.bjlskin();
             this.addChild(this.content);
             this.addEventListener("tick", this.ontickHandler.bind(this));
@@ -77,7 +86,9 @@ module game {
             this.tablemc = this.content["instance"]; 
             for (var i = 1; i < 6; i++) {
                 this.tablemc["betsItemMc" + i].clearBtn.visible = false;
-                this.tablemc["betsItemMc" + i].addEventListener("click",this.betItemClickHandler.bind(this));
+                this.tablemc["betsItemMc" + i].mouseChildren = false;
+                this.tablemc["betsItemMc" + i].addEventListener("click", this.betItemClickHandler.bind(this));
+                //this.tablemc["betsItemMc" + i].gotoAndStop(3);
             }
             this.tablemc["playerPointMc"].visible = false;
             this.tablemc["bankerPointMc"].visible = false;
@@ -103,6 +114,8 @@ module game {
                 this.tablemc["chipsBarMc"]["mc" + i]["txt"].text = chouma[i];
                 this.tablemc["chipsBarMc"]["mc" + i].addEventListener("click", this.choumaClick.bind(this));
             }
+
+
             this.changeState(FAPAI);
         }
         private betItemClickHandler(evt){
@@ -204,6 +217,7 @@ module game {
             }
         }
         private choumaArr: Array<createjs.MovieClip> = new Array<createjs.MovieClip>();
+        //筹码点击响应事件;
         private choumaClick(evt) {
             //var obj = evt.target["txt"];
            // var adf = this;

@@ -9,33 +9,33 @@
         fps: 24,
         color: "#FFFFFF",
         manifest: [
-            { src: "../egame/sounds/WelcomeSound.mp3?1464246701698", id: "WelcomeSound" },
-            { src: "../egame/sounds/BackgroundSound.mp3?1464246701698", id: "BackgroundSound" },
-            { src: "../egame/sounds/TieWinSound.mp3?1464246701698", id: "TieWinSound" },
-            { src: "../egame/sounds/BankerTwo.mp3?1464246701698", id: "BankerTwo" },
-            { src: "../egame/sounds/BankerZero.mp3?1464246701698", id: "BankerZero" },
-            { src: "../egame/sounds/BankerOne.mp3?1464246701698", id: "BankerOne" },
-            { src: "../egame/sounds/BankerThree.mp3?1464246701698", id: "BankerThree" },
-            { src: "../egame/sounds/BankerFour.mp3?1464246701698", id: "BankerFour" },
-            { src: "../egame/sounds/BankerFive.mp3?1464246701698", id: "BankerFive" },
-            { src: "../egame/sounds/BankerSix.mp3?1464246701698", id: "BankerSix" },
-            { src: "../egame/sounds/BankerSeven.mp3?1464246701698", id: "BankerSeven" },
-            { src: "../egame/sounds/BankerEight.mp3?1464246701698", id: "BankerEight" },
-            { src: "../egame/sounds/BankerNine.mp3?1464246701698", id: "BankerNine" },
-            { src: "../egame/sounds/BankerWinSound.mp3?1464246701698", id: "BankerWinSound" },
-            { src: "../egame/sounds/BankerGetSound.mp3?1464246701698", id: "BankerGetSound" },
-            { src: "../egame/sounds/PlayerTwo.mp3?1464246701698", id: "PlayerTwo" },
-            { src: "../egame/sounds/PlayerZero.mp3?1464246701698", id: "PlayerZero" },
-            { src: "../egame/sounds/PlayerOne.mp3?1464246701698", id: "PlayerOne" },
-            { src: "../egame/sounds/PlayerThree.mp3?1464246701698", id: "PlayerThree" },
-            { src: "../egame/sounds/PlayerFour.mp3?1464246701698", id: "PlayerFour" },
-            { src: "../egame/sounds/PlayerFive.mp3?1464246701698", id: "PlayerFive" },
-            { src: "../egame/sounds/PlayerSix.mp3?1464246701698", id: "PlayerSix" },
-            { src: "../egame/sounds/PlayerSeven.mp3?1464246701698", id: "PlayerSeven" },
-            { src: "../egame/sounds/PlayerEight.mp3?1464246701698", id: "PlayerEight" },
-            { src: "../egame/sounds/PlayerNine.mp3?1464246701698", id: "PlayerNine" },
-            { src: "../egame/sounds/PlayerWinSound.mp3?1464246701698", id: "PlayerWinSound" },
-            { src: "../egame/sounds/PlayerGetSound.mp3?1464246701698", id: "PlayerGetSound" }
+            { src: "../egame/sounds/WelcomeSound.mp3?1467022014856", id: "WelcomeSound" },
+            { src: "../egame/sounds/BackgroundSound.mp3?1467022014856", id: "BackgroundSound" },
+            { src: "../egame/sounds/TieWinSound.mp3?1467022014856", id: "TieWinSound" },
+            { src: "../egame/sounds/BankerTwo.mp3?1467022014856", id: "BankerTwo" },
+            { src: "../egame/sounds/BankerZero.mp3?1467022014856", id: "BankerZero" },
+            { src: "../egame/sounds/BankerOne.mp3?1467022014856", id: "BankerOne" },
+            { src: "../egame/sounds/BankerThree.mp3?1467022014857", id: "BankerThree" },
+            { src: "../egame/sounds/BankerFour.mp3?1467022014857", id: "BankerFour" },
+            { src: "../egame/sounds/BankerFive.mp3?1467022014857", id: "BankerFive" },
+            { src: "../egame/sounds/BankerSix.mp3?1467022014857", id: "BankerSix" },
+            { src: "../egame/sounds/BankerSeven.mp3?1467022014857", id: "BankerSeven" },
+            { src: "../egame/sounds/BankerEight.mp3?1467022014857", id: "BankerEight" },
+            { src: "../egame/sounds/BankerNine.mp3?1467022014857", id: "BankerNine" },
+            { src: "../egame/sounds/BankerWinSound.mp3?1467022014857", id: "BankerWinSound" },
+            { src: "../egame/sounds/BankerGetSound.mp3?1467022014857", id: "BankerGetSound" },
+            { src: "../egame/sounds/PlayerTwo.mp3?1467022014857", id: "PlayerTwo" },
+            { src: "../egame/sounds/PlayerZero.mp3?1467022014857", id: "PlayerZero" },
+            { src: "../egame/sounds/PlayerOne.mp3?1467022014857", id: "PlayerOne" },
+            { src: "../egame/sounds/PlayerThree.mp3?1467022014857", id: "PlayerThree" },
+            { src: "../egame/sounds/PlayerFour.mp3?1467022014857", id: "PlayerFour" },
+            { src: "../egame/sounds/PlayerFive.mp3?1467022014857", id: "PlayerFive" },
+            { src: "../egame/sounds/PlayerSix.mp3?1467022014857", id: "PlayerSix" },
+            { src: "../egame/sounds/PlayerSeven.mp3?1467022014857", id: "PlayerSeven" },
+            { src: "../egame/sounds/PlayerEight.mp3?1467022014857", id: "PlayerEight" },
+            { src: "../egame/sounds/PlayerNine.mp3?1467022014857", id: "PlayerNine" },
+            { src: "../egame/sounds/PlayerWinSound.mp3?1467022014857", id: "PlayerWinSound" },
+            { src: "../egame/sounds/PlayerGetSound.mp3?1467022014857", id: "PlayerGetSound" }
         ]
     };
 
@@ -1013,31 +1013,6 @@
     p.nominalBounds = new cjs.Rectangle(0, 0, 43, 43.1);
 
 
-    (lib.LOGO = function (mode, startPosition, loop) {
-        this.initialize(mode, startPosition, loop, {});
-
-        // 图层 1
-        this.instance = new lib._333333();
-
-        this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
-
-    }).prototype = p = new cjs.MovieClip();
-    p.nominalBounds = new cjs.Rectangle(0, 0, 246, 54);
-
-
-    (lib.底框 = function (mode, startPosition, loop) {
-        this.initialize(mode, startPosition, loop, {});
-
-        // 图层 1
-        this.instance = new lib.底3();
-        this.instance.setTransform(0, 0.4, 0.687, 0.687);
-
-        this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
-
-    }).prototype = p = new cjs.MovieClip();
-    p.nominalBounds = new cjs.Rectangle(0, 0.4, 1050, 158.7);
-
-
     (lib.问路斜杠 = function (mode, startPosition, loop) {
         this.initialize(mode, startPosition, loop, {});
 
@@ -1109,13 +1084,38 @@
         this.shape_1.setTransform(3.5, 3.4);
 
         this.shape_2 = new cjs.Shape();
-        this.shape_2.graphics.f().s("#0043EE").ss(1, 1, 1).p("AAbAAQAAAKgIAJQgIAIgLAAQgKAAgIgIQgIgJAAgKQAAgKAIgIQAIgIAKAAQALAAAIAIQAIAIAAAKgAAjAAQAAAOgLAKQgLALgNAAQgNAAgKgLQgLgKAAgOQAAgOALgLQAKgJANAAQANAAALAJQALALAAAOg");
+        this.shape_2.graphics.f().s("#0043EE").ss(1, 1, 1).p("AAjAAQAAAOgLAKQgLALgNAAQgNAAgKgLQgLgKAAgOQAAgOALgLQAKgJANAAQANAAALAJQALALAAAOgAAbAAQAAAKgIAJQgIAIgLAAQgKAAgIgIQgIgJAAgKQAAgKAIgIQAIgIAKAAQALAAAIAIQAIAIAAAKg");
         this.shape_2.setTransform(3.5, 3.5);
 
         this.timeline.addTween(cjs.Tween.get({}).to({ state: [{ t: this.shape_1 }, { t: this.shape }] }).to({ state: [{ t: this.shape_2 }] }, 1).wait(1));
 
     }).prototype = p = new cjs.MovieClip();
     p.nominalBounds = new cjs.Rectangle(-1, -1, 9, 9);
+
+
+    (lib.LOGO = function (mode, startPosition, loop) {
+        this.initialize(mode, startPosition, loop, {});
+
+        // 图层 1
+        this.instance = new lib._333333();
+
+        this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+
+    }).prototype = p = new cjs.MovieClip();
+    p.nominalBounds = new cjs.Rectangle(0, 0, 246, 54);
+
+
+    (lib.底框 = function (mode, startPosition, loop) {
+        this.initialize(mode, startPosition, loop, {});
+
+        // 图层 1
+        this.instance = new lib.底3();
+        this.instance.setTransform(0, 0.4, 0.687, 0.687);
+
+        this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+
+    }).prototype = p = new cjs.MovieClip();
+    p.nominalBounds = new cjs.Rectangle(0, 0.4, 1050, 158.7);
 
 
     (lib.Circle_Red = function (mode, startPosition, loop) {
@@ -1208,6 +1208,44 @@
 
     }).prototype = p = new cjs.MovieClip();
     p.nominalBounds = new cjs.Rectangle(0, 0, 45, 45);
+
+
+    (lib.元件3_1 = function (mode, startPosition, loop) {
+        this.initialize(mode, startPosition, loop, {});
+
+        // 图层 1
+        this.shape = new cjs.Shape();
+        this.shape.graphics.bf(cjs.SpriteSheetUtils.extractFrame(ss["bjlskin_atlas_"], 19), null, new cjs.Matrix2D(1, 0, 0, 1, -324.7, -291.7)).s().p("ArFFoIAArPIWLAAIAALPg");
+        this.shape.setTransform(71, 36);
+
+        this.timeline.addTween(cjs.Tween.get(this.shape).wait(1));
+
+    }).prototype = p = new cjs.MovieClip();
+    p.nominalBounds = new cjs.Rectangle(0, 0, 142, 72);
+
+
+    (lib.元件2 = function (mode, startPosition, loop) {
+        this.initialize(mode, startPosition, loop, {});
+
+        // 图层 1
+        this.instance = new lib.Bitmap24();
+
+        this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+
+    }).prototype = p = new cjs.MovieClip();
+    p.nominalBounds = new cjs.Rectangle(0, 0, 136, 68);
+
+
+    (lib.元件1_1 = function (mode, startPosition, loop) {
+        this.initialize(mode, startPosition, loop, {});
+
+        // 图层 1
+        this.instance_10 = new lib.Bitmap19();
+
+        this.timeline.addTween(cjs.Tween.get(this.instance_10).wait(1));
+
+    }).prototype = p = new cjs.MovieClip();
+    p.nominalBounds = new cjs.Rectangle(0, 0, 163, 139);
 
 
     (lib.玩家信息3 = function (mode, startPosition, loop) {
@@ -1838,7 +1876,7 @@
     p.nominalBounds = new cjs.Rectangle(6, 7.1, 11, 17.5);
 
 
-    (lib.元件2 = function (mode, startPosition, loop) {
+    (lib.元件2_1 = function (mode, startPosition, loop) {
         this.initialize(mode, startPosition, loop, {});
 
         // timeline functions:
@@ -2564,12 +2602,12 @@
         this.initialize(mode, startPosition, loop, { win: 0, down: 1, hover: 2, normal: 3 });
 
         // timeline functions:
-        this.frame_0 = function () {
+        this.frame_1 = function () {
             this.stop();
         }
 
         // actions tween:
-        this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(4));
+        this.timeline.addTween(cjs.Tween.get(this).wait(1).call(this.frame_1).wait(3));
 
         // Layer 2
         this.clearBtn = new lib.删除按钮();
@@ -2629,7 +2667,7 @@
         this.instance_7 = new lib.和区();
         this.instance_7.setTransform(114.6, 31.7, 1, 1, 0, 0, 0, 117.2, 33.3);
 
-        this.timeline.addTween(cjs.Tween.get(this.instance_7).wait(1).to({ alpha: 0.301 }, 0).wait(1).to({ alpha: 1 }, 0).wait(1).to({ alpha: 0 }, 0).wait(1));
+        this.timeline.addTween(cjs.Tween.get(this.instance_7).wait(1).to({ alpha: 0.301 }, 0).wait(1).to({ alpha: 1 }, 0).wait(1).to({ alpha: 0.012 }, 0).wait(1));
 
     }).prototype = p = new cjs.MovieClip();
     p.nominalBounds = new cjs.Rectangle(-259.6, -258.6, 751, 584);
@@ -2639,12 +2677,12 @@
         this.initialize(mode, startPosition, loop, { "win": 0, "down": 1, "hover": 2, "normal": 3 });
 
         // timeline functions:
-        this.frame_0 = function () {
+        this.frame_1 = function () {
             this.stop();
         }
 
         // actions tween:
-        this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(4));
+        this.timeline.addTween(cjs.Tween.get(this).wait(1).call(this.frame_1).wait(3));
 
         // Layer 2
         this.clearBtn = new lib.删除按钮();
@@ -2703,7 +2741,7 @@
         this.instance_7 = new lib.Bitmap27();
         this.instance_7.setTransform(-2.6, 0.4);
 
-        this.timeline.addTween(cjs.Tween.get({}).to({ state: [{ t: this.instance_6, p: { alpha: 1 } }] }).to({ state: [{ t: this.instance_7 }] }, 1).to({ state: [{ t: this.instance_6, p: { alpha: 1 } }] }, 1).to({ state: [{ t: this.instance_6, p: { alpha: 0 } }] }, 1).wait(1));
+        this.timeline.addTween(cjs.Tween.get({}).to({ state: [{ t: this.instance_6, p: { alpha: 1 } }] }).to({ state: [{ t: this.instance_7 }] }, 1).to({ state: [{ t: this.instance_6, p: { alpha: 1 } }] }, 1).to({ state: [{ t: this.instance_6, p: { alpha: 0.012 } }] }, 1).wait(1));
 
     }).prototype = p = new cjs.MovieClip();
     p.nominalBounds = new cjs.Rectangle(-259.6, -256.6, 653, 585);
@@ -2713,12 +2751,12 @@
         this.initialize(mode, startPosition, loop, { "win": 0, "down": 1, "hover": 2, "normal": 3 });
 
         // timeline functions:
-        this.frame_0 = function () {
+        this.frame_1 = function () {
             this.stop();
         }
 
         // actions tween:
-        this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(4));
+        this.timeline.addTween(cjs.Tween.get(this).wait(1).call(this.frame_1).wait(3));
 
         // Layer 2
         this.clearBtn = new lib.删除按钮();
@@ -2779,7 +2817,7 @@
         this.instance_8.setTransform(76.7, 64.1, 1, 1, 0, 0, 0, 81.2, 69.5);
         this.instance_8.shadow = new cjs.Shadow("rgba(255,255,0,1)", 0, 0, 244);
 
-        this.timeline.addTween(cjs.Tween.get({}).to({ state: [{ t: this.instance_6 }] }).to({ state: [{ t: this.instance_7 }] }, 1).to({ state: [{ t: this.instance_8, p: { alpha: 1 } }] }, 1).to({ state: [{ t: this.instance_8, p: { alpha: 0 } }] }, 1).wait(1));
+        this.timeline.addTween(cjs.Tween.get({}).to({ state: [{ t: this.instance_6 }] }).to({ state: [{ t: this.instance_7 }] }, 1).to({ state: [{ t: this.instance_8, p: { alpha: 1 } }] }, 1).to({ state: [{ t: this.instance_8, p: { alpha: 0.012 } }] }, 1).wait(1));
 
     }).prototype = p = new cjs.MovieClip();
     p.nominalBounds = new cjs.Rectangle(-261.5, -262.4, 679, 656);
@@ -2789,12 +2827,12 @@
         this.initialize(mode, startPosition, loop, { "win": 0, "down": 1, "hover": 2, "normal": 3 });
 
         // timeline functions:
-        this.frame_0 = function () {
+        this.frame_1 = function () {
             this.stop();
         }
 
         // actions tween:
-        this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(4));
+        this.timeline.addTween(cjs.Tween.get(this).wait(1).call(this.frame_1).wait(3));
 
         // Layer 2
         this.clearBtn = new lib.删除按钮();
@@ -2839,34 +2877,35 @@
         this.timeline.addTween(cjs.Tween.get({}).to({ state: [{ t: this.instance_4, p: { alpha: 1 } }, { t: this.instance_3 }] }).to({ state: [{ t: this.instance_4, p: { alpha: 0.801 } }] }, 1).wait(3));
 
         // 图层 3
-        this.instance_5 = new lib.Bitmap21();
-        this.instance_5.setTransform(-258.2, -256.7);
+        this.shape = new cjs.Shape();
+        this.shape.graphics.bf(cjs.SpriteSheetUtils.extractFrame(ss["bjlskin_atlas_"], 17), null, new cjs.Matrix2D(1, 0, 0, 1, -325.2, -291.7)).s().p("Aq2GGIAAsLIVtAAIAAMLg");
+        this.shape.setTransform(67, 35);
 
-        this.instance_6 = new lib.Bitmap22();
-        this.instance_6.setTransform(-1.2, 0.3);
+        this.instance_5 = new lib.Bitmap22();
+        this.instance_5.setTransform(-1.2, 0.3);
 
-        this.instance_7 = new lib.Bitmap23();
-        this.instance_7.setTransform(-258.2, -256.7);
+        this.instance_6 = new lib.元件3_1();
+        this.instance_6.setTransform(66.5, 35, 1, 1, 0, 0, 0, 71, 36);
 
-        this.instance_8 = new lib.Bitmap24();
-        this.instance_8.setTransform(-1.2, 0.3);
+        this.instance_7 = new lib.元件2();
+        this.instance_7.setTransform(66.8, 34.3, 1, 1, 0, 0, 0, 68, 34);
 
-        this.timeline.addTween(cjs.Tween.get({}).to({ state: [{ t: this.instance_5 }] }).to({ state: [{ t: this.instance_6 }] }, 1).to({ state: [{ t: this.instance_7 }] }, 1).to({ state: [{ t: this.instance_8 }] }, 1).wait(1));
+        this.timeline.addTween(cjs.Tween.get({}).to({ state: [{ t: this.shape }] }).to({ state: [{ t: this.instance_5 }] }, 1).to({ state: [{ t: this.instance_6, p: { alpha: 1 } }] }, 1).to({ state: [{ t: this.instance_7 }, { t: this.instance_6, p: { alpha: 0.012 } }] }, 1).wait(1));
 
     }).prototype = p = new cjs.MovieClip();
-    p.nominalBounds = new cjs.Rectangle(-258.2, -256.7, 653, 585);
+    p.nominalBounds = new cjs.Rectangle(-104.4, -123.7, 331, 321);
 
 
     (lib.bankerArea = function (mode, startPosition, loop) {
         this.initialize(mode, startPosition, loop, { "win": 0, "down": 1, "hover": 2, "normal": 3 });
 
         // timeline functions:
-        this.frame_0 = function () {
+        this.frame_1 = function () {
             this.stop();
         }
 
         // actions tween:
-        this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(4));
+        this.timeline.addTween(cjs.Tween.get(this).wait(1).call(this.frame_1).wait(3));
 
         // Layer 2
         this.clearBtn = new lib.删除按钮();
@@ -2923,10 +2962,10 @@
         this.instance_7 = new lib.Bitmap16();
         this.instance_7.setTransform(-1.1, -3.1);
 
-        this.instance_8 = new lib.Bitmap19();
-        this.instance_8.setTransform(-1.1, -3.1);
+        this.instance_8 = new lib.元件1_1();
+        this.instance_8.setTransform(80.4, 66.4, 1, 1, 0, 0, 0, 81.5, 69.5);
 
-        this.timeline.addTween(cjs.Tween.get({}).to({ state: [{ t: this.instance_6 }] }).to({ state: [{ t: this.instance_7 }] }, 1).to({ state: [{ t: this.instance_6 }] }, 1).to({ state: [{ t: this.instance_8 }] }, 1).wait(1));
+        this.timeline.addTween(cjs.Tween.get({}).to({ state: [{ t: this.instance_6, p: { alpha: 1 } }] }).to({ state: [{ t: this.instance_7 }] }, 1).to({ state: [{ t: this.instance_6, p: { alpha: 1 } }] }, 1).to({ state: [{ t: this.instance_8 }, { t: this.instance_6, p: { alpha: 0.012 } }] }, 1).wait(1));
 
     }).prototype = p = new cjs.MovieClip();
     p.nominalBounds = new cjs.Rectangle(-258.1, -260.1, 680, 656);
@@ -3139,7 +3178,7 @@
         this.bankerPointMc = new lib.元件4();
         this.bankerPointMc.setTransform(589.8, 164.8, 1, 1, 0, 0, 0, 12.2, 18.8);
 
-        this.playerPointMc = new lib.元件2();
+        this.playerPointMc = new lib.元件2_1();
         this.playerPointMc.setTransform(462.1, 164.9, 1, 1, 0, 0, 0, 12.2, 18.8);
 
         this.timeline.addTween(cjs.Tween.get({}).to({ state: [{ t: this.playerPointMc }, { t: this.bankerPointMc }] }).wait(1));
