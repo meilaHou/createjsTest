@@ -19,7 +19,10 @@ module game {
                 this.resourceLoader.type = this.ssKey;
                 this.loadSceneRes();
             }
-
+            //测试用,界面展示与此界面资源加载同步执行
+            this.addEventListener("added", function (evt) {
+                this.initStartStatus();
+            }.bind(this));
        }
 
         private choumaBounds:createjs.Container;
@@ -57,11 +60,7 @@ module game {
         }
         private loadSceneRes() {
 
-            //测试用,界面展示与此界面资源加载同步执行
-            this.addEventListener("addToStage", function (evt) {
-                this.initStartStatus();
-
-            }.bind(this));
+            
             this.resourceLoader.loadManifest(bjllib.properties.manifest, false);
 
             this.resourceLoader.load();

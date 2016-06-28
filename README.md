@@ -8,4 +8,4 @@ adobe animate cc 2015
 typescript 开发语言
 createjs  ts版本框架
 puremvc   ts版本框架
-iis 7
+iis 7  测试路径: http://localhost/reatejs.html

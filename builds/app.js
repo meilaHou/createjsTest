@@ -4177,6 +4177,9 @@ var game;
                 this.resourceLoader.type = this.ssKey;
                 this.loadSceneRes();
             }
+            this.addEventListener("added", function (evt) {
+                this.initStartStatus();
+            }.bind(this));
         };
         BjlSKinPanel.prototype.ontickHandler = function (evt) {
             if (!this.choumaBounds)
@@ -4206,9 +4209,6 @@ var game;
                 && a.y - a.regY < b.y + b.regY;
         };
         BjlSKinPanel.prototype.loadSceneRes = function () {
-            this.addEventListener("addToStage", function (evt) {
-                this.initStartStatus();
-            }.bind(this));
             this.resourceLoader.loadManifest(bjllib.properties.manifest, false);
             this.resourceLoader.load();
         };
@@ -4794,7 +4794,7 @@ var game;
             this.exportRoot.instance.messageTxt.text = evt.item.type + " :" + evt.item.id + ":加载完毕";
         };
         LoadingMeidator.prototype.handleResComplete = function (evt) {
-            console.log("所有游戏资源加载完毕");
+            console.log("所有游戏公共资源加载完毕");
             var spritesheet = this.resourceLoader.getResult("winspritesheet2");
             var sprite = SSResourceManager.createSprite(spritesheet, "winspritesheet2");
             ss["commonpoker_atlas_"] = this.resourceLoader.getResult("commonpoker_atlas_");

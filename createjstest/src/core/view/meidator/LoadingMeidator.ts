@@ -118,7 +118,7 @@ module game {
             this.exportRoot.instance.messageTxt.text = evt.item.type + " :" + evt.item.id +":加载完毕";
         }
         private handleResComplete(evt) {
-            console.log("所有游戏资源加载完毕");
+            console.log("所有游戏公共资源加载完毕");
             var spritesheet = this.resourceLoader.getResult("winspritesheet2") as createjs.SpriteSheet;
             var sprite = SSResourceManager.createSprite(spritesheet, "winspritesheet2");
             //sprite.play();
